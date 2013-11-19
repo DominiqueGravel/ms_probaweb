@@ -1,0 +1,3 @@
+[submodule "metaweb"]
+	path = metaweb
+	url = https://github.com/TheoreticalEcosystemEcology/metaweb
