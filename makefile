@@ -1,7 +1,7 @@
-text = ms_probaweb.md
-pdf = probaweb_PDF.pdf
+text = ms_probaweb.tex
+pdf = ms_probaweb.pdf
 
 all: $(pdf)
 
 $(pdf): $(text)
-	pandoc $(text) -o $(pdf)
+	pdflatex $(text)
