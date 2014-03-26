@@ -1,5 +1,7 @@
-# History files
-.Rhistory
-
-# Example code in package build process
-*-Ex.R
+*.aux
+*.bbl
+*.blg
+*.bcf
+*.log
+*.run.xml
+*.bib.bak
