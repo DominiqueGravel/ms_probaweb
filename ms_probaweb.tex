@@ -199,7 +199,7 @@ co-occurrence. There is however currently no general theory on the expected
 co-occurrence in complex ecological networks. For instance, we do not know how
 far co-occurrence is not-random when going along the chain of indirect
 interactions. Berlow(2009) shown previously that almost only first and second
-order interactions do matter in food webs, but we don't know for
+order interactions do matter in ecological networks, but we don't know for
 co-distribution. We neither know what is the sensitiviy to species richness: do
 interactions tend to buffer each other? Generalizing knowledge aquired by the
 study of small community modiles will require future research.
@@ -229,7 +229,7 @@ by community ecologists, but is trickier to turn into predictive models
 \parencite{Devictor2010a}. Nonetheless, the development of the niche model
 of food web structure (Williams2000) and its parameterization (Williams2010;
 Gravel2013) made it more operational, although it has yet to be applied to
-more than trophic interactions. %Y'a pas que les food webs dans la vie!
+more than trophic interactions. 
 
 While it is straigthforward to represent statistically the hyper volume where a species
 occurs, it is much more challenging to account for ecological interactions.
@@ -361,6 +361,29 @@ reduce the uncertainty to a manageable level.
 
 \subsection*{Partitionning beta diversity}
 
+\subsection*{Guidance for empirical studies}
+
+Ecological networks are known to be extremely sparse, \emph{i.e.} having far
+more absences of interactions that they have interactions. These absences of
+interactions, however, can come from different sources. The fact that unequal
+sampling at the local scale can affect our understanding of network structure
+is well documented \parencite{Martinez1999}. However, in a spatial context,
+some interactions may be undocumented because the species involved have
+never been observed in co-occurence. Although these are reported as a lack
+of interactions, in actuality we cannot make inference about them seeing
+that they have never been observed: it is possible that this interaction
+may happen should the two species co-occur. A second category of absences
+of interactions are those that are reported after multiple observations of
+species co-occurence. However, so as to have a confidence in the fact that the
+probability of an interaction is low, extensive sampling (that is, several
+co-occurences) is needed. Generally, our confidence that the interaction
+is indeed impossible will increase when the number of observations of the
+species pair. Seeing that this is essentialy a Bernoulli process (what is
+the probability that the species will interact given their presence), the
+breadth of the confidence interval is expected to saturate after a fixed
+number of observations, which can be set as a treshold above which a species
+paier has been observed "often enough".
+
 \subsection*{Null model testing}
 
 \subsection*{Species \& link distribution models}
@@ -381,7 +404,7 @@ reduce the uncertainty to a manageable level.
 This is tis a contribution to the Santa Fe Institute working group \emph{Networks over
 ecological gradients}. DG received financial support from NSERC and Canada
 Research Chair program. TP is supported by a MELS-FQRNT post-doctoral
-fellowship.
+fellowship. DG, TP, and DBS received financial support from the CIEE.
 \newpage
 
 %========================================================%
