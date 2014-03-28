@@ -4,10 +4,10 @@
 \usepackage{color,lineno,setspace,multirow,kpfonts}
 \usepackage{graphicx}
 \usepackage[top=2.4cm,left=2.4cm,top=2.4cm,bottom=2.4cm,includefoot]{geometry}
-\usepackage[style=bes]{biblatex}
+\usepackage[style=bes, backend=bibtex]{biblatex}
 \usepackage{rotating}
 
-\bibliography{library, tim}
+\addbibresource{tim.bib}
 
 \begin{document}
 
@@ -17,14 +17,14 @@
 \textbf{Title:} A quantitative framework for network biogeography\\
 % Alternative: The distribution of ecological interactions 
 % Alternative: The biogeography of ecological interactions
-% Alternative: Community macroecology: integrating species interactions and species distributions
+% Alternative: Community (macro)ecology: integrating species interactions and species distributions
 
-\textbf{Authors:} Dominique Gravel$^{1,2,*}$, Timoth\'ee Poisot$^{1,2,3}$, Neo
-Martinez$^{4}$, Jennifer Dunne$^{5}$, Jason Tylianakis$^{3}$, Nicolas
-Mouquet$^{6}$, Daniel Stouffer$^{3}$ \\
+\textbf{Authors:} Dominique Gravel$^{1,2,*}$, Timoth\'ee Poisot$^{1,2,3}$, N\'eo
+Martinez$^{4}$, Jennifer A. Dunne$^{5}$, Jason Tylianakis$^{3}$, Nicolas
+Mouquet$^{6}$, Daniel B. Stouffer$^{3}$ \\
 
 1: Canada Research Chair in Biogeography and community ecology. D\'epartement de
-biologie, chimie et g\'eographique, Universit\'e du Qu\'ebec \`a Rimouski, 300
+biologie, chimie et g\'eographie, Universit\'e du Qu\'ebec \`a Rimouski, 300
 All\'ee des Ursulines, Qu\'ebec, Canada. G5L 3A1.\\
 
 2: Qu\'ebec Centre for Biodiversity Sciences\\
@@ -61,10 +61,12 @@ All\'ee des Ursulines, Qu\'ebec, Canada. G5L 3A1.\\
 %========================================================%
 \section*{Introduction}
 
-Most ecology textbooks define the ecological community at \quote{the pool of
-species occupying a given location at a given time, and the list of their
-interactions} (ref to Morin?). Yet we oft forget the last part of this
-definition, focusing on species and neglecting the way they interact.
+Ecology textbooks define the structure of an ecological community as
+\emph{the pool of species occupying a given location at a given time, and
+the way these species interact} (ref to Morin?). It is therefore surprizing
+that ecological research on the variation of community structure has focused
+on species turnover (refs), almost entirely neglecting variation in the way
+species interact (refs).
 
 \begin{itemize}
 \item Network structure do vary in space in time. \\ 
@@ -83,27 +85,40 @@ spatial and temporal variation in network structure.\\
 
 \newpage
 %========================================================%
-\section*{A probabilistic representation of ecological networks}
+\section*{A probabilistic representation of ecological interactions networks}
 
-Interaction networks do vary in space and time because any given pairwise
-interaction could either occur or not at any particular location. We seek to
-represent the probability an interaction between species $i$ and $j$ occurs at
-location $y$. We consequently define $L_{ijy}$ as a stochastic variable taking a
-value of 1 when an interaction occurs and are thus looking at the probabilty of
-this event, $P(L_{ijy})$. There are several factors that could impact the
-occurrence of an interaction and we will describe them below. But ultimately,
-this probability depends on the spatial and temporal scale of observation. As
-long as the interaction probability is not null, the probability of observing an
-interaction will tend to 1 as the scale of observation increases. 
-	  
-The occurrence of an interaction requires the co-occurrence of species
-$i$ and $j$. This argument might seem trivial at first, but the explicit
-consideration of this condition in the probabilistic representation of
-ecological networks will prove fundamental to understand their variation. We
-thus define $X_{iy}$ as a stochastic variable representing the occurrence of a
-species $i$ at location $y$, and similarly $X_{ijy}$ the co-occurrence of species
-$i$ and $j$. The quantity we seek to understand is the probability of a joint
-event:
+%% We need to be careful: ecological network / interaction network / etc.
+%% I vote interaction networks, ecological network can be a spatial graph.
+%% Also, since we're going to say "interaction" a lot, interaction network
+%% makes sense. -- tp
+
+Networks of species interactions vary in space and time because any given
+pairwise interaction could either occur or not at any particular location.
+Understanding this variation amounts to be able to determine the probability
+that two species ($i$ and $j$) will interact at a given time/location ($y$);
+the existence of an interaction in this situation is thus essentially a
+stochastic variable, which we note $L_{ij,y}$. It takes a value of 1 where the
+interaction occurs, and 0 elsewhere. We note $P(L_{ij,y})$ the probability
+of this event. There are several factors that could impact the occurrence
+of an interaction and we will describe them below. But ultimately, this
+probability depends on the spatial and temporal scale of observation. As long
+as the probability of a particular interaction is not null, the probability
+of observing it at least once will become asymptotically closer to 1 when
+the scale of observation increases.
+% OK I like this paragraph, but we're REALLY NOT talking about factors or mechanisms here.
+% This whole framework is top-down/inferential, so we should at least have a paragraph in the
+% intro essentially summing up our preprint on network variation, and be clear on the
+% fact that we don't touch on mechanisms.
+
+The occurrence of an interaction requires the co-occurrence of species $i$ and
+$j$. This argument might seem trivial at first, but the explicit consideration
+of this condition in the probabilistic representation of ecological networks
+will prove fundamental to understand their variation.
+% We already make this point in betalink, should we summarize it briefly?
+We thus define $X_{iy}$
+as a stochastic variable representing the occurrence of a species $i$ at
+location $y$, and similarly $X_{ijy}$ the co-occurrence of species $i$ and
+$j$. The quantity we seek to understand is the probability of a joint event:
 
 %-----------------
 \begin{equation}
@@ -388,7 +403,9 @@ paier has been observed "often enough".
 
 \subsection*{Null model testing}
 
-\subsection*{Species \& link distribution models}
+% Do you mean "Patterns-generating models testing"?
+
+\subsection*{Species \& interactions distribution models}
 
 \newpage
 %========================================================%
@@ -403,10 +420,11 @@ paier has been observed "often enough".
 \newpage
 %========================================================%
 \section*{Acknowledgements}
-This is tis a contribution to the Santa Fe Institute working group \emph{Networks over
-ecological gradients}. DG received financial support from NSERC and Canada
-Research Chair program. TP is supported by a MELS-FQRNT post-doctoral
-fellowship. DG, TP, and DBS received financial support from the CIEE.
+This is a contribution to the working groups \emph{Networks over ecological
+gradients} (Santa Fe Institute) and \emph{Continental-scale variation of
+ecological networks}. (Canadian Institute for Ecology and Evolution). DG
+received financial support from NSERC and Canada Research Chair program. TP
+is supported by a MELS-FQRNT post-doctoral fellowship.
 \newpage
 
 %========================================================%
@@ -514,8 +532,6 @@ positive.
 	\caption{Model comparison with the host-parasitoid networks. The 48 networks were fitted to different models of interaction networks. Note that for the computation of the likelihood all null interaction probabilities, co-occurrences and the pairwise interactions without observed co-occurrences were removed.
 }
 \end{sidewaystable}
-
-\newpage
 
 \end{document}
 %========================================================%
