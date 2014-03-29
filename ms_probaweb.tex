@@ -86,7 +86,7 @@ spatial and temporal variation in network structure.\\
 
 \newpage
 %========================================================%
-\section*{A probabilistic representation of ecological interactions networks}
+\section*{A probabilistic representation of ecological interactions networks in space}
 
 %% We need to be careful: ecological network / interaction network / etc.
 %% I vote interaction networks, ecological network can be a spatial graph.
@@ -232,45 +232,43 @@ study of small community modiles will require future research.
 %========================================================%
 \section*{Interpretation: the integrated niche}
 
-The niche concept is key to understand and predict species
-distribution. Several attempts have been made to refresh it, but its main
-usage still follows Hutchinson’s idea that species interactions restrict
-the fundamental niche to a realized one, and ecologists haven't moved far past
-the n-dimensional hypervolume formalism \parencite{Blonder2014}. Despite its
-intuitive interpretation and translation into species distribution models,
-the concept has been constantly criticized (Hardin, 1960; Peters, 1991;
-Chase2003; Silvertown, 2004; Soberon, 2007) and several attempts have been
-made to expand and reinforce it.
+Correctly describing the ecological niche is key to understand and predict
+species distribution. Despite several attempts to refresh the conceptual
+basis of what ecological niches are, ecologists haven't moved far past the
+"n-dimensional hypervolume" formalism \parencite{Holt2009} introduced by
+\textcite{Hutchinson1961}. Despite its intuitive interpretation and translation
+into species distribution models \parencite{Blonder2014}, the concept has been
+constantly criticized (Hardin, 1960; Peters, 1991; Chase2003; Silvertown, 2004;
+Soberon, 2007) and several attempts have been made to expand and reinforce it.
 
 Part of the problem surrounding the definition of the niche has been
 clarified with the distinction between Eltonian and Grinnellian definitions
-(ChaseLeibold 2003). The Grinnellian dimension of the niche is the effect of
-the environment on the demography of a species, while the Eltonian dimension
-is the effect of a species on its environment \emph{sensu lato}.  % SNOB!
-The Grinnellian niche is the most intuitive one to apply and is the conceptual
-backbone of species distribution models. The Eltonian niche is well known
-by community ecologists, but is trickier to turn into predictive models
-\parencite{Devictor2010a}. Nonetheless, the development of the niche model
-of food web structure (Williams2000) and its parameterization (Williams2010;
-Gravel2013) made it more operational, although it has yet to be applied to
-more than trophic interactions. 
+\parencite{Chase2003}. The Grinnellian dimension of
+the niche is the effect of the environment on the demography of a species,
+while the Eltonian dimension is the effect of a species on its environment
+\emph{sensu lato}.  % SNOB!
+The Grinnellian niche is the most intuitive one
+to apply and is the conceptual backbone of species distribution models. The
+Eltonian niche is well known by community ecologists, but is trickier to
+turn into predictive models \parencite{Devictor2010a}. Nonetheless, the
+development of the niche model of food web structure (Williams2000) and
+its parameterization (Williams2010; Gravel2013) made it more operational,
+although it has yet to be applied to more than trophic interactions.
 
-While it is straigthforward to represent statistically the hyper volume where a species
-occurs, it is much more challenging to account for ecological interactions.
-Chase and Leibold (2003) attempted this representation in their definition:
+\textcite{Chase2003} attempted this representation in their definition:
 \textit{[The niche is] the joint description of the environmental conditions
 that allow a species to satisfy its minimum requirements so that the birth rate
-of a local population is equal or greater than its death rate along with the set
-of per capita effects of that species on these environmental conditions.} They
-represented the niche graphically with zero-net growth isoclines (the Grinnelian
-niche) and impact vectors (the Eltonian niche). While this representation has
-been very influential in community ecology at the local scale, it remains
-unpracticable at the biogeographical one.
-% Why (or more to the point, what do we care about having the same definition at different scales?)?
-The absence of any mathematical
-representation of the niche that could easily be fit to ecological data perhaps
-explain why biogeographers are still struggling to develop species distribution
-models taking into account ecological interactions.
+of a local population is equal or greater than its death rate along with the
+set of per capita effects of that species on these environmental conditions.}
+Their representation merges zero-net growth figuring the Grinnelian niche
+(when do the population persist) with impact vectors figuring the Eltonian
+niche (what is the population impact). While this representation has been very
+influential in community ecology at the local scale, it remains unpracticable
+%%% WHY?
+at the biogeographical one. The absence of any mathematical representation
+of the niche that could easily be fit to ecological data perhaps explain why
+biogeographers are still struggling to develop species distribution models
+taking into account ecological interactions.
 
 The key point to integrate dimensions of the niche is to represent the Eltonian niche into a Grinnelian space. 
 - We do so by considering that the Eltonian niche is the hyper volume in the trait-space allowing an interaction. \\
