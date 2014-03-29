@@ -116,25 +116,27 @@ $j$. This argument might seem trivial at first, but the explicit consideration
 of this condition in the probabilistic representation of ecological networks
 will prove fundamental to understand their variation.
 % We already make this point in betalink, should we summarize it briefly?
-We thus define $X_{iy}$
+We thus define $X_{i,y}$
 as a stochastic variable representing the occurrence of a species $i$ at
-location $y$, and similarly $X_{ijy}$ the co-occurrence of species $i$ and
+location $y$, and similarly $X_{ij,y}$ the co-occurrence of species $i$ and
 $j$. The quantity we seek to understand is the probability of a joint event:
 
 %-----------------
 \begin{equation}
-	P(X_{iy},X_{jy},L_{ijy},)
+   \text{P}(X_{i,y},X_{j,y},L_{ij,y},)
 \end{equation}
 %-----------------
 
-Which reads as the probability of observing species $i$, species $j$ and an
-interaction between them. This probability could be further decomposed in two parts using the
-product rule of probabilities:
+Or simply said, the probability of observing both species $i$ and $j$, and
+an interaction from $i$ to $j$. This probability could be further decomposed
+in two parts using the product rule of probabilities:
+
 %-----------------
 \begin{equation}
 	P(X_{iy},X_{jy},L_{ijy})=P(L_{ijy}|X_{iy},X_{jy},E_y)P(X_{iy},X_{jy}|E_y)
 \end{equation}
 %-----------------
+
 We will refer to the left term as the metaweb. It is a conditional probability,
 representing the probability that an interaction occurs if species $i$ and $j$
 are co-occurring. The right term is the probability of observing the two species
