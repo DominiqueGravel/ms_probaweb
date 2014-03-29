@@ -142,29 +142,33 @@ representing the probability that an interaction occurs if species $i$ and $j$
 are co-occurring. The right term is the probability of observing the two species
 co-occurring at location $y$.
 
+% The following paragraph
+% (1) is too long -- I tried to cut some of it, up to half of it
+% (2) comes at an awkward moment -- this is the key issue we try to solve, it should be in the introduction
+
 The metaweb concept is making its way through the network litterature even
-though it has never been formally and technically defined. It is usually
-conceived as a network of interactions among species that could potentially
-co-occur. It is usually represented by a binary matrix and thus
-deterministically. Here we define it as the matrix of interaction probabilities
-between co-occurring species. It thus represents potential interactions and
-should therefore include interactions between species that never co-occurred but
-are susceptible to. The problem with most representations of metawebs to date is
-that the effect of co-occurrence is never factored out. The traditional approach
-to build a metaweb is to cumulate observations across replicated networks. The
-main problem with that approach is that the co-occurrence of rare species is
-extremely unlikely and thus most often appear as an absence of interactions in
-the metaweb. This approach is inappropriate because the observed co-occurrence
-will have a strong signature on the evaluation of interactions. A rarefaction
-analysis previously shown that interactions accumulate with the addition of
-networks at a slower rate than species richness. It indicates that it is harder
-to have a direct evaluation of interactions from observeration than it is to
-evaluate species richness. If built from the observation of interactions, then
-the only way to fill a metaweb is by running cafeteria experiments between all
-pairs of species. Otherwise, the metaweb should be inferred using traits and
-phylogenetic information. Most of the published metawebs are therefore
-incomplete because of their sensitivity to sampling heterogeneity. We will come
-back to the issue of evaluating the metaweb in the sections Example and Applications
+though it has never been formally and technically defined.
+% Yes, but no. All of the people that ever wrote the word "metaweb" are authors on this paper.
+It is usually conceived as a network of interactions among species
+that could potentially co-occur, and represented by a binary matrix,
+\emph{i.e.} a probabilistic matrix in which the probability of observing
+an interaction is either 0 or 1. As the metaweb is usually constructed by
+aggregating observations, it assigns a probability of 0 to the interaction
+of species that never co-occurred, and is unable to factor-out the effect of
+co-occurrence. The main problem with that approach is that the co-occurrence
+of rare species is extremely unlikely and thus most often appear as an absence
+of interactions in the metaweb. This approach is inappropriate because the
+observed co-occurrence will have a strong signature on the evaluation of
+interactions. A rarefaction analysis previously shown that interactions
+accumulate with the addition of networks at a slower rate than species
+richness \parencite{Poisot2012d}. It indicates that it is harder to have a
+direct evaluation of interactions from observeration than it is to evaluate
+species richness. If built from the observation of interactions, then the
+only way to fill a metaweb is by running cafeteria experiments between all
+pairs of species. Otherwise, the metaweb should be inferred using traits
+and phylogenetic information. Most of the published metawebs are therefore
+incomplete because of their sensitivity to sampling heterogeneity. We will
+come back to the issue of evaluating the metaweb in the sections Applications.
 
 There are many variants of the metaweb representing different hypotheses about
 the origin of temporal and spatial variation in network structure (see the
