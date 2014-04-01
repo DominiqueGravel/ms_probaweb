@@ -1,7 +1,9 @@
-text = ms_probaweb.tex
+text = ms_probaweb
 pdf = ms_probaweb.pdf
 
 all: $(pdf)
 
-$(pdf): $(text)
-	pdflatex $(text)
+$(pdf): $(text).tex
+	pdflatex $(text).tex
+	bibtex $(text)
+	pdflatex $(text).tex
