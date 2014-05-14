@@ -15,7 +15,7 @@
 \linenumbers 
 \modulolinenumbers[1]
 
-\textbf{Title:} A quantitative framework for network biogeography\\
+\textbf{Title:} Scaling up patterns of emerging niche complexity in the metaweb of life -- an overarching conceptual synthesis and quantitative framework\\
 % Alternative: The distribution of ecological interactions 
 % Alternative: The biogeography of ecological interactions
 % Alternative: Community (macro)ecology: integrating species interactions and species distributions
@@ -30,7 +30,7 @@ All\'ee des Ursulines, Qu\'ebec, Canada. G5L 3A1.\\
 
 2: Qu\'ebec Centre for Biodiversity Sciences\\
 
-3: \\
+3: University of Canterbury at Christchurch, School of Biological Sciences,\\
 
 4: \\
 
@@ -62,15 +62,77 @@ All\'ee des Ursulines, Qu\'ebec, Canada. G5L 3A1.\\
 %========================================================%
 \section*{Introduction}
 
-Ecology textbooks define the structure of an ecological community as
-\emph{the pool of species occupying a given location at a given time, and
-the way these species interact} (ref to Morin?). It is therefore surprising
-that ecological research on the variation of community structure has focused
-on species turnover (refs), almost entirely neglecting variation in the way
-species interact (refs).
+Ecology textbooks define the structure of an ecological community as \emph{the
+pool of species occupying a given location at a given time, and the way
+these species interact} (ref to Morin?). It is therefore surprising that
+ecological research on the variation of community structure has focused
+on species turnover (refs), almost entirely neglecting variation in the
+way species interact (refs). This poses two challenges for the cohesion
+of community ecology as a unified field. First, we need to account, in
+an explicit way, for species interactions in our understanding of species
+occurrence and distributions (refs). Second, we need to expand the work that
+has been done in "species-based" community ecology, \emph{i.e.} measuring
+and predicting variation in species assemblages, into our study of species
+interactions. Here we argue that both of these challenges can be adressed
+as the same time, by considering that species interactions are not a fixed
+covariate in species distribution models, but react in complex ways to the
+presence and absence of species. Adopting this point of view provides a
+more unified way of community ecology, as a field seeking to undertand the
+distribution of species and their interactions.
 
 Network structure vary in space and time, metaweb as a large scale
 synthesis. We don't know yet the mechanisms of variation
+
+%%% FORMER NICHE SECTION
+
+Correctly describing the ecological niche is key to understand and predict
+species distribution. Despite several attempts to refresh the conceptual
+basis of what ecological niches are, ecologists haven't moved far past the
+"n-dimensional hypervolume" formalism \parencite{Holt2009} introduced by
+\textcite{Hutchinson1961}. Despite its intuitive interpretation and translation
+into species distribution models \parencite{Blonder2014}, the concept has been
+constantly criticized (Hardin, 1960; Peters, 1991; Chase2003; Silvertown, 2004;
+Soberon, 2007) and several attempts have been made to expand and reinforce it.
+
+Part of the problem surrounding the definition of the niche has been
+clarified with the distinction between Eltonian and Grinnellian definitions
+\parencite{Chase2003}. The Grinnellian dimension of the niche is the
+effect of the environment on the demography of a species, while the Eltonian
+dimension is the effect of a species on its environment \emph{sensu lato}. The
+Grinnellian niche is the most intuitive one to apply and is the conceptual
+backbone of species distribution models. The Eltonian niche is well known
+by community ecologists, but is trickier to turn into predictive models
+\parencite{Devictor2010a}. Nonetheless, the development of the niche model
+of food web structure (Williams2000) and its parameterization (Williams2010;
+Gravel2013) made it more operational, although it has yet to be applied to
+more than trophic interactions.
+
+\textcite{Chase2003} attempted this representation in their definition:
+\textit{[The niche is] the joint description of the environmental conditions
+that allow a species to satisfy its minimum requirements so that the birth rate
+of a local population is equal or greater than its death rate along with the
+set of per capita effects of that species on these environmental conditions.}
+Their representation merges zero-net growth figuring the Grinnelian niche
+(when do the population persist) with impact vectors figuring the Eltonian
+niche (what is the population impact). While this representation has been very
+influential in community ecology at the local scale, it remains impracticable
+%%% WHY?
+at the biogeographical one. The absence of any mathematical representation
+of the niche that could easily be fit to ecological data perhaps explain why
+biogeographers are still struggling to develop species distribution models
+taking into account ecological interactions.
+
+The key point to integrate dimensions of the niche is to represent the Eltonian niche into a Grinnelian space. 
+- We do so by considering that the Eltonian niche is the hyper volume in the trait-space allowing an interaction. \\
+- Doing so, we could project both niches in a plane and find the hypervolume where an interaction should occur (Fig. 2). \\
+- This visual representation is parallel to the probabilistic definition of interaction probability. \\
+- We propose that the metaweb is the Eltonian dimension of the niche, while the matrix of co-occurrence is the Grinnellian dimension. \\
+- Feedbacks between dimensions occur through the inclusion of co-occurrence in the metaweb, and interactions in the co-occurrence matrix. \\
+- This approach radically change the representation of the niche, putting species distribution and ecological interactions at the same level. \\
+- Fitting the probabilistic model allows the evaluation of link distribution and species distribution models. \\
+- Moreover, the integrated niche concept facilitates the formulation of species distribution models taking into account biotic interactions (see the section Applications) \\
+
+%%% END OF FORMER NICHE SECTION
 
 The metaweb concept is making its way through the network literature even
 though it has never been formally and technically defined.
@@ -212,59 +274,6 @@ order interactions do matter in ecological networks, but we don't know for
 co-distribution. We neither know what is the sensitivity to species richness: do
 interactions tend to buffer each other? Generalizing knowledge acquired by the
 study of small community modules will require future research.
-
-\newpage
-%========================================================%
-\section*{Interpretation: the integrated niche}
-
-Correctly describing the ecological niche is key to understand and predict
-species distribution. Despite several attempts to refresh the conceptual
-basis of what ecological niches are, ecologists haven't moved far past the
-"n-dimensional hypervolume" formalism \parencite{Holt2009} introduced by
-\textcite{Hutchinson1961}. Despite its intuitive interpretation and translation
-into species distribution models \parencite{Blonder2014}, the concept has been
-constantly criticized (Hardin, 1960; Peters, 1991; Chase2003; Silvertown, 2004;
-Soberon, 2007) and several attempts have been made to expand and reinforce it.
-
-Part of the problem surrounding the definition of the niche has been
-clarified with the distinction between Eltonian and Grinnellian definitions
-\parencite{Chase2003}. The Grinnellian dimension of the niche is the
-effect of the environment on the demography of a species, while the Eltonian
-dimension is the effect of a species on its environment \emph{sensu lato}. The
-Grinnellian niche is the most intuitive one to apply and is the conceptual
-backbone of species distribution models. The Eltonian niche is well known
-by community ecologists, but is trickier to turn into predictive models
-\parencite{Devictor2010a}. Nonetheless, the development of the niche model
-of food web structure (Williams2000) and its parameterization (Williams2010;
-Gravel2013) made it more operational, although it has yet to be applied to
-more than trophic interactions.
-
-\textcite{Chase2003} attempted this representation in their definition:
-\textit{[The niche is] the joint description of the environmental conditions
-that allow a species to satisfy its minimum requirements so that the birth rate
-of a local population is equal or greater than its death rate along with the
-set of per capita effects of that species on these environmental conditions.}
-Their representation merges zero-net growth figuring the Grinnelian niche
-(when do the population persist) with impact vectors figuring the Eltonian
-niche (what is the population impact). While this representation has been very
-influential in community ecology at the local scale, it remains impracticable
-%%% WHY?
-at the biogeographical one. The absence of any mathematical representation
-of the niche that could easily be fit to ecological data perhaps explain why
-biogeographers are still struggling to develop species distribution models
-taking into account ecological interactions.
-
-The key point to integrate dimensions of the niche is to represent the Eltonian niche into a Grinnelian space. 
-- We do so by considering that the Eltonian niche is the hyper volume in the trait-space allowing an interaction. \\
-- Doing so, we could project both niches in a plane and find the hypervolume where an interaction should occur (Fig. 2). \\
-- This visual representation is parallel to the probabilistic definition of interaction probability. \\
-- We propose that the metaweb is the Eltonian dimension of the niche, while the matrix of co-occurrence is the Grinnellian dimension. \\
-- Feedbacks between dimensions occur through the inclusion of co-occurrence in the metaweb, and interactions in the co-occurrence matrix. \\
-- This approach radically change the representation of the niche, putting species distribution and ecological interactions at the same level. \\
-- Fitting the probabilistic model allows the evaluation of link distribution and species distribution models. \\
-- Moreover, the integrated niche concept facilitates the formulation of species distribution models taking into account biotic interactions (see the section Applications) \\
-
-% TO BE COMPLETED
 
 \newpage
 %========================================================%
