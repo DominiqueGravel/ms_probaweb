@@ -5,4 +5,6 @@
 *.log
 *.run.xml
 *.bib.bak
-*blx.bib
+*.blx.bib
+*.Rdata
+old_stuff/
