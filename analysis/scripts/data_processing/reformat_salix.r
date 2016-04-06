@@ -7,101 +7,141 @@
 ##################################################################
 
 rm(list=ls())
-
+setwd("/Users/DGravel/Documents/Manuscripts/Inprep/ms_probaweb")
 # Load the data
-load("analysis/data/expand_data.Rdata")
-load("analysis/data/salix_int.Rdata")
 
-# Find the IDs
-IDi = unique(salix_int[,5]) # i stands for hosts
-IDj = unique(salix_int[,6]) # j stands for pars
-IDcomm = IDj[match(IDi,IDj,nomatch=0)]
-IDun = unique(c(IDi,IDj))
-Si = length(IDi) 
-Sj = length(IDj)
+# Original data from mangal
+#load("analysis/data/salix_int.Rdata")
 
-sites = salix_int[,1]
-sites_ID = unique(salix_int[,1])
+# Instead work with the original Roslin dataset
+datakop <- read.csv("analysis/data/kopeleke_data.csv",dec=",")
+HP = datakop[,c(9,10,11,1,19,32)]
+#HP = subset(HP, HP[,6]!="no parasitoid or inquiline")
+SH = datakop[,c(9,10,11,1,29,19)]
+names(HP) = c("site","lat","lon","year","from","to")
+names(SH) = c("site","lat","lon","year","from","to")
+SH[,5] = paste("Salix",SH[,5])
+salix_int = rbind(HP,SH)
+save(salix_int, file = "analysis/data/salix_int_direct.Rdata")
+
+# Get the IDs
+sites = as.character(salix_int[,1])
+sites_ID = as.character(unique(salix_int[,1]))
 coords = salix_int[,2:3]
-nsites = length(sites_ID)
-
-salix_ID = unique(salix_int$to[salix_int$type == "epibiosis"])
-gall_ID = unique(c(salix_int$from[salix_int$type == "epibiosis"],salix_int$to[salix_int$type != "epibiosis"]))
-par_ID = unique(salix_int$from[salix_int$type != "epibiosis"])
+n_sites = length(sites_ID)
+ID_S = unique(SH[,5])
+ID_H = as.character(unique(SH[,6]))
+ID_P = as.character(unique(HP[,6]))
+S_S = length(ID_S)
+S_H = length(ID_H)
+S_P = length(ID_P)
 
 # Pairs of interactions
-SG_pairs = cbind(expand.grid(salix_ID,gall_ID),type = "SG")
-GP_pairs = cbind(expand.grid(gall_ID,par_ID),type = "GP") 
-pairs = rbind(SG_pairs,GP_pairs)
+SH_pairs = cbind(expand.grid(ID_S, ID_H), type = "SG")
+HP_pairs = cbind(expand.grid(ID_H, ID_P), type = "GP") 
+pairs = rbind(SH_pairs, HP_pairs)
 
 # Record the pair IDs
-save(pairs,file="analysis/data/pairs.Rdata")
+save(pairs, file="analysis/data/pairs.Rdata")
 
-# Construct the presence/Absence matrix 
-pres_mat_i = matrix(0,nr = nsites, nc = Si)
-pres_mat_j = matrix(0,nr = nsites, nc = Sj)
+# Look at co-occurrence for pairs of salix ang galls
+pairs0_SH = data.frame(
+	ID_S = rep(ID_S, each = S_H),
+	ID_H = rep(ID_H, times = S_S))
 
-for(i in 1:Si) {
-	sites_pres_i = c(sites[which(salix_int[,5]==IDi[i])],sites[which(salix_int[,6]==IDi[i])])
-	pres_mat_i[match(sites_pres_i,sites_ID),i]=1
-}
-
-for(j in 1:Sj) {
-	sites_pres_j = c(sites[which(salix_int[,5]==IDj[j])],sites[which(salix_int[,6]==IDj[j])])
-	pres_mat_j[match(sites_pres_j,sites_ID),j]=1	
-}
-
-# Look at co-occurrence for all pairs and record if there is an interaction
-pairs0 = data.frame(
-	IDi = rep(IDi, each = Sj),
-	IDj = rep(IDj, times = Si),
-	index_IDi = rep(c(1:Si), each = Sj),
-	index_IDj = rep(c(1:Sj), times = Si)
+pairs_SH = data.frame(
+	sites_ID = rep(sites_ID, each = S_S * S_H),
+	ID_S = rep(pairs0_SH[,1], times = n_sites),
+	ID_H = rep(pairs0_SH[,2], times = n_sites), 
+	type = rep("SH", times = n_sites*S_S*S_H)
 )
+rm(pairs0_SH)
+XS = numeric(nrow(pairs_SH))
+XH = numeric(nrow(pairs_SH))
+LSH = numeric(nrow(pairs_SH))
 
-pairs = data.frame(
-	sites_ID = rep(sites_ID, each = Si*Sj),
-	index_sites = rep(c(1:nsites), each = Si*Sj),
-	IDi = rep(pairs0[,1], times = nsites),
-	IDj = rep(pairs0[,2], times = nsites),
-	index_IDi = rep(pairs0[,3], times = nsites),
-	index_IDj = rep(pairs0[,4], times = nsites)
-)
+# Loop around all observations of interactions
+for(x in 1:nrow(SH)) {
 
-Xi = numeric(nrow(pairs))
-Xj = numeric(nrow(pairs))
-Lij = numeric(nrow(pairs))
+	# Get the sites where the salix is present
+	XS[which(pairs_SH$sites_ID == SH[x,1] & pairs_SH$ID_S == SH[x,5])] = 1
 
-expIDi = numeric(nrow(pairs))
-expIDj = numeric(nrow(pairs))
+	# Get the sites where the gall is present
+	XH[which(pairs_SH$sites_ID == SH[x,1] & pairs_SH$ID_H == SH[x,6])] = 1
+		
+	# Get the sites where the gall and the salix interact
+	LSH[which(pairs_SH$sites_ID == SH[x,1] & pairs_SH$ID_S == SH[x,5] & pairs_SH$ID_H == SH[x,6])] = 1
 
-link_ID = paste(salix_int[,1],salix_int[,5],salix_int[,6])
-unique_link_ID = unique(link_ID)
-nlink_ID = length(unique_link_ID)
+}
+data = cbind(pairs_SH,XS,XH,LSH)
+save(data, file = "analysis/data/SH.Rdata")
 
-pairs_ID = paste(pairs$sites_ID,pairs$IDi,pairs$IDj)
 
-vec = numeric(length(unique_link_ID)) + 1
+# Look at co-occurrence for pairs of galls and parasitoids
+pairs0_HP= data.frame(
+	ID_H = rep(ID_H, each = S_P),
+	ID_P = rep(ID_P, times = S_H))
 
-for(x in 1:nrow(pairs)) {
-	Xi[x] = pres_mat_i[pairs$index_sites[x],pairs$index_IDi[x]]
-	Xj[x] = pres_mat_j[pairs$index_sites[x],pairs$index_IDj[x]]
-	if(sum(vec[unique_link_ID == pairs_ID[x]])) Lij[x] = 1
+pairs_HP = data.frame(
+	sites_ID = rep(sites_ID, each = S_H * S_P),
+	ID_H = rep(pairs0_HP[,1], times = n_sites),
+	ID_P = rep(pairs0_HP[,2], times = n_sites), 
+	type = rep("HP", n_sites*S_H*S_P))
+rm(pairs0_HP)
+XH2 = numeric(nrow(pairs_HP))
+XP = numeric(nrow(pairs_HP))
+LHP = numeric(nrow(pairs_HP))
+
+# Loop around all observations of interactions
+for(x in 1:nrow(HP)) {
+
+	# Get the sites where the salix is present
+	XH2[which(pairs_HP$sites_ID == HP[x,1] & pairs_HP$ID_H == HP[x,5])] = 1
+
+	# Get the sites where the gall is present
+	XP[which(pairs_HP$sites_ID == HP[x,1] & pairs_HP$ID_P == HP[x,6])] = 1
+		
+	# Get the sites where the gall and the salix interact
+	LHP[which(pairs_HP$sites_ID == HP[x,1] & pairs_HP$ID_H == HP[x,5] & pairs_HP$ID_P == HP[x,6])] = 1
+
+	cat(x, " / ", nrow(HP), '\n')
 }
 
-# Record co-occurrence for all pairs of species
+data_HP = data.frame(pairs_HP = pairs_HP, XH2 = XH2, XP = XP, LHP = LHP)
+save(data_HP, file = "analysis/data/HP.Rdata")
+
+
+# 
+load("analysis/data/HP.Rdata")
+XH2 = data_HP$XH2
+XP = data_HP$XP
+LHP = data_HP$LHP
+
+
+# Combine the sets
+names(pairs_SH) = c("sites_ID", "from", "to", "type")
+names(pairs_HP) = c("sites_ID", "from", "to", "type")
+pairs = rbind(pairs_SH, pairs_HP)
+Xi = c(XS,XH2)
+Xj = c(XH,XP)
 Xij = Xi*Xj
+Lij = c(LSH,LHP)
 
 
 ###################################################
-# Match with environmental data
-load("analysis/data/salix_climate.Rdata")
+# Load packages
+library(dismo)
+library(raster)
+bclim = brick("analysis/data/bioclim.grd")
+salix_climate = extract(bclim, salix_int[,c('lon', 'lat')])
+salix_climate = data.frame(salix_int, salix_climate)
+save(salix_climate, file="analysis/data/salix_climate.Rdata")
+
+
+
 
 # Subset the data to have one line per site
-sub_salix_climate = salix_climate[match(sites_ID,sites),c(1,8:26)]
-
-# Drop the NAs
-sub_salix_climate = subset(sub_salix_climate,is.na(sub_salix_climate[,3])==FALSE)
+sub_salix_climate = salix_climate[match(sites_ID,sites),c(1,7:25)]
 
 # Compute the PCA
 PCA = princomp(sub_salix_climate[,2:20],cor = TRUE)
@@ -111,10 +151,24 @@ summary(PCA)
 sub_salix_climate = cbind(sub_salix_climate,PCA$scores)
 
 # Match the climate data to the full table
-match_pairs_climate0 = match(as.character(pairs[,1]),as.character(sub_salix_climate[,1]))
-match_pairs_climate = subset(match_pairs_climate0, is.na(match_pairs_climate0) == FALSE)
+match_pairs_climate = match(as.character(pairs[,1]), 
+	as.character(sub_salix_climate[,1]))
+
+#match_pairs_climate = subset(match_pairs_climate0, 
+#	is.na(match_pairs_climate0) == FALSE)
+
 expand_climate = sub_salix_climate[match_pairs_climate,]
-data = data.frame(pairs = pairs[is.na(match_pairs_climate0) == FALSE,], Xi=Xi[is.na(match_pairs_climate0) == FALSE], Xj=Xj[is.na(match_pairs_climate0) == FALSE], Xij=Xij[is.na(match_pairs_climate0) == FALSE], Lij=Lij[is.na(match_pairs_climate0) == FALSE], climate = expand_climate)
+
+#data = data.frame(pairs = pairs[is.na(match_pairs_climate0) == FALSE,], 
+#Xi=Xi[is.na(match_pairs_climate0) == FALSE], 
+#Xj=Xj[is.na(match_pairs_climate0) == FALSE], 
+#Xij=Xij[is.na(match_pairs_climate0) == FALSE], 
+#Lij=Lij[is.na(match_pairs_climate0) == FALSE], climate = expand_climate)
+
+data = data.frame(pairs = pairs, Xi=Xi, Xj=Xj, Xij=Xij, Lij=Lij, climate = expand_climate)
+
+# Drop the NAs
+data = subset(data,is.na(data$climate.bio1)==FALSE)
 
 save(data,file = "analysis/data/expand_data.Rdata")
 

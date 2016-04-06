@@ -29,14 +29,15 @@ Sj = length(unique(IDj))
 unique_IDi = unique(IDi)
 unique_IDj = unique(IDj)
 np = length(DF_split)
+type = numeric(np)
 
 # Lists to store the models 
-C2_L0 = matrix(nr = np, nc = 3)
-C2_L1 = matrix(nr = np, nc = 3)
-C2_L2 = matrix(nr = np, nc = 3)
-C0_L2 = matrix(nr = np, nc = 3)
-C1_L2 = matrix(nr = np, nc = 3)
-C3_L2 = matrix(nr = np, nc = 3)
+C2_L0 = matrix(nr = np, nc = 2)
+C2_L1 = matrix(nr = np, nc = 2)
+C2_L2 = matrix(nr = np, nc = 2)
+C0_L2 = matrix(nr = np, nc = 2)
+C1_L2 = matrix(nr = np, nc = 2)
+C3_L2 = matrix(nr = np, nc = 2)
 
 # Loop around all pairs of species
 count = 1
@@ -45,8 +46,8 @@ for(x in 1:np) {
 	sub_data = DF_split[[x]]
 
 	IDs = as.matrix(sub_data[1,1:2])
-	test = which(pairs[,1] == as.numeric(IDs[1]) & pairs[,2]==as.numeric(IDs[2]) | pairs[,1]==as.numeric(IDs[2]) & pairs[,2]==as.numeric(IDs[1]))
-	if(length(test)!=0)	type[x] = as.character(pairs[test,3])
+	test = which(pairs[,2] == as.character(IDs[1]) & pairs[,3]==as.character(IDs[2]) | pairs[,2]==as.character(IDs[2]) & pairs[,3]==as.character(IDs[1]))
+	if(length(test)!=0)	type[x] = unique(as.character(pairs[test,4]))
 	
 	models_C2_L0 = fit_models.apply(sub_data,selection = FALSE, funC = C2, funL = L0)
 	models_C2_L1 = fit_models.apply(sub_data,selection = FALSE, funC = C2, funL = L1)
@@ -71,36 +72,36 @@ for(x in 1:np) {
 
 # Sum by type of interaction
 npars_SG = c(
-	sum(C2_L0[type=="SG",2]),
-	sum(C2_L1[type=="SG",2]),
-	sum(C2_L2[type=="SG",2]),
-	sum(C0_L2[type=="SG",2]),
-	sum(C1_L2[type=="SG",2]),
-	sum(C3_L2[type=="SG",2]))
+	sum(C2_L0[type=="SH",2]),
+	sum(C2_L1[type=="SH",2]),
+	sum(C2_L2[type=="SH",2]),
+	sum(C0_L2[type=="SH",2]),
+	sum(C1_L2[type=="SH",2]),
+	sum(C3_L2[type=="SH",2]))
 
 npars_GP = c(
-	sum(C2_L0[type=="GP",2]),
-	sum(C2_L1[type=="GP",2]),
-	sum(C2_L2[type=="GP",2]),
-	sum(C0_L2[type=="GP",2]),
-	sum(C1_L2[type=="GP",2]),
-	sum(C3_L2[type=="GP",2]))
+	sum(C2_L0[type=="HP",2]),
+	sum(C2_L1[type=="HP",2]),
+	sum(C2_L2[type=="HP",2]),
+	sum(C0_L2[type=="HP",2]),
+	sum(C1_L2[type=="HP",2]),
+	sum(C3_L2[type=="HP",2]))
 
 sumLL_SG = c(
-	sum(C2_L0[type=="SG",1]),
-	sum(C2_L1[type=="SG",1]),
-	sum(C2_L2[type=="SG",1]),
-	sum(C0_L2[type=="SG",1]),
-	sum(C1_L2[type=="SG",1]),
-	sum(C3_L2[type=="SG",1]))
+	sum(C2_L0[type=="SH",1]),
+	sum(C2_L1[type=="SH",1]),
+	sum(C2_L2[type=="SH",1]),
+	sum(C0_L2[type=="SH",1]),
+	sum(C1_L2[type=="SH",1]),
+	sum(C3_L2[type=="SH",1]))
 
 sumLL_GP = c(
-	sum(C2_L0[type=="GP",1]),
-	sum(C2_L1[type=="GP",1]),
-	sum(C2_L2[type=="GP",1]),
-	sum(C0_L2[type=="GP",1]),
-	sum(C1_L2[type=="GP",1]),
-	sum(C3_L2[type=="GP",1]))
+	sum(C2_L0[type=="HP",1]),
+	sum(C2_L1[type=="HP",1]),
+	sum(C2_L2[type=="HP",1]),
+	sum(C0_L2[type=="HP",1]),
+	sum(C1_L2[type=="HP",1]),
+	sum(C3_L2[type=="HP",1]))
 
 AIC_SG = -2*sumLL_SG + 2*npars_SG
 AIC_GP = -2*sumLL_GP + 2*npars_GP
