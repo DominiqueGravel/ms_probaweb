@@ -24,7 +24,7 @@
 
 \textbf{Title:} Bringing Elton and Grinnell together: a quantitative framework to represent the biogeography of ecological interaction networks
 
-\textbf{Authors:} Dominique Gravel$^{1,2,*}$, Ben Baiser$^{3}$, Jennifer A. Dunne$^{4}$, Jens-Peter Kopelke$^{5}$, Neo
+\textbf{Authors:} Dominique Gravel$^{1,2,*}$, Benjamin Baiser$^{3}$, Jennifer A. Dunne$^{4}$, Jens-Peter Kopelke$^{5}$, Neo
 Martinez$^{6}$, Tommy Nyman$^{7}$, Timoth\'ee Poisot$^{2,8}$,  Spencer A. Wood$^{9}$, Daniel B. Stouffer$^{10}$, Jason Tylianakis$^{10,11}$ Tomas Roslin$^{12}$,\\
 
 1: Canada Research Chair in Integrative Ecology. D\'epartement de
@@ -33,7 +33,7 @@ Sherbrooke (Québec).  J1K 2R1\\
 
 2: Qu\'ebec Centre for Biodiversity Sciences\\
 
-3: \\
+3: University of Florida, Department of Wildlife Ecology and Conservation, 110 Newins-Ziegler Hall, PO Box 110430, Gainesville, Fl. 32611-0430 \\
 
 4: \\
 
@@ -179,19 +179,22 @@ environment on species performance. Combined with specific responses in
 demography, it generates variation among sites by selecting the locally
 fittest species \citep{Leibold2004}. Stochasticity plays an additional role,
 either colonization and extinction events \citep{Hanski1999} are inherently
-unpredictable, or because of strong non-linear feedbacks in community dynamics generating alternative
-transients and equilibria \citep{Chase2007, Vellend2014}. Analyses of
-community turnover are usually performed with data represented in a table with
-rows corresponding to sites (or measurements) and columns to species. Metrics
-of beta diversity quantify the variance of this community data
-\citep{Legendre2005}. Traditional approaches rely on measures of dissimilarity
-among communities, such as the Jaccard or Bray–Curtis indices. A more recent
-approach decomposes the total variation of the community data into species and
-site contributions to beta diversity \citep{Legendre2013}. Even though these
-methods compare whole lists of species among sites or measurements, they
-remain fundamentally ’species-based’, since they report the variation within
-columns. None of them explicitly considers the variation of associations
-(i.e., of pairs or higher-order motifs – \citealt{Stouffer2007}).
+unpredictable, or because of strong non-linear feedbacks in community dynamics
+generating alternative transients and equilibria \citep{Chase2007,
+Vellend2014}. Analyses of community turnover are usually performed with data
+represented in a table with rows corresponding to sites (or measurements) and
+columns to species. Metrics of beta diversity quantify the variance of this
+community data \citep{Legendre2005}. Traditional approaches rely on measures
+of dissimilarity among communities, such as the Jaccard or Bray–Curtis
+indices. A more recent approach decomposes the total variation of the
+community data into species and site contributions to beta diversity
+\citep{Legendre2013}, and further partition into dissimilarity due to changes
+in species richness and those due to actual species turnover \citep{Baselga2010;
+Carvalho et al. 2012}. Even though these methods compare whole lists of
+species among sites or measurements, they remain fundamentally ’species-
+based’, since they report the variation within columns. None of them
+explicitly considers the variation of associations (i.e., of pairs or higher-
+order motifs – \citealt{Stouffer2007}).
 
 The "niche" is by far the dominant concept to explain species distributions
 and community assembly, from the local to the global scale. Following
@@ -246,7 +249,7 @@ the concept of the ecological niche, ecologists have not moved far past the
 interpretation and easy translation into species distribution models
 \citep{Boulangeat2012, Blonder2014}, the concept has been frequently
 criticized \citep{Hardin1960, Peters1991, Silvertown2004}, and several
-attempts have been made to expand and reinforce it \citep{Pulliam2000,
+attempts have been made to expand and improve it \citep{Pulliam2000,
 Chase2003, Soberon2007, Holt2009, McInerny2012b}.
 
 Part of the problem surrounding the niche concept has been clarified with the
@@ -273,7 +276,7 @@ Grinnellian niche (when does the population persists) with impact vectors delimi
 the Eltonian niche (what is the per-capita impact). While this representation
 has been very influential in local-scale community ecology (the resource-ratio
 theory of coexistence, \citealt{Tilman1982}), it remains impractical at larger
-spatial scales because of the difficulties to measure it. The absence of any
+spatial scales because of the difficulties in measuring it. The absence of any
 mathematical representation of the niche that could easily be fitted to
 ecological data may explain why biogeographers are still struggling to develop
 species distribution models that also consider ecological interactions.
@@ -293,11 +296,12 @@ environmental (x-axis) and the trait (y-axis) plane. The integrated niche is
 then the hypervolume where interactions can occur and sustain a population.
 This approach radically changes the representation of the niche, putting the
 distributions and ecological interactions of species in the same formalism.
+
 The limits of the niche axes could be independent of each other (as in the
-example of Fig. 2), or alternatively interact. For instance, the optimal
+example in Fig. 2), or  they could interact. For instance, the optimal
 prey size for predatory fishes could decline with increasing temperature
 \citep{Lelong2015}, which would make diet boundaries functions of the
-environment. The other way around, we could also consider that the growth rate
+environment. Alternatively, we could also consider that the growth rate
 of the predator changes with the size of its prey items, thereby altering the
 environmental boundaries.
 
@@ -382,13 +386,14 @@ specific issue for the Perspectives and future research.
 
 There are also variants of the metaweb. First, most documented metawebs have
 thus far considered ecological interactions to be deterministic, not
-probabilistic (e.g. \citealt{Havens1992, Wood2015}). Species are assumed to interact
-whenever they are found together in a location, independent of their
-local abundance and the local environment. In other words, $P(L_{ijy}|X_{ijy}=1) = 1$
-and $P(L_{ijy}|X_{ijy}=0) = 0$. This approach might be a reasonable
-approximation if the scale of sampling and inference is so large that the
-probability of observing at least one interaction converges to unity and the
-only variation in the networks considered arises from species distributions.
+probabilistic (e.g. \citealt{Havens1992, Wood2015}). Species are assumed to
+interact whenever they are found together in a location, independent of their
+local abundance and the local environment. In other words,
+$P(L_{ijy}|X_{ijy}=1) = 1$ and $P(L_{ijy}|X_{ijy}=0) = 0$. This approach might
+be a reasonable approximation if the scale of sampling and inference is so
+large that the probability of observing at least one interaction converges to
+unity In this cenario, network variation solely arises from species
+distributions.
 
 Ecological interactions could also vary with the environment, so that $P(L_{ijy}
 |E_y)$. Although it is not common to see a conditional representation of
@@ -404,13 +409,13 @@ structure \citep{Tylianakis2007, Woodward2010; Petchey2010; Lelong2015}.
 
 \section*{Application: continental-scale variation of host-parasite community structure}
 
-We now turn to an illustration of the framework with the analysis of an
+We now turn to an illustration of our framework with the analysis of an
 empirical dataset of host–parasite networks sampled throughout the south–north
-environmental gradient in continental Europe. The focal system consists of local food webs
-of willows (genus Salix), their galling insects, and the parasitoids of
-these gallers. Targeting this system, we ask: i) how much does network
-structure vary across the gradient, and ii) what is the primary driver of
-network turnover across the gradient?
+environmental gradient in continental Europe. The focal system consists of
+local food webs of willows (genus Salix), their galling insects, and the
+parasitoids of these gallers. Targeting this system, we ask: i) how much does
+network structure vary across the gradient, and ii) what is the primary driver
+of network turnover across the gradient?
 
 \subsection*{Data}  
 
@@ -932,18 +937,19 @@ local networks.
 
 \textbf{Visual representation of the integrated niche}. In biogeography, the
 niche is considered the set of environmental conditions where the intrinsic
-growth rate $r$ is positive \citep{Holt2009}. The horizontal axis represents an
-environmental gradient impacting the growth of the focal species (in red). The
-location of each species along this gradient represents their optimum, and the
-vertical dotted lines represent the limits of the Grinnellian niche of the
+growth rate $r$ is positive \citep{Holt2009}. The horizontal axis represents
+an environmental gradient impacting the growth of the focal species (in red).
+The location of each species along this gradient represents their optimum, and
+the vertical dotted lines represent the limits of the Grinnellian niche of the
 focal species. In food web ecology, the Eltonian niche represents the location
-of a species in the food web, as determined by its niche position ($n$) and its
-niche optimum ($c$). The vertical axis represents a niche gradient, presumably a
-trait such as body size. The location of each species along this gradient
-represents their niche position. The focal species will feed on preys having
-niche locations within a given interval around the optimum, represented by the
-horizontal lines. The integrated Grinnellian and Eltonian niche corresponds to
-the square in the middle where an interaction is possible. According to our
+of a species in the food web, as determined by its niche position ($n$) and
+its niche optimum ($c$). The vertical axis represents a niche gradient,
+presumably a trait such as body size. The location of each species along this
+gradient represents their niche position. The focal species will feed on prey
+species  niche locations within a given interval around the optimum,
+represented by the horizontal lines. The integrated Grinnellian and Eltonian
+niche corresponds to the square in the middle where an interaction is possible
+owing to a match of traits and spatial distribution. According to our
 probabilistic framework, the central square represents the area where the
 joint probability of observing interactions and co-occurrence is positive.
 
