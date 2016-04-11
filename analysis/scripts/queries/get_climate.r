@@ -2,7 +2,7 @@
 # Script querying WorldClim to get the climate data for each location
 # of the Salix dataset
 # Timothée Poisot
-# February 15th, 2015
+# February 15th, 2014
 ##################################################################
 
 rm(list = ls())
@@ -30,3 +30,10 @@ salix_climate = extract(bclim, salix_int[,c('lon', 'lat')])
 salix_climate = data.frame(salix_int, salix_climate)
 
 save(salix_climate, file="analysis/data/salix_climate.Rdata")
+
+
+
+
+
+
+

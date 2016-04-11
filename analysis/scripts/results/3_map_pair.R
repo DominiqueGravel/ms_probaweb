@@ -7,7 +7,7 @@
 
 rm(list=ls())
 
-	library(raster)
+library(raster)
 library(sp)
 library(rgdal)
 
@@ -18,13 +18,15 @@ IDi = data$pairs.IDi
 IDj = data$pairs.IDj
 Si = length(unique(IDi))
 Sj = length(unique(IDj))
-nobs = 374
-np  = length(DF_split)
 
 # Load the stuff to make the raster object
 wrld <- readOGR("analysis/data/map", layer="level1")
 europe <- wrld[1,]
 exteur <- extent(europe)
+xmin(exteur) = 0
+xmax(exteur) = 25
+ymin(exteur) = 40
+ymax(exteur) = 70
 
 # Extract the climatic variables
 clim = crop(getData("worldclim", var="bio", res=10), exteur)
@@ -37,15 +39,7 @@ PP = getValues(clim$bio12)
 
 ncell = length(T)
 map_E = data.frame(T = T, PP = PP, T2 = T^2, PP2 = PP^2)
-#pair = 14038
-#pair = 14456
-#pair = 14458
-#pair = 14476
-#pair = 14618
-#pair = 15626
-#pair = 21395
-#pair = 21415
-pair = 21418
+pair = 6128
 
 data = DF_split[[pair]]
 Xi = data$Xi
@@ -79,7 +73,7 @@ PLijXij_E = PXij_E*PLij_E
 # Plot network properties
 ############################################################
 
-quartz(height = 3.5, width = 10)
+quartz(height = 3.5, width = 8)
 par(mfrow = c(1,3),mar = c(2,2,3,2))
 
 # Map parameters
@@ -92,10 +86,9 @@ pal <-colorRampPalette(rev(brewer.pal(11,"RdYlBu"))) # Initialized Colors ramp p
 par(xaxs="i", yaxs="i")
 plot(exteur,type="n", axes=FALSE, ann=FALSE)
 rect(xmin(exteur),ymin(exteur),xmax(exteur),ymax(exteur), col="#9CDDF1")
-rast <- raster(exteur, vals=(PXij_E), nrow = 276, ncol = 544)
+rast <- raster(exteur, vals=(PXij_E), nrow = 180, ncol = 150)
 image(rast, add=TRUE, col=pal(100))
 plot(europe, border="grey25", lwd=1.2, add=TRUE)
-plot(wrld[2:3,], add=TRUE, col="white")
 mtext(text=expression(P(X[i],X[j])),side=3,line=0.5,adj=-0.1,cex=1.25)
 
 
@@ -104,10 +97,9 @@ mtext(text=expression(P(X[i],X[j])),side=3,line=0.5,adj=-0.1,cex=1.25)
 par(xaxs="i", yaxs="i")
 plot(exteur,type="n", axes=FALSE, ann=FALSE)
 rect(xmin(exteur),ymin(exteur),xmax(exteur),ymax(exteur), col="#9CDDF1")
-rast <- raster(exteur, vals=PLij_E, nrow = 276, ncol = 544)
+rast <- raster(exteur, vals=PLij_E, nrow = 180, ncol = 150)
 image(rast, add=TRUE, col=pal(100))
 plot(europe, border="grey25", lwd=1.2, add=TRUE)
-plot(wrld[2:3,], add=TRUE, col="white")
 mtext(text=expression(P(L[ij])),side=3,line=0.5,adj=-0.1,cex=1.25)
 
 
@@ -116,10 +108,9 @@ mtext(text=expression(P(L[ij])),side=3,line=0.5,adj=-0.1,cex=1.25)
 par(xaxs="i", yaxs="i")
 plot(exteur,type="n", axes=FALSE, ann=FALSE)
 rect(xmin(exteur),ymin(exteur),xmax(exteur),ymax(exteur), col="#9CDDF1")
-rast <- raster(exteur, vals=(PLijXij_E), nrow = 276, ncol = 544)
+rast <- raster(exteur, vals=(PLijXij_E), nrow = 180, ncol = 150)
 image(rast, add=TRUE, col=pal(100))
 plot(europe, border="grey25", lwd=1.2, add=TRUE)
-plot(wrld[2:3,], add=TRUE, col="white")
 mtext(text=expression(P(L[ij],X[i],X[j])),side=3,line=0.5,adj=-0.1,cex=1.25)
 
 dev.copy2pdf(file = "ms/figures/map_pair.pdf")

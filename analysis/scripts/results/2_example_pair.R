@@ -9,7 +9,6 @@
 rm(list = ls())
 
 # Load some functions
-source("analysis/scripts/functions/collect.R")
 source("analysis/scripts/functions/species_models.R")
 source("analysis/scripts/functions/interactions_models.R")
 source("analysis/scripts/functions/get_LL.R")
@@ -26,37 +25,34 @@ load("analysis/data/expand_data.Rdata")
 
 # Find the nb of links per pair
 nL  = numeric(length(DF_split))
-nX = numeric(length(DF_split))
+nXi = numeric(length(DF_split))
+nXj = numeric(length(DF_split))
+nXij = numeric(length(DF_split))
 for(x in 1:length(DF_split)) {
 	nL[x] = sum(DF_split[[x]]$Lij)
-	nX[x] = sum(DF_split[[x]]$Xij)
+	nXi[x] = sum(DF_split[[x]]$Xi)
+	nXj[x] = sum(DF_split[[x]]$Xj)
+	nXij[x] = sum(DF_split[[x]]$Xij)
 }
-cbind(nL,nX,nL/nX)[nX>20,]
+
+cbind(nL,nXi,nXj,nXij,nL,nL/nXij)[nL/nXij<0.7 & nL > 10,]
 
 # Subset the data
-#pair_index = which(nL == 10 & nX == 23) # 15644
-#pair_index = which(nL == 10 & nX == 26)
-#pair_index = which(nL == 21 & nX == 38)
-#pair_index = which(nL == 16 & nX == 23)
-#pair_index = which(nL == 15 & nX == 24)
-#pair_index = which(nL == 14 & nX == 25) # 15626
-pair_index = which(nL == 30 & nX == 41) # 21418
 
-for(i in 1:length(DF_split)) {
-	if(nX[i] > 20 & nL[i]>10 & nL[i]/nX[i] < 0.8 ) {
-		cat(i, " ", nL[i], " ", nX[i], '\n')
-	}
-}
+#pair_index = which(nL == 13 & nXij == 22) 
+pair_index = which(nL == 21 & nXij == 38) 
+#pair_index = which(nL == 13 & nXij == 22) 
+#pair_index = which(nL == 30 & nXij == 41) 
+#pair_index = which(nL == 9 & nXij == 19) 
 
-#14038
-#14456
-#14458
-#14476
-#14618
-#15626
-#21395
-#21415
-#21418
+#pair_index = which(nL == 14 & nXij == 25)
+#pair_index = which(nL == 16 & nXij == 26)
+#pair_index = which(nL == 15 & nXij == 24)
+#pair_index = which(nL == 10 & nXij == 24)
+
+#pair_index = which(nL == 16 & nXij == 23)
+#pair_index = which(nL == 11 & nXij == 18)[1]
+
 
 
 data = DF_split[[pair_index]]
@@ -100,6 +96,7 @@ npars = c(
 	)
 
 AIC = -2*LL + 2*npars
+AIC
 
 # Write the results in a table
 write.table(cbind(LL,npars,AIC), file = "ms/figures/table1.txt") 
@@ -115,8 +112,8 @@ probs = get_probs(modelC=models$modelC, modelL=models$modelL, newE=data$E)
 
 # Compute predicted values for the environmental space
 nsteps = 250
-seqT = seq(min(data$E$T,na.rm=T),max(data$E$T,na.rm=T),diff(range(data$E$T,na.rm=T))/(nsteps-1))
-seqPP = seq(min(data$E$PP,na.rm=T),max(data$E$PP,na.rm=T),diff(range(data$E$PP,na.rm=T))/(nsteps-1))
+seqT = seq(min(data$E$T,na.rm=T),max(data$E$T,na.rm=T),diff(range(data$E$T))/(nsteps-1))
+seqPP = seq(min(data$E$PP,na.rm=T),max(data$E$PP,na.rm=T),diff(range(data$E$PP))/(nsteps-1))
 
 expE = expand.grid(seqT,seqPP)
 expT = expE[,1]
@@ -136,21 +133,23 @@ PLijXijmat[PLijXijmat=="NaN"] = 0
 quartz(height = 3.5, width = 10)
 par(mfrow = c(1,3),mar = c(5,6,2.5,1))
 
-image(seqT,seqPP,1-PXijmat, xlab = "Annual mean temperature",ylab = "Annual precipitation",cex.axis = 1.25, cex.lab = 1.5, col = gray(seq(0.3,1,1/1000)),xlim = 1.05*range(seqT),ylim = 1.05*range(seqPP))
+image(seqT,seqPP,1-PXijmat, xlab = "Annual mean temperature",ylab = "Annual precipitation",cex.axis = 1.25, cex.lab = 1.5, col = gray(seq(0.3,1,1/1000)),xlim = 1.0*range(seqT),ylim = 1.0*range(seqPP))
 points(data$E$T[data$Xij==1],data$E$PP[data$Xij==1],pch = 19)
-points(data$E$T[data$Xi==1 & data$Xij!=1],data$E$PP[data$Xi==1 & data$Xij!=1],pch = 3)
-points(data$E$T[data$Xj==1 & data$Xij!=1],data$E$PP[data$Xj==1 & data$Xij!=1],pch = 8)
+points(data$E$T[data$Xi==1 & data$Xij==0],data$E$PP[data$Xi==1 & data$Xij!=1],pch = 3)
+points(data$E$T[data$Xj==1 & data$Xij==0],data$E$PP[data$Xj==1 & data$Xij!=1],pch = 3)
 points(data$E$T[data$Xi==0 & data$Xj==0],data$E$PP[data$Xi==0 & data$Xj==0],pch = 1)
 mtext(text=expression(P(X[i],X[j])),side=3,line=0.5,adj=-0.1,cex=1.25)
 
-image(seqT,seqPP,1-PLijmat, xlab = "Annual mean temperature",ylab = "Annual precipitation",cex.axis = 1.25, cex.lab = 1.5, col = gray(seq(0.5,1,1/1000)),xlim = 1.05*range(seqT),ylim = 1.05*range(seqPP))
+image(seqT,seqPP,1-PLijmat, xlab = "Annual mean temperature",ylab = "Annual precipitation",cex.axis = 1.25, cex.lab = 1.5, col = gray(seq(0.5,1,1/1000)),xlim = 1.0*range(seqT),ylim = 1.0*range(seqPP))
 points(data$E$T[data$Lij==1],data$E$PP[data$Lij==1],pch = 19)
 points(data$E$T[data$Lij==0 & data$Xij==1],data$E$PP[data$Lij==0 & data$Xij==1],pch = 1)
 mtext(text=expression(P(L[ij])),side=3,line=0.5,adj=-0.1,cex=1.25)
 
-image(seqT,seqPP,1-PLijXijmat, xlab = "Annual mean temperature",ylab = "Annual precipitation",cex.axis = 1.25, cex.lab = 1.5, col = gray(seq(0.5,1,1/1000)),xlim = 1.05*range(seqT),ylim = 1.05*range(seqPP))
+image(seqT,seqPP,1-PLijXijmat, xlab = "Annual mean temperature",ylab = "Annual precipitation",cex.axis = 1.25, cex.lab = 1.5, col = gray(seq(0.5,1,1/1000)),xlim = 1.0*range(seqT),ylim = 1.0*range(seqPP))
 points(data$E$T[data$Lij==1],data$E$PP[data$Lij==1],pch = 19)
 points(data$E$T[data$Lij==0 & data$Xij==1],data$E$PP[data$Lij==0 & data$Xij==1],pch = 1)
 mtext(text=expression(P(L[ij],X[i],X[j])),side=3,line=0.5,adj=-0.1,cex=1.25)
 
 dev.copy2pdf(file = "ms/figures/example_pair.pdf")
+
+

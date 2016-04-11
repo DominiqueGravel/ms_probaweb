@@ -9,85 +9,116 @@
 rm(list = ls())
 setwd("/Users/DGravel/Documents/Manuscripts/Inprep/ms_probaweb")
 load("analysis/data/DF_split.Rdata")
-load("analysis/data/expand_data.Rdata")
+load("analysis/data/pairs.Rdata")
 
-IDi = as.character(data$pairs.IDi)
-IDj = as.character(data$pairs.IDj)
-Si = length(unique(IDi))
-Sj = length(unique(IDj))
-unique_IDi = unique(IDi)
-unique_IDj = unique(IDj)
-IDcomm = IDj[match(unique_IDi,unique_IDj,nomatch=0)]
-unique_ID_all = unique(c(IDi,IDj))
-Sall = length(unique_ID_all)
-DF = data.frame(sites = data$pairs.sites_ID, IDi = IDi, IDj = IDj, Xi=data$Xi, Xj=data$Xj, Xij = data$Xij, Lij = data$Lij)
+ID_S = unique(as.character(pairs$pairs.from[pairs$pairs.type=="SH"]))
+ID_H = unique(as.character(pairs$pairs.to[pairs$pairs.type=="SH"]))
+ID_P = unique(as.character(pairs$pairs.to[pairs$pairs.type=="HP"]))
+
+S_S = length(ID_S)
+S_H = length(ID_H)
+S_P = length(ID_P)
 
 #########################################################
 # Compile the metaweb
 #########################################################
 
-Lij= matrix(0, nr = Sall, nc = Sall)
-Xij = matrix(0, nr = Sall, nc = Sall)
+L_SH = matrix(0, nr = S_S, nc = S_H)
+X_SH = matrix(0,nr = S_S, nc = S_H)
 
-n = 1
-for(i in 1:Si) {
-	for(j in 1:Sj) {
+L_HP = matrix(0, nr = S_H, nc = S_P)
+X_HP = matrix(0,nr = S_H, nc = S_P)
 
-		# Compute the number of links
-		nL = sum(DF_split[[n]]$Lij)
+for(n in 1:length(DF_split)) {
 
-		# Compute the number of co-occurrences
-		nX = sum(DF_split[[n]]$Xij)
+	# Compute the number of links
+	nL = sum(DF_split[[n]]$Lij)
 
-		if(nX!=0) {
+	# Compute the number of co-occurrences
+	nX = sum(DF_split[[n]]$Xij)
 
-			# Get the victim
-			index_i = which(unique_ID_all == as.character(DF_split[[n]]$IDi)[1])
-
-			# Get the ennemy index
-			index_j = which(unique_ID_all == as.character(DF_split[[n]]$IDj)[1])
-
-			# Put the record in the mw
-			Lij[index_i,index_j] = nL
-			Xij[index_i,index_j] = nX
+	if(nX!=0) {
+		# Indices for the different species
+		if(pairs$pairs.type[n]=="SH") {
+			i = which(ID_S == pairs$pairs.from[n])
+			j = which(ID_H == pairs$pairs.to[n])			
+			L_SH[i,j] = nL/nX
+			X_SH[i,j] = nX
 		}
-		n = n+1
+
+		else {
+			i = which(ID_H == pairs$pairs.from[n])
+			j = which(ID_P == pairs$pairs.to[n])
+			L_HP[i,j] = nL/nX
+			X_HP[i,j] = nX			
+		}
 	}
+	cat(n,'\n')
 }
 
 
-# Subset the two matrices to have an Si X Sj matrix
-PL = Lij/Xij
-subPL = PL[match(unique_IDi,unique_ID_all),match(unique_IDj,unique_ID_all)]
-NAs = is.na(subPL)
-subPL[NAs]=0
+# Sort the matrices by degree
+d_S = apply(L_SH,1,sum,na.rm=TRUE)
+d_Hi = apply(L_SH,2,sum,na.rm=TRUE)
+d_Hj = apply(L_HP,1,sum,na.rm=TRUE)
+d_P = apply(L_HP,2,sum,na.rm=TRUE)
 
-# Sort the matrix by generality
-di = apply(subPL,1,sum,na.rm=TRUE)
-dj = apply(subPL,2,sum,na.rm=TRUE)
-subPL = subPL[order(di,decreasing = FALSE), order(dj, decreasing = TRUE)]
+order_S = order(d_S, decreasing = FALSE)
+order_Hi = order(d_Hi,decreasing = FALSE)
+order_Hj = order(d_Hj, decreasing = FALSE)
+order_P = order(d_P, decreasing = FALSE)
+
+L_SH = L_SH[order_S,order_Hi]
+L_HP = L_HP[order_Hj,order_P]
+X_SH = X_SH[order_S,order_Hi]
+X_HP = X_HP[order_Hj,order_P]
 
 # Flip the matrices to have ennemies in colums and victims in rows
-NAs = NAs[order(di,decreasing = FALSE), order(dj, decreasing = TRUE)]
-subPL = t(subPL)
-NAs = t(NAs)
+L_SH = t(L_SH)
+L_HP = t(L_HP)
+X_SH = t(X_SH)
+X_HP = t(X_HP)
+
+X_SH[X_SH>0] = 1 
+X_HP[X_HP>0] = 1 
+
+L_SH[L_SH>0] = 1
+L_HP[L_HP>0] = 1
+L_SH[X_SH == 0] = 2
+L_HP[X_HP == 0] = 2
 
 #########################################################
 # Plot the results
 #########################################################
-quartz(width = 8, height = 4)
+quartz(width = 8, height = 3)
 
-par(mfrow = c(1,2),mar = c(2,3,2,0))
-image(c(1:Sj),c(1:Si),subPL,col = rev(gray(seq(0,1,1/1000))),xlab = "", ylab = "",  cex.lab = 1.25,axes = FALSE)
+par(mfrow = c(1,2))
+par(mar = c(0.5,3,2,0.5))
+#image(c(1:S_H),c(1:S_S),L_SH,col = rev(gray(seq(0,1,1/1000))),xlab = "", ylab = "",  cex.lab = 1.25,axes = FALSE)
+image(c(1:S_H),c(1:S_S),L_SH,col = c("white", "black","red"),xlab = "", ylab = "",  cex.lab = 1.25,axes = FALSE)
 box()
-mtext("Ennemy",side = 3, cex = 1.25, line = 0.5)
-mtext("Victim",side = 2, cex = 1.25, line = 0.5)
+mtext("Salix",side = 2, cex = 1.25, line = 0.5)
+mtext("Galls",side = 3, cex = 1.25, line = 0.5)
 
-par(mar = c(2,0,2,3))
-image(c(1:Sj),c(1:Si),NAs,col = c("white","black"),xlab = "", ylab = "", cex.lab = 1.25,axes = FALSE)
+par(mar = c(0.5,0.5,2,3))
+#image(c(1:S_P),c(1:S_H),L_HP,col = rev(gray(seq(0,1,1/1000))),xlab = "", ylab = "",  cex.lab = 1.25,axes = FALSE)
+image(c(1:S_P),c(1:S_H),L_HP,col = c("white", "black","red"),xlab = "", ylab = "",  cex.lab = 1.25,axes = FALSE)
 box()
-mtext("Ennemy",side = 3, cex = 1.25, line = 0.5)
-mtext("Victim",side = 4, cex = 1.25, line = 0.5)
+mtext("Galls",side = 3, cex = 1.25, line = 0.5)
+mtext("Parasitoids",side = 4, cex = 1.25, line = 0.5)
+
+
+#par(mar = c(0.5,0.5,2,3))
+#image(c(1:S_H),c(1:S_S),X_SH,col = c("red","black"),xlab = "", ylab = "", cex.lab = 1.25,axes = FALSE)
+#box()
+#mtext("Salix",side = 4, cex = 1.25, line = 0.5)
+#mtext("Galls",side = 3, cex = 1.25, line = 0.5)
+
+#par(mar = c(2,0.5,0.5,3))
+#image(c(1:S_P),c(1:S_H),X_HP,col = c("red","black"),xlab = "", ylab = "", cex.lab = 1.25,axes = FALSE)
+#box()
+#mtext("Galls",side =4, cex = 1.25, line = 0.5)
+#mtext("Parasitoids",side = 1, cex = 1.25, line = 0.5)
 
 dev.copy2pdf(file = "ms/figures/mw_holes.pdf")
 
