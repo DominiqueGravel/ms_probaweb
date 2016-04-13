@@ -19,17 +19,17 @@
 
 \begin{document}
 
-\linenumbers 
+\linenumbers
 \modulolinenumbers[1]
 
 \textbf{Title:} Bringing Elton and Grinnell together: a quantitative framework to represent the biogeography of ecological interaction networks
 
 \textbf{Authors:} Dominique Gravel$^{1,2,*}$, Benjamin Baiser$^{3}$, Jennifer A. Dunne$^{4}$, Jens-Peter Kopelke$^{5}$, Neo
-Martinez$^{6}$, Tommy Nyman$^{7}$, Timoth\'ee Poisot$^{2,8}$,  Spencer A. Wood$^{9}$, Daniel B. Stouffer$^{10}$, Jason Tylianakis$^{10,11}$ Tomas Roslin$^{12}$,\\
+Martinez$^{6}$, Tommy Nyman$^{7}$, Timoth\'ee Poisot$^{2,8}$, Spencer A. Wood$^{9}$, Daniel B. Stouffer$^{10}$, Jason Tylianakis$^{10,11}$ Tomas Roslin$^{12}$,\\
 
 1: Canada Research Chair in Integrative Ecology. D\'epartement de
-biologie, Universit\'e de Sherbrooke,  2500 Boulevard l'Universit\'e, 
-Sherbrooke (Québec).  J1K 2R1\\
+biologie, Universit\'e de Sherbrooke, 2500 Boulevard l'Universit\'e,
+Sherbrooke (Québec). J1K 2R1\\
 
 2: Qu\'ebec Centre for Biodiversity Sciences\\
 
@@ -45,93 +45,100 @@ Sherbrooke (Québec).  J1K 2R1\\
 
 8:\\
 
-9: University of Washington, School of Environmental and Forest Sciences, 
+9: University of Washington, School of Environmental and Forest Sciences,
 Box 352100, Seattle, WA 98195, USA\\
 
 10: Centre for Integrative Ecology, School of Biological Sciences, University of Canterbury, Private Bag 4800, Christchurch, New Zealand\\
 
 11:\\
 
-12: Department of Ecology, Swedish University of Agricultural Sciences, Box 7044, 750 07 Uppsala, Sweden\\ 
+12: Department of Ecology, Swedish University of Agricultural Sciences, Box 7044, 750 07 Uppsala, Sweden\\
 
 \textbf{Keywords:} networks, spatial ecology, co-occurrence, probability of interaction\\
 
-\textbf{Words in the abstract:} 
+\textbf{Words in the abstract:}
 
-\textbf{Words in the main text:} 
+\textbf{Words in the main text:}
 
-\textbf{Words in the legends:}  
+\textbf{Words in the legends:}
 
-\textbf{Figures:} 
+\textbf{Figures:}
 
-\textbf{Tables:}     
+\textbf{Tables:}
 
-\textbf{References:} 
+\textbf{References:}
 
 \newpage
 \doublespacing
 
 %=============================================================================%
-\section*{Abstract} 
+\section*{Abstract}
 
-Biogeography has historically focused on the spatial distribution and
-abundance of species, neglecting variation in the way species interact with
-each other. Models of species distribution and of interactions have
-historically taken different paths. Here, we plea for an integrated approach,
-adopting the view that community structure is best represented as an
-ecological network of interactions. We outline a conceptual approach,
-suggesting that the ecological niche may be redefined to encompass the effect
-of the environment on species distribution (the Grinnellian dimension of the
-niche) and on the ecological interactions among them (the Eltonian dimension).
-Starting from this novel concept, we develop a quantitative theory to explain
-turnover of interactions in space and time – i.e. a novel approach to
-interaction distribution modelling. We apply this framework to a large
-data set of host–parasite interactions across Europe and find that two aspects
-of the environment (temperature and precipitation) leave a strong imprint on
-species co-occurrence, but not on the probability of local interactions. Even
-where species co-occur, interaction proves a stochastic rather than
-deterministic process, adding to variation in realized network structure. We
-also find that a large majority of species pairs are never found together,
-thus precluding any inferences regarding their probability to interact. Our
-framework provides a first conceptual framework to explain the variation of
-network structure at large spatial scales and opens new perspectives at the
-frontier between species distribution modelling and community ecology.
+Biogeography has historically focused on the spatial distribution and abundance
+of species. Both are driven by the way species interact with one another,
+but also by the way these interactions vary across time and space. Here,
+we call for an integrated approach in which community structure represented
+as a network of ecological interactions, and show how it translates to
+biogeography questions. Under this representation, the niche is intergratively
+defined to be both the effect of the environment on species distribution (the
+Grinnellian dimension of the niche) and on the ecological interactions among
+them (the Eltonian dimension). Starting from this novel concept, we develop a
+quantitative theory to explain turnover of interactions in space and time -–
+\emph{i.e.} a novel approach to interaction distribution modelling. We apply
+this framework to host–parasite interactions across Europe and find that
+two aspects of the environment (temperature and precipitation) leave a strong
+imprint on species co-occurrence, but not on species interactions. Even where
+species co-occur, interaction proves a stochastic rather than deterministic
+process, adding to variation in realized network structure. We also find
+that a large majority of species pairs are never found together, thus
+precluding any inferences regarding their probability to interact. Our
+framework provides a basis to explain the variation of network structure
+at large spatial scales and opens new perspectives at the frontier between
+species distribution modelling and community ecology.
 
 \newpage
 
 %=============================================================================%
 \section*{Introduction}
 
-Community ecology is defined in most textbooks as \textit{the study of the
-interactions that determine the distribution and abundance of organisms}
-\citep{Krebs2001}. Despite a general consensus on this definition
-(Scheiner2007), research on variation in community
-structure has mostly focused on the spatial and temporal turnover of species composition
-\citep{Anderson2011}, neglecting variation in the way species interact with
-each other \citep{Poisot2015a}. Given this omission, it is perhaps not
-surprising that biogeographers are still struggling to establish whether
-interactions actually impact the distribution of species at large spatial
-scales\citep{Wisz2012, Kissling2012}, even though there is enough evidence
-from community ecology that interactions are critical for determining species
-dynamics, resource use and responses to the environment af finer scales.
-Recent attempts at accounting for interactions in species distribution models
-\citep{Pollock2014, Pelissier2013} have brought some methodological advances.
-Yet, these techniques are still based on a `species-based' approach to
-communities, where interactions are merely treated as fixed covariates
-affecting distribution.
+Community ecology is \textit{the study of the interactions that determine
+the distribution and abundance of organisms} \citep{Krebs2001}. Despite a
+general consensus on this definition (Scheiner2007), research on variation in
+community structure has mostly focused on the spatial and temporal turnover
+of species composition \citep{Anderson2011}, neglecting variation in the way
+species interact with each other, despite accumulating empirical evidence that
+this is a major source of diversity \citep{Poisot2015a}. Given this omission,
+it is perhaps not surprising that biogeographers are still struggling to
+establish whether interactions actually impact the distribution of species at
+large spatial scales \citep{Wisz2012, Kissling2012}: treating interactions
+as fixed events neglects a large part of the complexity of empirical
+communities, and will most likely deliver underwhelming results. Recent
+attempts at accounting for interactions in species distribution models
+\citep{Pollock2014, Pelissier2013} have brought some methodological advances,
+but are not sufficient for two reasons. First, these techniques are still
+based on a `species-based' approach to communities, where interactions
+are merely treated as fixed covariates affecting distribution. Second,
+they failed to provide a conceptual step forward, both in their treatment
+of interactions and in the quality of the predictions they make.
 
-As a more explicit description of interactions among species, the
-network approach offers a convenient representation of communities. Species
-are represented as nodes and interactions by links. To date, studies of
-network diversity have mostly been concerned with the distribution of
-interactions within locations, and less so with the variation among locations
-\citep{Dunne2005, Bascompte2007, Ings2007, Kefi2012}. There is, however, 
-ample evidence that interaction networks vary in space and time
-\citep{Laliberte2010, Poisot2012, Albouy2014, Poisot2016, Trojelsgaard2015}. Metacommunity
-theory provides an explanation for the variation in the distribution of the
-different nodes \citep{Gravel2011c, Pillai2011}, but there is no explanation
-to the joint variation of node and link occurrences. Consequently, we urgently need a
-conceptual framework to formalize these observations.
+Because it is an explicit description of species interactions, the network
+approach offers a convenient representation of communities. Species are
+represented as nodes, so that networks already encompass all the information
+used by current approaches; in addition, interactions are represented by links,
+so that networks provide additional, higher-order information on community
+structure. To date, studies of network diversity have mostly been concerned
+with the distribution of interactions within locations, and less so with
+the variation among locations \citep{Dunne2005, Bascompte2007, Ings2007,
+Kefi2012}. There is however ample evidence that interaction networks vary
+in space and time \citep{Laliberte2010, Poisot2012, Albouy2014, Poisot2016,
+Trojelsgaard2015}. Metacommunity theory provides explanations for the variation
+in the distribution species \citep{Gravel2011c, Pillai2011}, but there is
+no such explanation to the variation of node and link occurrences, nor do
+we expect their distribution to covary in a positive way. Consequently,
+we urgently need a conceptual framework to formalize these observations,
+as it is the only way towards fulfilling the goal of community ecology:
+providing cogent predictions about, and understanding of, the structure of
+ecollogical communities.
 
 Given the historically different approaches to modelling the distributions of
 species vs. interactions, there is a clear need to bring the two together.
@@ -333,19 +340,20 @@ could be decomposed into two parts using the product rule of probabilities:
 
 %-----------------
 \begin{equation}
-	P(X_{iy},X_{jy},L_{ijy}|E_y)=P(X_{iy},X_{jy}|E_y)P(L_{ijy}|\mathbf{T},X_{iy},X_{jy},E_y)
+	P(X_{iy},X_{jy},L_{ijy}|E_y)=P(X_{iy},X_{jy}|E_y)P(L_{ijy}|X_{iy},X_{jy},E_y)
 \end{equation}
 %-----------------
 
-The first term on the right-hand side of the equation is the probability of
-observing the two species co-occurring at location $y$. It corresponds to the
-Grinnellian dimension of the niche. The second term represents the probability
-that an interaction occurs between species $i$ and $j$, given their set of
-traits $T$ and that they are co-occurring. Above, we referred to this entity
-as the ``metaweb'' and it corresponds to the Eltonian dimension of the niche. Below,
-we will see how this formalism can be directly fit to empirical data. But
-before turning to an application, we will discuss the interpretation of
-different variants of these two terms.
+The first term on the right-hand side of the equation is the probability
+of observing the two species co-occurring at location $y$. It corresponds
+to the Grinnellian dimension of the niche. The second term represents the
+probability that an interaction occurs between species $i$ and $j$, given that
+they are co-occurring. This predicate can be refined using information on
+trait distribution and trait matching rules (\textbf{Bartomeus Func Ecol}).
+Above, we referred to this entity as the ``metaweb'' and it corresponds to
+the Eltonian dimension of the niche. Below, we will see how this formalism
+can be directly fit to empirical data. But before turning to an application,
+we will discuss the interpretation of different variants of these two terms.
 
 \subsection*{Variants of co-occurrence}
 
@@ -417,7 +425,7 @@ parasitoids of these gallers. Targeting this system, we ask: i) how much does
 network structure vary across the gradient, and ii) what is the primary driver
 of network turnover across the gradient?
 
-\subsection*{Data}  
+\subsection*{Data}
 
 Communities of willows, gallers, and parasitoids are species-rich and
 widely distributed, with pronounced variation in community composition across
@@ -490,7 +498,7 @@ this material have been previously reported by \citep{Kopelke1999} and
 \citep{Nyman2007}. The current study represents the first analysis of
 the full data set from a spatial perspective.
 
-\subsection*{Analysis}  
+\subsection*{Analysis}
 
 Computing the probability of observing an interaction involves fitting a set
 of binomial models and collecting their estimated probabilities. For the sake
@@ -546,7 +554,7 @@ networks from the knowledge of a deterministic metaweb. There are consequently
 no parameter to evaluate for the third model (where the interaction
 probability is fixed by the hypothesis).
 
-We fit the different models to each pair of species and recorded the 
+We fit the different models to each pair of species and recorded the
 predicted probabilities. The joint probability $P(L_{ijy},X_{iy},X_{jy})$
 was then computed from Eq. 2, and the likelihood of each observation was
 computed as $\mathcal{L}(\theta_{ijy}|D_{ijy})=P(L_{ij},X_{iy},X_{jy})$ if an
@@ -566,13 +574,13 @@ interaction are conditional on the environment) to interpolate species
 distributions and interaction probabilities across the entire European
 continent. We reconstructed the expected network for each location in a 1km X
 1km grid and computed the probabilistic connectance following
-\citep{Poisot2015b}.  
+\citep{Poisot2015b}.
 
 All of the data are openly available in the database mangal \citep{Poisot2015c} and
 all R scripts for querying and pre-processing the data, along with the
 analysis, are provided in the Supplementary material.
 
-\subsection*{Results}  
+\subsection*{Results}
 
 Despite the extensive sampling, many pairs of species were observed to co-occur
 only a few times. This made it hard to evaluate interaction probabilities with
@@ -598,7 +606,7 @@ highest interaction probability occurred in central Europe (Fig. 4).
 We evaluated each model for all pairs of species in order to better understand
 the large-scale drivers of network turnover. The results were highly consistent
 among trophic layers (Salix–gallers and gallers–parasitoids; Table 2). Across
-all pairs of species, the conditional representation of interactions performed 
+all pairs of species, the conditional representation of interactions performed
 better than the marginal one (Model 1 vs Model 2); that is, interactions did
 not occur systematically whenever the two species were found co-occurring.
 Hence, in addition to species turnover, the stochastic nature of interactions
@@ -658,7 +666,7 @@ and a trait space. The fundamental niche of a species is represented as the
 set of environmental conditions and resources that allow a species to be
 maintained in a location, thereby integrating the Eltonian and the Grinnellian
 components of the niche. We then translated the concept mathematically by
-investigating the probability of the joint occurrences of species and 
+investigating the probability of the joint occurrences of species and
 their interaction, which should be interpreted as an interaction distribution
 model. We used this approach to characterize the turnover of the structure of
 ecological interactions in a tri-trophic network across Western Europe and
@@ -747,7 +755,7 @@ system that habitat characteristics are the primary drivers of interactions
 challenge this result. Documenting the relationship between the occurrence of
 interactions at the continental scale and the environment is critical to
 understand how trophic regulation at large spatial scales influences
-community dynamics and ecosystem functioning  \citep{Harfoot2013}.
+community dynamics and ecosystem functioning \citep{Harfoot2013}.
 
 We restricted our framework to the effect of co-occurrence on ecological
 interactions and neglected the inverse of the problem. We did not investigate
@@ -759,7 +767,7 @@ distribution, are there significant effects of interactions on co-occurrence?
 We could rephrase this problem asking if the fundamental niche differs from
 the realized niche, and how it applies to our framework. For example, we have
 considered above simply the co-occurrence probability, $P(X_{iy},X_{jy}|E_y)$,
-which could be expanded as  $P(X_{iy}|X_{jy},E_y) P(X_{jy}| E_y )$. The
+which could be expanded as $P(X_{iy}|X_{jy},E_y) P(X_{jy}| E_y )$. The
 marginal occurrence probability, $P(X_{jy}|E_y )$, could be considered as a
 species distribution model taking into account the interaction between these
 species after some re-arrangement of Eq. 2. This derivation would however
@@ -859,7 +867,7 @@ Morueta-Holme2016}.
 \section*{Acknowledgements}
 This is a contribution to the working groups \emph{Networks over ecological
 gradients} (Santa Fe Institute) and \emph{Continental-scale variation of
-ecological networks} (Canadian Institute for Ecology and Evolution). 
+ecological networks} (Canadian Institute for Ecology and Evolution).
 \newpage
 
 %========================================================%
@@ -870,19 +878,19 @@ ecological networks} (Canadian Institute for Ecology and Evolution).
 
 \begin{landscape}
 \begin{table}[]
-\centering 
+\centering
 \caption{Summary of model comparison for the interaction between the leaf
 galler \textit{Phyllocolpa prussica}) and the parasitoid \textit{Chrysocharis
 elongata}}
 \begin{tabular}{llllll}
 \hline
 	\# & Metaweb model 						& Co-occurrence model 			& LL 	& npars & AIC \\ \hline
-	1  & $P(L_{ijy})$ 						& $P(X_{iy},X_{jy}|E_y)$ 		& -65.5 & 6 	& 143 \\ 
-	2  & $P(L_{ijy} | X_{iy}, X_{jy})$ 		& $P(X_{iy},X_{jy}|E_y)$ 		& -65.7 & 6 	& 143.4 \\ 
-	3  & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy},X_{jy}|E_y)$ 		& -65.6 & 10 	& 151.3 \\ \hline
-	4  & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy},X_{jy})$ 			& -84.5 & 6 	& 183 \\ 
-	5  & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy})P(X_{jy})$ 			& -80.7 & 7 	& 173.4 \\ 
-	6  & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy}|E_y)P(X_{jy}|E_y)$ 	& -68.8 & 15 	& 167.6 \\ 
+	1 & $P(L_{ijy})$ 						& $P(X_{iy},X_{jy}|E_y)$ 		& -65.5 & 6 	& 143 \\
+	2 & $P(L_{ijy} | X_{iy}, X_{jy})$ 		& $P(X_{iy},X_{jy}|E_y)$ 		& -65.7 & 6 	& 143.4 \\
+	3 & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy},X_{jy}|E_y)$ 		& -65.6 & 10 	& 151.3 \\ \hline
+	4 & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy},X_{jy})$ 			& -84.5 & 6 	& 183 \\
+	5 & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy})P(X_{jy})$ 			& -80.7 & 7 	& 173.4 \\
+	6 & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy}|E_y)P(X_{jy}|E_y)$ 	& -68.8 & 15 	& 167.6 \\
 \hline
 \end{tabular}
 \end{table}
@@ -893,23 +901,23 @@ elongata}}
 
 \begin{landscape}
 \begin{table}[]
-\centering 
+\centering
 \caption{Summary of model comparison for the interaction across all pairs of salix, gallers and parasitoids.}
 \begin{tabular}{lllllll}
 \hline
 	Interaction & \# & Metaweb model & Co-occurrence model & LL & npars & AIC \\ \hline
-	Plant-Galler & 1 & $P(L_{ijy})$ & $P(X_{iy},X_{jy}|E_y)$ & -6137.8 & 7170 & 26615.6 \\ 
-	 & 2 & $P(L_{ijy}|X_{iy},X_{jy})$ & $P(X_{iy},X_{jy}|E_y)$ & -5947.2 & 7170 & 26234.3 \\ 
+	Plant-Galler & 1 & $P(L_{ijy})$ & $P(X_{iy},X_{jy}|E_y)$ & -6137.8 & 7170 & 26615.6 \\
+	 & 2 & $P(L_{ijy}|X_{iy},X_{jy})$ & $P(X_{iy},X_{jy}|E_y)$ & -5947.2 & 7170 & 26234.3 \\
 	 & 3 & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy},X_{jy}|E_y)$ & -5939.8 & 11950 & 35779.6 \\
-	 & 4 & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy},X_{jy})$ & -7871.9 & 8365 & 32473.8 \\ 
-	 & 5 & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy})(X_{jy})$ & -6639.9 & 7170 & 27619.9 \\ 
+	 & 4 & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy},X_{jy})$ & -7871.9 & 8365 & 32473.8 \\
+	 & 5 & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy})(X_{jy})$ & -6639.9 & 7170 & 27619.9 \\
 	 & 6 & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy}|E_y)P(X_{jy}|E_y)$ & -7123.2 & 17925 & 50096.4 \\ \hline
-	Galler-Parasitoid & 1 & $P(L_{ijy})$ & $P(X_{iy},X_{jy}|E_y)$ & -21397.6 & 18846 & 81963.1 \\ 
-	 & 2 & $P(L_{ijy} | X_{iy}, X_{jy})$ & $P(X_{iy},X_{jy}|E_y)$ & -21105.2 & 18846 & 81378.5 \\ 
-	 & 3 & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy},X_{jy}|E_y)$ & -20881.1 & 31410 & 107042.1 \\ 
-	 & 4 & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy},X_{jy})$ & -23728.3 & 21987 & 93152.6 \\ 
-	 & 5 & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy})P(X_{jy})$ & -23509.4 & 18846 & 86186.8 \\ 
-	 & 6 & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy}|E_y)P(X_{jy}|E_y)$ & -20990 & 47115 & 139900.1 \\ 
+	Galler-Parasitoid & 1 & $P(L_{ijy})$ & $P(X_{iy},X_{jy}|E_y)$ & -21397.6 & 18846 & 81963.1 \\
+	 & 2 & $P(L_{ijy} | X_{iy}, X_{jy})$ & $P(X_{iy},X_{jy}|E_y)$ & -21105.2 & 18846 & 81378.5 \\
+	 & 3 & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy},X_{jy}|E_y)$ & -20881.1 & 31410 & 107042.1 \\
+	 & 4 & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy},X_{jy})$ & -23728.3 & 21987 & 93152.6 \\
+	 & 5 & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy})P(X_{jy})$ & -23509.4 & 18846 & 86186.8 \\
+	 & 6 & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy}|E_y)P(X_{jy}|E_y)$ & -20990 & 47115 & 139900.1 \\
 \hline
 \end{tabular}
 \end{table}
@@ -930,7 +938,7 @@ We characterize these sampling processes with the quantitative framework
 proposed in this paper. As a concrete illustration of metaweb sampling, we
 here show a local interaction network among Salix, gallers, andparasitoids.
 The metaweb was constructed by aggregating observed interactionsb across 370
-local networks. 
+local networks.
 
 %------------------------
 \subsection*{Figure 2}
@@ -946,7 +954,7 @@ of a species in the food web, as determined by its niche position ($n$) and
 its niche optimum ($c$). The vertical axis represents a niche gradient,
 presumably a trait such as body size. The location of each species along this
 gradient represents their niche position. The focal species will feed on prey
-species  niche locations within a given interval around the optimum,
+species niche locations within a given interval around the optimum,
 represented by the horizontal lines. The integrated Grinnellian and Eltonian
 niche corresponds to the square in the middle where an interaction is possible
 owing to a match of traits and spatial distribution. According to our
@@ -991,7 +999,7 @@ they co-occur).
 connectance across Europe}. The representation is based on predictions from
 model 3 (see Table 2). Species richness is obtained by the summation of
 individual occurrence probabilities and link density is obtained by the
-summation of the interaction probabilities. 
+summation of the interaction probabilities.
 
 \newpage
 
