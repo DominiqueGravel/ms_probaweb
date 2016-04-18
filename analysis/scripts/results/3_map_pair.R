@@ -73,13 +73,12 @@ PLijXij_E = PXij_E*PLij_E
 # Plot network properties
 ############################################################
 
-quartz(height = 3.5, width = 8)
+dev.new(height = 3.5, width = 8)
 par(mfrow = c(1,3),mar = c(2,2,3,2))
 
 # Map parameters
-library("colorRamps")
-library("RColorBrewer")
-pal <-colorRampPalette(rev(brewer.pal(11,"RdYlBu"))) # Initialized Colors ramp palette, see here: http://colorbrewer2.org/
+library(viridis)
+pal <- viridis
 
 # MAP 1: CO-OCCURRENCE PORBABILITY
 # Make the map

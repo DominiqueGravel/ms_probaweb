@@ -2,7 +2,6 @@ rm(list=ls())
 library(raster)
 library(sp)
 library(rgdal)
-setwd("/Users/DGravel/Documents/Manuscripts/Inprep/ms_probaweb/probaweb_SFI")
 source("scripts/functions/collect.R")
 source("scripts/functions/species_models.R")
 source("scripts/functions/interactions_models.R")
@@ -230,7 +229,7 @@ grad_Co_3 = apply(PXij_C*PLij_E,1,sum)/exp_Si_C/exp_Sj_C
 # Plot network properties
 ############################################################
 
-quartz(height = 3.5, width = 10)
+dev.new(height = 3.5, width = 10)
 par(mfrow = c(1,3))
 
 # Convert network properties into a raster

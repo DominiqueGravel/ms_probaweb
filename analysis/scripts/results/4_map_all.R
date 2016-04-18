@@ -10,7 +10,6 @@ library(raster)
 library(sp)
 library(rgdal)
 
-setwd("/Users/DGravel/Documents/Manuscripts/Inprep/ms_probaweb")
 
 load("analysis/data/DF_split.Rdata")
 load("analysis/data/expand_data.Rdata")
@@ -120,13 +119,12 @@ write.table(cbind(expS,expL),"ms/figures/map_data.txt")
 # Plot network properties
 ############################################################
 
-quartz(height = 3.5, width = 10)
+dev.new(height = 3.5, width = 10)
 par(mfrow = c(1,3),mar = c(2,2,3,2))
 
 # Map parameters
-library("colorRamps")
-library("RColorBrewer")
-pal <-colorRampPalette(rev(brewer.pal(11,"RdYlBu"))) # Initialized Colors ramp palette, see here: http://colorbrewer2.org/
+library(viridis)
+pal <- viridis
 
 # MAP 1: CO-OCCURRENCE PORBABILITY
 # Make the map
