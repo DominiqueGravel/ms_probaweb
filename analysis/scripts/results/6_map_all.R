@@ -10,8 +10,6 @@ library(raster)
 library(sp)
 library(rgdal)
 
-setwd("/Users/DGravel/Documents/Manuscripts/Inprep/ms_probaweb")
-
 load("analysis/data/DF_split.Rdata")
 load("analysis/data/expand_data.Rdata")
 load("analysis/data/pairs.Rdata")
@@ -181,19 +179,18 @@ for(pair in 1:np) {
 
 
 
-write.table(cbind(expS,expL),"ms/figures/map_data.txt")
+#write.table(cbind(expS,expL),"ms/figures/map_data.txt")
 
 ############################################################
 # Plot network properties
 ############################################################
 
-quartz(height = 7, width = 8)
+dev.new(height = 7, width = 8)
 par(mfrow = c(2,3),mar = c(2,2,3,2))
 
 # Map parameters
-library("colorRamps")
-library("RColorBrewer")
-pal <-colorRampPalette(rev(brewer.pal(11,"RdYlBu"))) # Initialized Colors ramp palette, see here: http://colorbrewer2.org/
+library(viridis)
+pal <- viridis
 
 # MAP 1: Salix richness
 # Make the map

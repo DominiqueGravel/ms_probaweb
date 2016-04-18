@@ -8,11 +8,6 @@
 
 # Finalize th figures
 
-
-
-# Set the working directory
-setwd("/Users/DGravel/Documents/Manuscripts/Inprep/ms_probaweb")
-
 # Perform the queries
 source("/analysis/scripts/queries/get_salix.r")
 source("/analysis/scripts/queries/get_bioclim.r")

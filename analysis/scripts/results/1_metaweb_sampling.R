@@ -7,7 +7,7 @@
 ##################################################################
 
 rm(list = ls())
-setwd("/Users/DGravel/Documents/Manuscripts/Inprep/ms_probaweb")
+#setwd("/Users/DGravel/Documents/Manuscripts/Inprep/ms_probaweb")
 
 # Load the data
 load("analysis/data/expand_data.Rdata")
@@ -105,7 +105,7 @@ V(g)$layer[V(g)$name %in% par_ID] = 3
 # Plot the metaweb
 #########################################################
 
-quartz(width = 4, height = 9)
+dev.new(width = 4, height = 9)
 
 # Function to set the layout
 layout.k_partite <- function(g) {
@@ -116,18 +116,23 @@ layout.k_partite <- function(g) {
 }
 
 # Color code the nodes that are present
-dlw = apply(lw,1,sum)
-V(g)$color[V(g)$name %in% salix_ID] = "darkgreen"
-V(g)$color[V(g)$name %in% gall_ID] = "darkred"
-V(g)$color[V(g)$name %in% par_ID] = "darkblue"
-V(g)$color[dlw==0] = "white"
+ecol <- rgb(0.4, 0.4, 0.4, alpha=0.4)
+wcol <- rgb(0.4, 0.4, 0.4)
 
-V(g)$size = 2
-V(g)$size[dlw!=0] = 5
+dlw = apply(lw,1,sum)
+library(RColorBrewer)
+pal <- brewer.pal(3, "Dark2")
+V(g)$color[V(g)$name %in% salix_ID] = pal[1]
+V(g)$color[V(g)$name %in% gall_ID] = pal[2]
+V(g)$color[V(g)$name %in% par_ID] = pal[3]
+V(g)$color[dlw==0] = wcol
+
+V(g)$size = 0.5
+V(g)$size[dlw!=0] = 2
 
 # Plot the network
 
-plot(g, layout = layout.k_partite(g), vertex.label=NA, edge.arrow.mode=0, edge.width=0.3, margin = c(-0.075,-0.075,-0.075,-0.075), asp=0)
+plot(g, layout = layout.k_partite(g), vertex.label=NA, edge.color = ecol, edge.arrow.mode=0, edge.width=0.3, margin = c(-0.075,-0.075,-0.075,-0.075), asp=0, vertex.frame.color = NA)
 
 dev.copy2pdf(file = "ms/figures/metaweb_sampling.pdf")
 

@@ -12,8 +12,8 @@ rm(list = ls())
 source("analysis/scripts/functions/species_models.R")
 source("analysis/scripts/functions/interactions_models.R")
 source("analysis/scripts/functions/get_LL.R")
-source("analysis/scripts/functions/get_probs.R")
-source("analysis/scripts/functions/fit_models.R")
+source("analysis/scripts/functions/get_probs.r")
+source("analysis/scripts/functions/fit_models.r")
 
 # Load the data
 load("analysis/data/DF_split.Rdata")
@@ -130,7 +130,7 @@ PLijmat = matrix(probs$PLij, nr = nsteps, nc = nsteps, byrow = FALSE)
 PLijXijmat = PXijmat*PLijmat
 PLijXijmat[PLijXijmat=="NaN"] = 0
 
-quartz(height = 3.5, width = 10)
+dev.new(height = 3.5, width = 10)
 par(mfrow = c(1,3),mar = c(5,6,2.5,1))
 
 image(seqT,seqPP,1-PXijmat, xlab = "Annual mean temperature",ylab = "Annual precipitation",cex.axis = 1.25, cex.lab = 1.5, col = gray(seq(0.3,1,1/1000)),xlim = 1.0*range(seqT),ylim = 1.0*range(seqPP))

@@ -7,7 +7,6 @@
 ##################################################################
 
 rm(list = ls())
-setwd("/Users/DGravel/Documents/Manuscripts/Inprep/ms_probaweb")
 load("analysis/data/DF_split.Rdata")
 load("analysis/data/pairs.Rdata")
 
@@ -90,19 +89,19 @@ L_HP[X_HP == 0] = 2
 #########################################################
 # Plot the results
 #########################################################
-quartz(width = 8, height = 3)
+dev.new(width = 8, height = 3)
 
 par(mfrow = c(1,2))
 par(mar = c(0.5,3,2,0.5))
 #image(c(1:S_H),c(1:S_S),L_SH,col = rev(gray(seq(0,1,1/1000))),xlab = "", ylab = "",  cex.lab = 1.25,axes = FALSE)
-image(c(1:S_H),c(1:S_S),L_SH,col = c("white", "black","red"),xlab = "", ylab = "",  cex.lab = 1.25,axes = FALSE)
+image(c(1:S_H),c(1:S_S),L_SH,col = c("lightgrey", "black", "white"),xlab = "", ylab = "",  cex.lab = 1.25,axes = FALSE)
 box()
 mtext("Salix",side = 2, cex = 1.25, line = 0.5)
 mtext("Galls",side = 3, cex = 1.25, line = 0.5)
 
 par(mar = c(0.5,0.5,2,3))
 #image(c(1:S_P),c(1:S_H),L_HP,col = rev(gray(seq(0,1,1/1000))),xlab = "", ylab = "",  cex.lab = 1.25,axes = FALSE)
-image(c(1:S_P),c(1:S_H),L_HP,col = c("white", "black","red"),xlab = "", ylab = "",  cex.lab = 1.25,axes = FALSE)
+image(c(1:S_P),c(1:S_H),L_HP,col = c("lightgrey", "black","white"),xlab = "", ylab = "",  cex.lab = 1.25,axes = FALSE)
 box()
 mtext("Galls",side = 3, cex = 1.25, line = 0.5)
 mtext("Parasitoids",side = 4, cex = 1.25, line = 0.5)
