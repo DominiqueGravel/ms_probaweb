@@ -9,9 +9,9 @@
 rm(list = ls())
 
 # Load the data
-load("data/expand_data.Rdata")
-load("data/DF_split.Rdata")
-load("data/pairs.Rdata")
+load("./data/expand_data.Rdata")
+load("./data/DF_split.Rdata")
+load("./data/pairs.Rdata")
 
 IDi = as.character(data$pairs.from)
 IDj = as.character(data$pairs.to)
@@ -31,6 +31,7 @@ DF = data.frame(sites = data$pairs.sites_ID, IDi = IDi, IDj = IDj, Xi=data$Xi, X
 # Adjacency matrix for the metaweb
 # Loop around all pairs of species to test if there are interactions
 # Put everything in a square matrix
+
 mw = data.frame(matrix(0, nr = Sall, nc = Sall))
 names(mw) = unique_ID_all
 row.names(mw) = unique_ID_all
@@ -50,18 +51,19 @@ for(n in 1:nrow(pairs)) {
 
 		# Put the record in the mw
 		mw[i,j] = 1
-		mw[j,i] = 1
+		mw[j,i] = 1		
 	}
 }
 
 #########################################
 # Compute the local network for one site
+#########################################
+
 lw = matrix(0, nr = Sall, nc = Sall)
 DF_split_sites = split(DF,DF$sites)
 site_index = 369 # Pick one that has a decent number of links
 
 for(n in 1:nrow(pairs)) {
-
 	# Compute the number of links
 	nL = DF_split_sites[[site_index]]$Lij[n]
 
@@ -84,7 +86,7 @@ for(n in 1:nrow(pairs)) {
 #########################################################
 
 library(igraph)
-g = graph.incidence(mw,add.names=NULL)
+g = graph.incidence(mw,add.names=NULL, mode = "undirected")
 
 #########################################################
 # Set the layer attribute for every node
@@ -94,15 +96,24 @@ salix_ID = as.character(unique(pairs[pairs$pairs.type=="SH",1]))
 gall_ID = as.character(unique(pairs[pairs$pairs.type=="HP",1]))
 par_ID = as.character(unique(pairs[pairs$pairs.type=="HP",2]))
 
-V(g)$layer[V(g)$name %in% salix_ID] = 1
-V(g)$layer[V(g)$name %in% gall_ID] = 2
-V(g)$layer[V(g)$name %in% par_ID] = 3
+V(g)$layer[V(g)$name %in% salix_ID & dlw == 0] = 1.5
+V(g)$layer[V(g)$name %in% salix_ID & dlw != 0] = 2
+
+V(g)$layer[V(g)$name %in% gall_ID & dlw != 0] = 3.5
+V(g)$layer[V(g)$name %in% gall_ID & dlw == 0] = 4
+
+V(g)$layer[V(g)$name %in% par_ID & dlw != 0] = 5.5
+V(g)$layer[V(g)$name %in% par_ID & dlw ==0] = 6
+
+#V(g)$layer[V(g)$name %in% salix_ID] = 1
+#V(g)$layer[V(g)$name %in% gall_ID] = 2
+#V(g)$layer[V(g)$name %in% par_ID] = 3
 
 #########################################################
 # Plot the metaweb
 #########################################################
 
-dev.new(width = 4, height = 9)
+dev.new(width = 6.5, height = 20)
 
 # Function to set the layout
 layout.k_partite <- function(g) {
@@ -124,14 +135,18 @@ V(g)$color[V(g)$name %in% gall_ID] = pal[2]
 V(g)$color[V(g)$name %in% par_ID] = pal[3]
 V(g)$color[dlw==0] = wcol
 
-V(g)$size = 0.5
-V(g)$size[dlw!=0] = 2
+V(g)$size = 3
+V(g)$size[dlw!=0] = 5
+
+
+# Color code the links that are present
+
 
 # Plot the network
-
 plot(g, layout = layout.k_partite(g), vertex.label=NA, edge.color = ecol, edge.arrow.mode=0, edge.width=0.3, margin = c(-0.075,-0.075,-0.075,-0.075), asp=0, vertex.frame.color = NA)
 
-dev.copy2pdf(file = "figures/metaweb_sampling.pdf")
+# Save file
+dev.copy2pdf(file = "./figures/metaweb_sampling.pdf")
 
 
 

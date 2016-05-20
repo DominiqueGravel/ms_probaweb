@@ -8,16 +8,16 @@
 rm(list = ls())
 
 # Source the functions
-source("scripts/functions/species_models.R")
-source("scripts/functions/interactions_models.R")
-source("scripts/functions/get_probs.R")
-source("scripts/functions/get_LL.R")
-source("scripts/functions/fit_models.R")
+source("./scripts/functions/species_models.R")
+source("./scripts/functions/interactions_models.R")
+source("./scripts/functions/get_probs.R")
+source("./scripts/functions/get_LL.R")
+source("./scripts/functions/fit_models.R")
 
 # Load the data
-load("data/expand_data.Rdata")
-load("data/DF_split.Rdata")
-load("data/pairs.Rdata")
+load("./data/expand_data.Rdata")
+load("./data/DF_split.Rdata")
+load("./data/pairs.Rdata")
 
 IDi = data$pairs.IDi
 IDj = data$pairs.IDj
@@ -108,5 +108,5 @@ AIC_GP = -2*sumLL_GP + 2*npars_GP
 comparison_SG = cbind(sumLL_SG,npars_SG,AIC_SG)
 comparison_GP = cbind(sumLL_GP,npars_GP,AIC_GP)
 
-write.table(comparison_SG,"tables/Table_model_comparison_SG.txt")
-write.table(comparison_GP,"tables/Table_model_comparison_GP.txt")
+write.table(comparison_SG,"./tables/Table_model_comparison_SG.txt")
+write.table(comparison_GP,"./tables/Table_model_comparison_GP.txt")

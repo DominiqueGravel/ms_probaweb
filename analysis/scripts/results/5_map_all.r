@@ -10,9 +10,9 @@ library(raster)
 library(sp)
 library(rgdal)
 
-load("data/DF_split.Rdata")
-load("data/expand_data.Rdata")
-load("data/pairs.Rdata")
+load("./data/DF_split.Rdata")
+load("./data/expand_data.Rdata")
+load("./data/pairs.Rdata")
 
 IDi = data$pairs.IDi
 IDj = data$pairs.IDj
@@ -111,7 +111,7 @@ for(pair in 1:np) {
 	cat(pair,'\n')
 }
 
-write.table(cbind(expS,expL),"figures/map_data.txt")
+write.table(cbind(expS,expL),"./figures/map_data.txt")
 
 ############################################################
 # Plot network properties
@@ -157,7 +157,7 @@ plot(europe, border="grey25", lwd=1.2, add=TRUE)
 plot(wrld[2:3,], add=TRUE, col="white")
 mtext(text="Connectance",side=3,line=0.5,adj=-0.1,cex=1.25)
 
-dev.copy2pdf(file = "figures/map_connectance.pdf")
+dev.copy2pdf(file = "./figures/map_connectance.pdf")
 
 
 

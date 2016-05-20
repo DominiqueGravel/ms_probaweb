@@ -9,15 +9,15 @@
 rm(list = ls())
 
 # Load some functions
-source("scripts/functions/species_models.R")
-source("scripts/functions/interactions_models.R")
-source("scripts/functions/get_LL.R")
-source("scripts/functions/get_probs.r")
-source("scripts/functions/fit_models.r")
+source("./scripts/functions/species_models.R")
+source("./scripts/functions/interactions_models.R")
+source("./scripts/functions/get_LL.R")
+source("./scripts/functions/get_probs.r")
+source("./scripts/functions/fit_models.r")
 
 # Load the data
-load("data/DF_split.Rdata")
-load("data/expand_data.Rdata")
+load("./data/DF_split.Rdata")
+load("./data/expand_data.Rdata")
 
 #########################################################
 # Fit the different models
@@ -38,21 +38,7 @@ for(x in 1:length(DF_split)) {
 cbind(nL,nXi,nXj,nXij,nL,nL/nXij)[nL/nXij<0.7 & nL > 10,]
 
 # Subset the data
-
-#pair_index = which(nL == 13 & nXij == 22) 
 pair_index = which(nL == 21 & nXij == 38) 
-#pair_index = which(nL == 13 & nXij == 22) 
-#pair_index = which(nL == 30 & nXij == 41) 
-#pair_index = which(nL == 9 & nXij == 19) 
-
-#pair_index = which(nL == 14 & nXij == 25)
-#pair_index = which(nL == 16 & nXij == 26)
-#pair_index = which(nL == 15 & nXij == 24)
-#pair_index = which(nL == 10 & nXij == 24)
-
-#pair_index = which(nL == 16 & nXij == 23)
-#pair_index = which(nL == 11 & nXij == 18)[1]
-
 data = DF_split[[pair_index]]
 data$E = data.frame(T = data$E$T/12, PP = data$E$PP/1000, T2 = data$E$T2/12^2, PP2 = data$E$PP2/1000^2)
 sum(data$Lij)
@@ -94,10 +80,9 @@ npars = c(
 	)
 
 AIC = -2*LL + 2*npars
-AIC
 
 # Write the results in a table
-write.table(cbind(LL,npars,AIC), file = "tables/table1.txt") 
+write.table(cbind(LL,npars,AIC), file = "./tables/table1.txt") 
 
 #########################################################
 # Plot the results
@@ -147,6 +132,6 @@ points(data$E$T[data$Lij==1],data$E$PP[data$Lij==1],pch = 19)
 points(data$E$T[data$Lij==0 & data$Xij==1],data$E$PP[data$Lij==0 & data$Xij==1],pch = 1)
 mtext(text=expression(P(L[ij],X[i],X[j])),side=3,line=0.5,adj=-0.1,cex=1.25)
 
-dev.copy2pdf(file = "figures/example_pair.pdf")
+dev.copy2pdf(file = "./figures/example_pair.pdf")
 
 

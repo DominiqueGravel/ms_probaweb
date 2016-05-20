@@ -11,8 +11,8 @@ library(raster)
 library(sp)
 library(rgdal)
 
-load("data/DF_split.Rdata")
-load("data/expand_data.Rdata")
+load("./data/DF_split.Rdata")
+load("./data/expand_data.Rdata")
 
 IDi = data$pairs.IDi
 IDj = data$pairs.IDj
@@ -110,7 +110,7 @@ image(rast, add=TRUE, col=pal(100))
 plot(europe, border="grey25", lwd=1.2, add=TRUE)
 mtext(text=expression(P(L[ij],X[i],X[j])),side=3,line=0.5,adj=-0.1,cex=1.25)
 
-dev.copy2pdf(file = "figures/map_pair.pdf")
+dev.copy2pdf(file = "./figures/map_pair.pdf")
 
 
 

@@ -7,8 +7,8 @@
 ##################################################################
 
 rm(list = ls())
-load("data/DF_split.Rdata")
-load("data/pairs.Rdata")
+load("./data/DF_split.Rdata")
+load("./data/pairs.Rdata")
 
 ID_S = unique(as.character(pairs$pairs.from[pairs$pairs.type=="SH"]))
 ID_H = unique(as.character(pairs$pairs.to[pairs$pairs.type=="SH"]))
@@ -37,6 +37,7 @@ for(n in 1:length(DF_split)) {
 	nX = sum(DF_split[[n]]$Xij)
 
 	if(nX!=0) {
+
 		# Indices for the different species
 		if(pairs$pairs.type[n]=="SH") {
 			i = which(ID_S == pairs$pairs.from[n])
@@ -105,20 +106,7 @@ box()
 mtext("Galls",side = 3, cex = 1.25, line = 0.5)
 mtext("Parasitoids",side = 4, cex = 1.25, line = 0.5)
 
-
-#par(mar = c(0.5,0.5,2,3))
-#image(c(1:S_H),c(1:S_S),X_SH,col = c("red","black"),xlab = "", ylab = "", cex.lab = 1.25,axes = FALSE)
-#box()
-#mtext("Salix",side = 4, cex = 1.25, line = 0.5)
-#mtext("Galls",side = 3, cex = 1.25, line = 0.5)
-
-#par(mar = c(2,0.5,0.5,3))
-#image(c(1:S_P),c(1:S_H),X_HP,col = c("red","black"),xlab = "", ylab = "", cex.lab = 1.25,axes = FALSE)
-#box()
-#mtext("Galls",side =4, cex = 1.25, line = 0.5)
-#mtext("Parasitoids",side = 1, cex = 1.25, line = 0.5)
-
-dev.copy2pdf(file = "figures/mw_holes.pdf")
+dev.copy2pdf(file = "./figures/mw_holes.pdf")
 
 
 
