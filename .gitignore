@@ -7,4 +7,5 @@
 *.bib.bak
 *.blx.bib
 *.Rdata
+*.DS_Store
 old_stuff/

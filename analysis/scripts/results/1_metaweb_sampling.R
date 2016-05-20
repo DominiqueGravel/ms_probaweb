@@ -1,5 +1,5 @@
 ##################################################################
-# Script for Figure X,
+# Script for Figure 1
 # Illustrating the sampling of the metaweb of interactions among salix,
 # gall insects and parasitoids across Europe
 # Dominique Gravel
@@ -7,12 +7,11 @@
 ##################################################################
 
 rm(list = ls())
-#setwd("/Users/DGravel/Documents/Manuscripts/Inprep/ms_probaweb")
 
 # Load the data
-load("analysis/data/expand_data.Rdata")
-load("analysis/data/DF_split.Rdata")
-load("analysis/data/pairs.Rdata")
+load("data/expand_data.Rdata")
+load("data/DF_split.Rdata")
+load("data/pairs.Rdata")
 
 IDi = as.character(data$pairs.from)
 IDj = as.character(data$pairs.to)
@@ -54,8 +53,6 @@ for(n in 1:nrow(pairs)) {
 		mw[j,i] = 1
 	}
 }
-
-
 
 #########################################
 # Compute the local network for one site
@@ -134,7 +131,7 @@ V(g)$size[dlw!=0] = 2
 
 plot(g, layout = layout.k_partite(g), vertex.label=NA, edge.color = ecol, edge.arrow.mode=0, edge.width=0.3, margin = c(-0.075,-0.075,-0.075,-0.075), asp=0, vertex.frame.color = NA)
 
-dev.copy2pdf(file = "ms/figures/metaweb_sampling.pdf")
+dev.copy2pdf(file = "figures/metaweb_sampling.pdf")
 
 
 

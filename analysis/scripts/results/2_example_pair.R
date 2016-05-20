@@ -1,5 +1,5 @@
 ##################################################################
-# Script for Figure X,
+# Script for Figure 3
 # Illustrating the computation of interaction probabilities for a 
 # pair of species
 # Dominique Gravel
@@ -9,15 +9,15 @@
 rm(list = ls())
 
 # Load some functions
-source("analysis/scripts/functions/species_models.R")
-source("analysis/scripts/functions/interactions_models.R")
-source("analysis/scripts/functions/get_LL.R")
-source("analysis/scripts/functions/get_probs.r")
-source("analysis/scripts/functions/fit_models.r")
+source("scripts/functions/species_models.R")
+source("scripts/functions/interactions_models.R")
+source("scripts/functions/get_LL.R")
+source("scripts/functions/get_probs.r")
+source("scripts/functions/fit_models.r")
 
 # Load the data
-load("analysis/data/DF_split.Rdata")
-load("analysis/data/expand_data.Rdata")
+load("data/DF_split.Rdata")
+load("data/expand_data.Rdata")
 
 #########################################################
 # Fit the different models
@@ -53,28 +53,26 @@ pair_index = which(nL == 21 & nXij == 38)
 #pair_index = which(nL == 16 & nXij == 23)
 #pair_index = which(nL == 11 & nXij == 18)[1]
 
-
-
 data = DF_split[[pair_index]]
 data$E = data.frame(T = data$E$T/12, PP = data$E$PP/1000, T2 = data$E$T2/12^2, PP2 = data$E$PP2/1000^2)
 sum(data$Lij)
 sum(data$Xij)
 
 # Pick the model
-models_C2_L0 = fit_models.apply(data, selection = FALSE, funC = C2, funL = L0)
-models_C2_L1 = fit_models.apply(data, selection = FALSE, funC = C2, funL = L1)
-models_C2_L2 = fit_models.apply(data, selection = FALSE, funC = C2, funL = L2)
-models_C0_L2 = fit_models.apply(data, selection = FALSE, funC = C0, funL = L2)
-models_C1_L2 = fit_models.apply(data, selection = FALSE, funC = C1, funL = L2)
-models_C3_L2 = fit_models.apply(data, selection = FALSE, funC = C3, funL = L2)
+models_C2_L0 = fit_models(data, selection = FALSE, funC = C2, funL = L0)
+models_C2_L1 = fit_models(data, selection = FALSE, funC = C2, funL = L1)
+models_C2_L2 = fit_models(data, selection = FALSE, funC = C2, funL = L2)
+models_C0_L2 = fit_models(data, selection = FALSE, funC = C0, funL = L2)
+models_C1_L2 = fit_models(data, selection = FALSE, funC = C1, funL = L2)
+models_C3_L2 = fit_models(data, selection = FALSE, funC = C3, funL = L2)
 
 # Compute the LL
-LL_C2_L0 = get_LL.apply(models_C2_L0,data)
-LL_C2_L1 = get_LL.apply(models_C2_L1,data)
-LL_C2_L2 = get_LL.apply(models_C2_L2,data)
-LL_C0_L2 = get_LL.apply(models_C0_L2,data)
-LL_C1_L2 = get_LL.apply(models_C1_L2,data)
-LL_C3_L2 = get_LL.apply(models_C3_L2,data)
+LL_C2_L0 = get_LL(models_C2_L0,data)
+LL_C2_L1 = get_LL(models_C2_L1,data)
+LL_C2_L2 = get_LL(models_C2_L2,data)
+LL_C0_L2 = get_LL(models_C0_L2,data)
+LL_C1_L2 = get_LL(models_C1_L2,data)
+LL_C3_L2 = get_LL(models_C3_L2,data)
 
 # Collect the results
 LL = c(
@@ -99,8 +97,7 @@ AIC = -2*LL + 2*npars
 AIC
 
 # Write the results in a table
-write.table(cbind(LL,npars,AIC), file = "ms/figures/table1.txt") 
-
+write.table(cbind(LL,npars,AIC), file = "tables/table1.txt") 
 
 #########################################################
 # Plot the results
@@ -150,6 +147,6 @@ points(data$E$T[data$Lij==1],data$E$PP[data$Lij==1],pch = 19)
 points(data$E$T[data$Lij==0 & data$Xij==1],data$E$PP[data$Lij==0 & data$Xij==1],pch = 1)
 mtext(text=expression(P(L[ij],X[i],X[j])),side=3,line=0.5,adj=-0.1,cex=1.25)
 
-dev.copy2pdf(file = "ms/figures/example_pair.pdf")
+dev.copy2pdf(file = "figures/example_pair.pdf")
 
 

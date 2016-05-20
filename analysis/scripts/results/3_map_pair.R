@@ -1,5 +1,5 @@
 ##################################################################
-# Script for Figure X,
+# Script for Figure 4
 # Mapping across Europe the interaction probability between pairs of species
 # Dominique Gravel
 # October 29th, 2015
@@ -11,8 +11,8 @@ library(raster)
 library(sp)
 library(rgdal)
 
-load("analysis/data/DF_split.Rdata")
-load("analysis/data/expand_data.Rdata")
+load("data/DF_split.Rdata")
+load("data/expand_data.Rdata")
 
 IDi = data$pairs.IDi
 IDj = data$pairs.IDj
@@ -20,7 +20,7 @@ Si = length(unique(IDi))
 Sj = length(unique(IDj))
 
 # Load the stuff to make the raster object
-wrld <- readOGR("analysis/data/map", layer="level1")
+wrld <- readOGR("data/map", layer="level1")
 europe <- wrld[1,]
 exteur <- extent(europe)
 xmin(exteur) = 0
@@ -90,7 +90,6 @@ image(rast, add=TRUE, col=pal(100))
 plot(europe, border="grey25", lwd=1.2, add=TRUE)
 mtext(text=expression(P(X[i],X[j])),side=3,line=0.5,adj=-0.1,cex=1.25)
 
-
 # MAP 2: INTERACTION PROBABILITY
 # Make the map
 par(xaxs="i", yaxs="i")
@@ -100,7 +99,6 @@ rast <- raster(exteur, vals=PLij_E, nrow = 180, ncol = 150)
 image(rast, add=TRUE, col=pal(100))
 plot(europe, border="grey25", lwd=1.2, add=TRUE)
 mtext(text=expression(P(L[ij])),side=3,line=0.5,adj=-0.1,cex=1.25)
-
 
 # MAP 3: NET INTERACTION PROBABILITY
 # Make the map
@@ -112,7 +110,7 @@ image(rast, add=TRUE, col=pal(100))
 plot(europe, border="grey25", lwd=1.2, add=TRUE)
 mtext(text=expression(P(L[ij],X[i],X[j])),side=3,line=0.5,adj=-0.1,cex=1.25)
 
-dev.copy2pdf(file = "ms/figures/map_pair.pdf")
+dev.copy2pdf(file = "figures/map_pair.pdf")
 
 
 

@@ -1,6 +1,6 @@
 ##################################################################
-# Run the models across Europe to compute the expected species
-# richness and the expected number of links
+# Script for Figure 6
+# Mapping network properties across Europe
 # Dominique Gravel
 # October 29th, 2015
 ##################################################################
@@ -10,10 +10,9 @@ library(raster)
 library(sp)
 library(rgdal)
 
-
-load("analysis/data/DF_split.Rdata")
-load("analysis/data/expand_data.Rdata")
-load("analysis/data/pairs.Rdata")
+load("data/DF_split.Rdata")
+load("data/expand_data.Rdata")
+load("data/pairs.Rdata")
 
 IDi = data$pairs.IDi
 IDj = data$pairs.IDj
@@ -23,7 +22,7 @@ nobs = 374
 np  = length(DF_split)
 
 # Load the stuff to make the raster object
-wrld <- readOGR("analysis/data/map", layer="level1")
+wrld <- readOGR("data/map", layer="level1")
 europe <- wrld[1,]
 exteur <- extent(europe)
 
@@ -78,7 +77,6 @@ for(i in 1:S) {
 	expS = expS + predXi
 }
 
-
 #############
 # Compute the expected link density
 for(pair in 1:np) {
@@ -113,7 +111,7 @@ for(pair in 1:np) {
 	cat(pair,'\n')
 }
 
-write.table(cbind(expS,expL),"ms/figures/map_data.txt")
+write.table(cbind(expS,expL),"figures/map_data.txt")
 
 ############################################################
 # Plot network properties
@@ -159,7 +157,7 @@ plot(europe, border="grey25", lwd=1.2, add=TRUE)
 plot(wrld[2:3,], add=TRUE, col="white")
 mtext(text="Connectance",side=3,line=0.5,adj=-0.1,cex=1.25)
 
-dev.copy2pdf(file = "ms/figures/map_connectance.pdf")
+dev.copy2pdf(file = "figures/map_connectance.pdf")
 
 
 

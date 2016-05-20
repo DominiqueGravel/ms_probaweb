@@ -1,5 +1,5 @@
 ##################################################################
-# Script for Figure X,
+# Script for Figure 5
 # Illustrating the computation of interaction probabilities for a 
 # pair of species
 # Dominique Gravel
@@ -7,8 +7,8 @@
 ##################################################################
 
 rm(list = ls())
-load("analysis/data/DF_split.Rdata")
-load("analysis/data/pairs.Rdata")
+load("data/DF_split.Rdata")
+load("data/pairs.Rdata")
 
 ID_S = unique(as.character(pairs$pairs.from[pairs$pairs.type=="SH"]))
 ID_H = unique(as.character(pairs$pairs.to[pairs$pairs.type=="SH"]))
@@ -54,7 +54,6 @@ for(n in 1:length(DF_split)) {
 	}
 	cat(n,'\n')
 }
-
 
 # Sort the matrices by degree
 d_S = apply(L_SH,1,sum,na.rm=TRUE)
@@ -119,7 +118,7 @@ mtext("Parasitoids",side = 4, cex = 1.25, line = 0.5)
 #mtext("Galls",side =4, cex = 1.25, line = 0.5)
 #mtext("Parasitoids",side = 1, cex = 1.25, line = 0.5)
 
-dev.copy2pdf(file = "ms/figures/mw_holes.pdf")
+dev.copy2pdf(file = "figures/mw_holes.pdf")
 
 
 

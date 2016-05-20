@@ -7,7 +7,7 @@
 
 rm(list = ls())
 # Load the data
-load('analysis/data/expand_data.Rdata')
+load('./data/expand_data.Rdata')
 
 # Sub select environmental variables (annual average temperature and annual preciptiations)
 DF = data.frame(IDi = data$pairs.from, IDj = data$pairs.to, Xi=data$Xi, Xj=data$Xj, Xij = data$Xij, Lij = data$Lij)
@@ -27,5 +27,5 @@ DF_split = split(DF,pairs_ID)
 
 pairs = unique(data[,c(2,3,4)])
 
-save(DF_split,file = "analysis/data/DF_split.Rdata")
-save(pairs,file = "analysis/data/pairs.Rdata")
+save(DF_split,file = "./data/DF_split.Rdata")
+save(pairs,file = "./data/pairs.Rdata")

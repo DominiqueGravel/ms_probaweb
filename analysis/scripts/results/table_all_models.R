@@ -5,22 +5,19 @@
 # October 29th, 2015
 ##################################################################
 
-
 rm(list = ls())
-setwd("/Users/DGravel/Documents/Manuscripts/Inprep/ms_probaweb")
 
 # Source the functions
-source("analysis/scripts/functions/species_models.R")
-source("analysis/scripts/functions/interactions_models.R")
-source("analysis/scripts/functions/get_probs.R")
-source("analysis/scripts/functions/collect.R")
-source("analysis/scripts/functions/get_LL.R")
-source("analysis/scripts/functions/fit_models.R")
+source("scripts/functions/species_models.R")
+source("scripts/functions/interactions_models.R")
+source("scripts/functions/get_probs.R")
+source("scripts/functions/get_LL.R")
+source("scripts/functions/fit_models.R")
 
 # Load the data
-load("analysis/data/expand_data.Rdata")
-load("analysis/data/DF_split.Rdata")
-load("analysis/data/pairs.Rdata")
+load("data/expand_data.Rdata")
+load("data/DF_split.Rdata")
+load("data/pairs.Rdata")
 
 IDi = data$pairs.IDi
 IDj = data$pairs.IDj
@@ -49,19 +46,21 @@ for(x in 1:np) {
 	test = which(pairs[,2] == as.character(IDs[1]) & pairs[,3]==as.character(IDs[2]) | pairs[,2]==as.character(IDs[2]) & pairs[,3]==as.character(IDs[1]))
 	if(length(test)!=0)	type[x] = unique(as.character(pairs[test,4]))
 	
-	models_C2_L0 = fit_models.apply(sub_data,selection = FALSE, funC = C2, funL = L0)
-	models_C2_L1 = fit_models.apply(sub_data,selection = FALSE, funC = C2, funL = L1)
-	models_C2_L2 = fit_models.apply(sub_data,selection = FALSE, funC = C2, funL = L2)
-	models_C0_L2 = fit_models.apply(sub_data,selection = FALSE, funC = C0, funL = L2)
-	models_C1_L2 = fit_models.apply(sub_data,selection = FALSE, funC = C1, funL = L2)
-	models_C3_L2 = fit_models.apply(sub_data,selection = FALSE, funC = C3, funL = L2)
+	# Compute the models
+	models_C2_L0 = fit_models(sub_data, selection = FALSE, funC = C2, funL = L0)
+	models_C2_L1 = fit_models(sub_data, selection = FALSE, funC = C2, funL = L1)
+	models_C2_L2 = fit_models(sub_data, selection = FALSE, funC = C2, funL = L2)
+	models_C0_L2 = fit_models(sub_data, selection = FALSE, funC = C0, funL = L2)
+	models_C1_L2 = fit_models(sub_data, selection = FALSE, funC = C1, funL = L2)
+	models_C3_L2 = fit_models(sub_data, selection = FALSE, funC = C3, funL = L2)
 
-	C2_L0[x,] = get_LL.apply(models_C2_L0,sub_data)
-	C2_L1[x,] =	get_LL.apply(models_C2_L1,sub_data)
-	C2_L2[x,] =	get_LL.apply(models_C2_L2,sub_data)	
-	C0_L2[x,] =	get_LL.apply(models_C0_L2,sub_data)
-	C1_L2[x,] =	get_LL.apply(models_C1_L2,sub_data)
-	C3_L2[x,] =	get_LL.apply(models_C3_L2,sub_data)		
+	# Compute the likelihood
+	C2_L0[x,] = get_LL(models_C2_L0, sub_data)
+	C2_L1[x,] =	get_LL(models_C2_L1, sub_data)
+	C2_L2[x,] =	get_LL(models_C2_L2, sub_data)	
+	C0_L2[x,] =	get_LL(models_C0_L2, sub_data)
+	C1_L2[x,] =	get_LL(models_C1_L2, sub_data)
+	C3_L2[x,] =	get_LL(models_C3_L2, sub_data)		
 
 	if(count >= 10) {
 		cat(x,'\n')
@@ -109,12 +108,5 @@ AIC_GP = -2*sumLL_GP + 2*npars_GP
 comparison_SG = cbind(sumLL_SG,npars_SG,AIC_SG)
 comparison_GP = cbind(sumLL_GP,npars_GP,AIC_GP)
 
-write.table(comparison_SG,"ms/figures/Table_model_comparison_SG.txt")
-write.table(comparison_GP,"ms/figures/Table_model_comparison_GP.txt")
-
-
-
-
-
-
-
+write.table(comparison_SG,"tables/Table_model_comparison_SG.txt")
+write.table(comparison_GP,"tables/Table_model_comparison_GP.txt")
