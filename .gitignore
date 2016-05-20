@@ -9,4 +9,4 @@
 *.Rdata
 *.DS_Store
 old_stuff/
-analysis/scripts/queries/*
+analysis/scripts/queries/get_salix.r
