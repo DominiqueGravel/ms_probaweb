@@ -1,14 +1,17 @@
-# Bringing Elton and Grinnell together: a quantitative framework to represent the biogeography of ecological interaction networks
-## Analysis built under R 3.1.2 (2014-10-31)
+### Bringing Elton and Grinnell together: a quantitative framework to represent the biogeography of ecological interaction networks
 
-### External spatial libraries (with homebrew)
+**Analysis built under R 3.1.2 (2014-10-31)**
+
+## External libraries
+
+We installed several external libraries needed to built the R packages ```ncdf4```, ```rgdal``` with Homebrew (Multiplateform packages manager).
 
 ```code
 brew install gdal
 brew install netcdf
 ```
 
-### R Packages dependencies
+## R Packages dependencies
 
 - doParallel
 - dismo 
@@ -33,7 +36,7 @@ ipak <- function(pkg){
 packages <-c('doParallel','dismo','raster','igraph','RColorBrewer','sp','rgdal','viridis','ncdf4')
 ipak(packages)
 ```
-### Getting started
+## Getting started
 
 1. Set ```TRUE``` or ```FALSE``` the ```parallel``` option in ```source_all.r```  
 2. Run ``` Rscript source_all.r ``` in your terminal
