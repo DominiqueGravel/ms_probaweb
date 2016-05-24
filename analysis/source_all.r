@@ -1,6 +1,3 @@
-# Make sure to have all the required packages
-install.packages(c("igraph", "rgdal", "raster", "sp", "viridis","dismo"))
-
 # init parallel option
 parallel = TRUE
 
