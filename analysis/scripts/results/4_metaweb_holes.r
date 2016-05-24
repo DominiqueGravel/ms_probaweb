@@ -3,10 +3,11 @@
 # Illustrating the computation of interaction probabilities for a 
 # pair of species
 # Dominique Gravel
-# October 29th, 2015
 ##################################################################
 
 rm(list = ls())
+
+# Load & prepare the data
 load("./data/DF_split.Rdata")
 load("./data/pairs.Rdata")
 

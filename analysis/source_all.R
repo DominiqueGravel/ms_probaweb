@@ -1,8 +1,11 @@
+# Make sure to have all the required packages
+install.packages(c("igraph", "rgdal", "raster", "sp", "viridis","dismo"))
+
 # init parallel option
 parallel = TRUE
 
 # Process the data
-source("./scripts/data_processing/reformat_salix.r")
+source("./scripts/data_processing/reformat_salix.r") # Note this one will take a lot of time (few hours)
 source("./scripts/data_processing/split_data.r")
 
 # Get the results

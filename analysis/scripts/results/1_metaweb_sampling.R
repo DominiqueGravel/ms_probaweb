@@ -3,12 +3,11 @@
 # Illustrating the sampling of the metaweb of interactions among salix,
 # gall insects and parasitoids across Europe
 # Dominique Gravel
-# October 29th, 2015
 ##################################################################
 
 rm(list = ls())
 
-# Load the data
+# Load & prepare the data
 load("./data/expand_data.Rdata")
 load("./data/DF_split.Rdata")
 load("./data/pairs.Rdata")

@@ -3,7 +3,6 @@
 # Illustrating the computation of interaction probabilities for a 
 # pair of species
 # Dominique Gravel
-# October 29th, 2015
 ##################################################################
 
 rm(list = ls())

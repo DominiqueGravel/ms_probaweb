@@ -2,7 +2,6 @@
 # Script for Figure 4
 # Mapping across Europe the interaction probability between pairs of species
 # Dominique Gravel
-# October 29th, 2015
 ##################################################################
 
 rm(list=ls())
@@ -11,6 +10,7 @@ library(raster)
 library(sp)
 library(rgdal)
 
+# Load & prepare the data
 load("./data/DF_split.Rdata")
 load("./data/expand_data.Rdata")
 

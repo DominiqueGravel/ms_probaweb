@@ -2,7 +2,6 @@
 # Compute the likelihood for each model and each species pair
 # Record the results in a summary table
 # Dominique Gravel
-# October 29th, 2015
 ##################################################################
 
 rm(list = ls())
@@ -14,7 +13,7 @@ source("./scripts/functions/get_probs.R")
 source("./scripts/functions/get_LL.R")
 source("./scripts/functions/fit_models.R")
 
-# Load the data
+# Load & prepare the data
 load("./data/expand_data.Rdata")
 load("./data/DF_split.Rdata")
 load("./data/pairs.Rdata")
