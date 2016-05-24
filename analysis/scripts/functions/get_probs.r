@@ -12,13 +12,13 @@ get_probs = function(model_list, newE) {
 		PLijhigh = NA
 	}
 	else {
-		probs = get_probs(modelC, modelL, newE)
-		PXij = probs$PXij 
-		PLij = probs$PLij 
+		if(is.null(modelC$ij)) 
+			PXij = predict(modelC$i, type = "response", newdata = newE)*predict(modelC$j, type = "response", newdata = newE)	
+		else 
+			PXij = predict(modelC$ij, type = "response", newdata = newE)	
+		PLij = predict(modelL, type = "response", newdata = newE)
 		PLijXij = PXij*PLij 			
-		PLijlow = probs$PLijlow
-		PLijhigh = probs$PLijhigh	
 	}
 
-	return(list(PXij = PXij, PLij = PLij, PLijXij = PLijXij, PLijlow = PLijlow, PLijhigh = PLijhigh))	
+	return(list(PXij = PXij, PLij = PLij, PLijXij = PLijXij))	
 } 

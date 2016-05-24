@@ -53,12 +53,12 @@ models_C1_L2 = fit_models(data, selection = FALSE, funC = C1, funL = L2)
 models_C3_L2 = fit_models(data, selection = FALSE, funC = C3, funL = L2)
 
 # Compute the LL
-LL_C2_L0 = get_LL(models_C2_L0,data)
-LL_C2_L1 = get_LL(models_C2_L1,data)
-LL_C2_L2 = get_LL(models_C2_L2,data)
-LL_C0_L2 = get_LL(models_C0_L2,data)
-LL_C1_L2 = get_LL(models_C1_L2,data)
-LL_C3_L2 = get_LL(models_C3_L2,data)
+LL_C2_L0 = get_LL(models_C2_L0, data)
+LL_C2_L1 = get_LL(models_C2_L1, data)
+LL_C2_L2 = get_LL(models_C2_L2, data)
+LL_C0_L2 = get_LL(models_C0_L2, data)
+LL_C1_L2 = get_LL(models_C1_L2, data)
+LL_C3_L2 = get_LL(models_C3_L2, data)
 
 # Collect the results
 LL = c(
@@ -88,9 +88,8 @@ write.table(cbind(LL,npars,AIC), file = "./tables/table1.txt")
 # Plot the results
 #########################################################
 
-# Compute predicted values for each observation
+# Compute the model
 models = models_C2_L2
-probs = get_probs(modelC=models$modelC, modelL=models$modelL, newE=data$E)
 
 # Compute predicted values for the environmental space
 nsteps = 250
@@ -104,7 +103,7 @@ expT2 = expT^2
 expPP2 = expPP^2
 
 newE = data.frame(T = expT,T2 = expT2, PP = expPP, PP2 = expPP2)
-probs = get_probs(modelC=models$modelC, modelL=models$modelL, newE=newE)
+probs = get_probs(models, newE=newE)
 
 # Plot the results
 PXijmat = matrix(probs$PXij, nr = nsteps, nc = nsteps, byrow = FALSE)

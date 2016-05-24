@@ -8,6 +8,7 @@ get_LL = function(model_list, data) {
 		sumLL = 0
 		npars = 0
 	}
+
 	else {
 		# NUMBER OF PARAMETERS
 		if(is.null(modelC$ij)) nparsXij = length(modelC$i$coefficients)*2	
@@ -16,7 +17,7 @@ get_LL = function(model_list, data) {
 		npars = (nparsXij+nparsLij)
 
 		# COMPUTATION OF THE PROBABILITIES
-		probs = get_probs(newE = data$E,modelC,modelL)
+		probs = get_probs(model_list, newE = data$E)
 		PLijXij = probs$PLij*probs$PXij 
 
 		# COMPUTATION OF THE LIKELIHOOD

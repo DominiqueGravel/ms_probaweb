@@ -58,10 +58,6 @@ subE = subset(E,Xij == 1)
 subLij = subset(Lij, Xij == 1)
 lm_L = glm(subLij ~ T+PP+T2+PP2, family = "binomial", data = subE)
 
-summary(lm_i)
-summary(lm_j)
-summary(lm_L)
-
 # Compute expected probabilities over the gradient
 PXi_E = predict(lm_i, type="response", newdata=map_E)
 PXj_E = predict(lm_j, type="response", newdata=map_E)
