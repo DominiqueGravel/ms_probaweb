@@ -7,11 +7,11 @@
 rm(list = ls())
 
 # Source the functions
-source("./scripts/functions/species_models.R")
-source("./scripts/functions/interactions_models.R")
-source("./scripts/functions/get_probs.R")
-source("./scripts/functions/get_LL.R")
-source("./scripts/functions/fit_models.R")
+source("./scripts/functions/species_models.r")
+source("./scripts/functions/interactions_models.r")
+source("./scripts/functions/get_probs.r")
+source("./scripts/functions/get_LL.r")
+source("./scripts/functions/fit_models.r")
 
 # Load & prepare the data
 load("./data/expand_data.Rdata")
