@@ -1,5 +1,6 @@
 \documentclass[12pt]{article}
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage{amsmath}
 \usepackage{color,lineno,setspace,multirow}
 \usepackage{graphicx}
@@ -68,7 +69,7 @@ on species distribution (the Grinnellian dimension of the niche) and on the
 ecological interactions among them (the Eltonian dimension). Starting from
 this concept, we develop a quantitative theory to explain turnover of
 interactions in space and time -- \emph{i.e.} a novel approach to interaction
-distribution modelling. We apply this framework to host–parasite interactions
+distribution modeling. We apply this framework to host–parasite interactions
 across Europe and find that two aspects of the environment (temperature and
 precipitation) exert a strong imprint on species co-occurrence, but not on
 species interactions. Even where species co-occur, interaction proves to be
@@ -77,7 +78,7 @@ structure. We also find that a large majority of host-parasite pairs are never
 found together, thus precluding any inferences regarding their probability to
 interact. This first attempt to explain variation of network structure at
 large spatial scales opens new perspectives at the interface of species
-distribution modelling and community ecology.
+distribution modeling and community ecology.
 
 \newpage
 
@@ -90,7 +91,7 @@ consensus on this definition \citep{Scheiner2007a}, research on variation in
 community structure (beta-diversity) has mostly focused on the spatial and
 temporal turnover of species composition \citep{Anderson2011}. Such research
 usually neglects variation in the way species interact with each other,
-despite accumulating empirical evidence that this is a major source of
+despite accumulating empirical evidence that is a major source of
 diversity \citep{Poisot2015a}. Given this omission, it is perhaps not
 surprising that biogeographers are still struggling to establish whether
 interactions actually impact the distribution of species at large spatial
@@ -100,7 +101,7 @@ scales up and impact the (co-)distribution of species remains matter of debate
 at the moment \citep{Wisz2012, GonzalezSalazar2013, Cazelles2016b,
 Harris2016, Godsoe2017}. Treating interactions as fixed events nonetheless
 neglects a large part of the complexity of empirical communities, and will
-most likely deliver underwhelming results \citep{Poisot2015c}. Recent attempts
+most likely deliver biased metrics \citep{Poisot2015c}. Recent attempts
 at accounting for interactions in species distribution models
 \citep{Pollock2014, Pelissier2013, Ovaskainen2017} have brought some
 methodological advances, but are not sufficient for two reasons. First, these
@@ -112,24 +113,24 @@ treatment of interactions and in the quality of the predictions they make.
 Network approaches offer a convenient representation of communities because
 they simultaneously account for species composition and their interactions.
 Species are represented as nodes, so that networks already encompass all the
-information used by current approaches of species distribution modelling; in
+information used by current approaches of species distribution modeling; in
 addition, interactions are represented by links, so that networks provide
 additional information on community structure. To date, studies of network
 diversity have mostly been concerned with the distribution of interactions
 within locations, and less so with variation among locations \citep{Dunne2006,
 Bascompte2007, Ings2009, Kefi2012}. There is, however, ample evidence that
-interaction networks vary in space and, time \citep{Laliberte2010, Poisot2012,
+interaction networks vary in space and time \citep{Laliberte2010, Poisot2012,
 Schleuning2012, Albouy2014, Poisot2016, Trojelsgaard2015}, even though there
 is no common framework with which to generalize these results. Metacommunity
 theory provides explanations for variation in the distribution of the nodes
-\citep{Gravel2011c, Pillai2011,Cazelles2015}, but there is no such explanation
+\citep{Gravel2011c, Pillai2011,Cazelles2015}, but there are no such explanation
 to the variation of node and link occurrences. Consequently, we need theory to
 formalize these observations, as it is the only way towards fulfilling the
 goal of community ecology: providing cogent predictions about, and
 understanding of, the structure of ecological communities.
 
 Given the historically different approaches to modelling the distributions of
-species vs. interactions, there is need to bring the two together. Here, we
+species vs. interactions, there is a need to bring the two together. Here, we
 offer an integrated approach to do so, adopting the view that community
 structure is best represented as a network of ecological interactions. Based
 on this idea, we propose a description of the ecological niche that
@@ -167,8 +168,7 @@ combinations) are realized in this local network, revealing the stochastic
 nature of ecological interactions. Our objective here is to provide theory to
 explain the sampling of the regional pool of interactions, along with a
 quantitative method to predict it. The problem could be formalized
-sequentially by understanding first why only a fraction of the species co-
-occur locally and second why these species do or do not interact.
+sequentially by understanding first why only a fraction of the species co-occur locally and second why these species do or do not interact.
 
 There are multiple causes of spatial turnover of species co-occurrence. The
 first and most-studied driver is the effect of variation in the abiotic
@@ -179,7 +179,7 @@ either because colonization and extinction events \citep{Hanski1999} are
 inherently unpredictable or because strong non-linear feedbacks in community
 dynamics generate alternative transients and equilibria \citep{Chase2007,
 Vellend2014}. Interaction themselves may impact co-distribution, as
-hypothesized long ago by Diamond \citet{Diamond1975}. Analyses of community
+hypothesized long ago by \citet{Diamond1975}. Analyses of community
 turnover are usually performed with data represented in a table with rows
 corresponding to sites (or measurements) and columns to species. Metrics of
 beta diversity quantify the variance of this community data
@@ -188,7 +188,7 @@ among communities, such as the Jaccard or Bray–Curtis indices. More recent
 approaches decompose total variation of the community data into species and
 site contributions to beta diversity \citep{Legendre2013}, and further
 partition it into dissimilarity due to changes in species richness and
-dissimilarity due to actual species turnover \citep{Baselga2010}. T Even
+dissimilarity due to actual species turnover \citep{Baselga2010}. Even
 though all of these methods compare whole lists of species among sites or
 measurements, they remain fundamentally "species-based", since they report
 variation within columns. None of them explicitly considers variation of
@@ -197,7 +197,7 @@ The only exceptions are the Joint Species Distribution Models
 \citep{Warton2015, Ovaskainen2017}, which further account for the covariance
 among species after representing their response to the environment.
 
-Similarly, we are now getting a better understanding of interaction turnover. As
+We are now getting a better understanding of interaction turnover. As
 mentioned above, in the network approach to community structure, species and
 interactions are represented by nodes and links, respectively. Associations
 can also be represented by matrices in which entries represent the occurrence
@@ -215,10 +215,10 @@ respond to different drivers \citep{Poisot2012}.
 
 The "niche" is by far the dominant concept invoked to explain species
 distributions and community assembly, from the local to the global scale.
-Following \citealt{Hutchinson1957}, the niche is viewed as the set of
+Following \citet{Hutchinson1957}, the niche is viewed as the set of
 environmental conditions allowing a population to establish and persist (see
 also \citealt{Holt2009a}). In other words, the niche is the location in that
-multidimensional space that allow a species to have a positive growth rate
+multidimensional space allowing a species to have a positive growth rate
 when rare \citep{Godsoe2017}.  Community turnover arises as a result of
 successive replacement of species along an environmental gradient, in
 agreement with the Gleasonian view of communities \citep{Gleason1926}. The
@@ -250,11 +250,12 @@ environmental gradients.
 
 Despite several attempts to update the concept of the ecological niche,
 ecologists have not moved far beyond the "n-dimensional hypervolume" defined
-by Hutchinson. Despite its intuitive interpretation and easy translation into
-species distribution models \citep{Boulangeat2012, Blonder2014}, the concept
-has been frequently criticized \citep{Hardin1960, Peters1991, Silvertown2004},
-and several attempts have been made to expand and improve it
-\citep{Pulliam2000, Chase2003, Soberon2007, Holt2009a, McInerny2012b}.
+by \citet{Hutchinson1957}. Despite its intuitive interpretation and easy
+translation into species distribution models \citep{Boulangeat2012,
+Blonder2014}, the concept has been frequently criticized \citep{Hardin1960,
+Peters1991, Silvertown2004}, and several attempts have been made to expand and
+improve it \citep{Pulliam2000, Chase2003, Soberon2007, Holt2009a,
+McInerny2012b}.
 
 Part of the problem surrounding the niche concept has been clarified with the
 distinction between Eltonian and Grinnellian definitions \citep{Chase2003}.
@@ -277,7 +278,7 @@ allow a species to satisfy its minimum requirements so that the birth rate of
 a local population is equal to or greater than its death rate along with the
 set of per capita effects of that species on these environmental conditions"}.
 Their representation merges zero-net-growth isoclines delimiting the
-Grinnellian niche ("when does the population persists?") with impact vectors
+Grinnellian niche ("when does the population persist?") with impact vectors
 delimiting the Eltonian niche ("what is the per-capita impact?"). While this
 representation has been very influential in local-scale community ecology (the
 resource-ratio theory of coexistence, \citealt{Tilman1982}), it remains
@@ -291,9 +292,9 @@ structure.
 
 We propose to integrate the two perspectives of the niche using a visual
 representation of both components (Fig. 2). The underlying rationale is that,
-in addition to the environmental constraints on demographic performance (Fig.2
+in addition to the environmental constraints on demographic performance (Fig. 2,
 top panel), any organism requires resources to meet its metabolic demands and
-to sustain reproduction (Fig. 2 nodes in network of bottom panel). Abiotic
+to sustain reproduction (Fig. 2, nodes in network of bottom panel). Abiotic
 environmental axes are any non-consumable factors affecting the demographic
 performance of an organism. Alternatively, the resource axes are traits of the
 resources that allow interactions with the consumers. By definition of what an
@@ -302,7 +303,7 @@ therefore be viewed as the set of abiotic environmental conditions (the
 Grinnellian component) along with the set of traits (the Eltonian component)
 that allow a population to establish and to grow at a location. This visual
 representation make operational the theoretical interpretation of the niche
-and species ranges by Godsoe et al. \citealt{Godsoe2017}. Accordingly, each
+and species ranges by \citet{Godsoe2017}. Accordingly, each
 species can be characterized by an optimal position along both the
 environmental (x-axis) and the trait (y-axis) plane. The integrated niche is
 then the hypervolume where interactions can occur and where a population has a
@@ -365,7 +366,7 @@ of observing the two species co-occurring at location $y$. It corresponds
 to the Grinnellian dimension of the niche. The second term represents the
 probability that an interaction occurs between species $i$ and $j$, given that
 they are co-occurring. This predicate can be refined using information on
-trait distribution and trait matching rules (\citep{Bartomeus2016}).
+trait distribution and trait matching rules \citep{Bartomeus2016}.
 Above, we referred to this entity as the "metaweb" and it corresponds to
 the Eltonian dimension of the niche. Below, we will see how this formalism
 can be directly fit to empirical data. But before turning to an application,
@@ -378,9 +379,8 @@ different hypotheses concerning spatial variation in network structure (see
 the explicit formulations in Table 1). The simplest model relates the
 probability of co-occurrence directly to the environment,
 $P(X_{iy},X_{jy}|E_y)$. In this situation, there are no underlying assumptions
-about the ecological processes responsible for co-occurrence. It could arise
-because interactions constrain distribution, where in such case the co-
-occurrence would be conditional on $L$, or, alternatively, because of
+about the ecological processes responsible for co-occurrence. Spatial associations between species could arise
+because interactions constrain distribution, where in such case the co-occurrence would be conditional on $L$, or, alternatively, because of
 environmental requirements shared between $i$ and $j$ \citep{Pollock2014,
 Cazelles2016}. In the former case, species are not independent of each other
 and the conditional occurrence must be accounted for explicitly,
@@ -394,13 +394,13 @@ distribution when accounting for species interactions). Direct pairwise
 interactions such as competition, facilitation, and predation have long been
 studied for their impact on co-distribution (e.g. \citealt{Diamond1975,
 Connor1979, Gotelli2000}). Second- and higher-order interactions (e.g. trophic
-cascades) could also affect co-occurrence \citep{Harris2017,
+cascades) could also affect co-occurrence \citep{Harris2016,
 Staniczenko2017}. Co-occurrence of multiple species embedded in ecological
 networks is a topic of its own, however, and is influenced by both network
 topology and species richness \citep{Cazelles2016}. Not only direct
 interactions influence co-occurrence, but indirect interactions do as well
 (e.g. plant species sharing an herbivore, or herbivores sharing parasitoids,
-could repel each other in space \citealt{Holt1993}). The impact of direct
+could repel each other in space \citep{Holt1993}). The impact of direct
 interactions and first-order indirect interactions on co-occurrence tends to
 vanish with increasing species richness in the community \citep{Cazelles2016}.
 Further, co-occurrence is also influenced by the covariance of interacting
@@ -433,7 +433,7 @@ Second, ecological interactions could also vary with the environment, so that
 $P(L_{ijy}|E_y)$. Although it is rare to see a conditional representation of
 pairwise ecological interactions, experimental studies have frequently
 revealed interactions to be sensitive to the environment. For instance,
-\citep{Mckinnon2010} showed that predation risks of shorebirds vary at the
+\citet{Mckinnon2010} showed that predation risks of shorebirds vary at the
 continental scale, decreasing from the south to the north. It is also common
 to see increasing top-down control with temperature (e.g. \citealt{Shurin2012,
 Gray2016}). Effects of the environment on interactions \citep{Gibert2014} also
@@ -448,10 +448,10 @@ We now turn to an illustration of our theory with the analysis of an empirical
 dataset of host–parasite networks sampled throughout the south–north
 environmental gradient in continental Europe \citep{Kopelke2017}. Our
 objective here is to illustrate potential applications of the approach
-outlined above, rather than a specific attempt at describing the biogeography
+outlined above, rather than to specifically describe the biogeography
 of this particular community. The focal system consists of local food webs of
 willows (genus \textit{Salix}), their galling insects, and the natural enemies
-(parasitoids and inquilines) of these gallers. We ask:
+(parasitoids and inquilines) of gallers. We ask:
 i) how much does network structure vary across the gradient, and ii) what is
 the primary driver of network turnover across the gradient?
 
@@ -463,8 +463,8 @@ The genus \textit{Salix} includes over 400 species, most of which are shrubs
 or small trees \citep{Argus1997}, and is common in moist habitats across the
 Northern Hemisphere \citep{Skvortsov1999}. Willows support a highly diverse
 community of herbivorous insects, with one of the main herbivore groups being
-gall- inducing sawflies (Hymenoptera: Tenthredinidae: Nematinae: Euurina
-\citep{Kopelke1999}). Gall formation is induced by sawfly females during
+gall-inducing sawflies (Hymenoptera: Tenthredinidae: Nematinae: Euurina
+\citep{Kopelke1999}. Gall formation is induced by sawfly females during
 oviposition, and includes marked manipulation of host-plant chemistry by the
 galler \citep{Nyman2000}. The enemy community of the gallers includes nearly
 100 species belonging to 17 insect families of four orders
@@ -486,13 +486,13 @@ of the pairs of species may have been observed co-occurring only a few times,
 or never. As a consequence, despite the extent of the sampling, there is significant uncertainty in the quantification of some of the links. The above described methodology explicitly aims at describing this uncertainty, and research should be done to develop methods to reduce it (see Conclusion). 
 
 The current study represents the first analysis of the full data set
-from a spatial perspective. Full details about the data collection and species
+from a spatial perspective. Full details about data collection and species
 identification are provided in \citep{Kopelke2017}. Annual mean temperature
 and precipitation were obtained from WorldClim using the R package dismo
 \citep{Hijmans2015} and GPS coordinates of the sampling locations. While other
 covariates could have also been considered to represent the high
-dimensionality of the niceh, these two variables are likely representative of
-the most important axes of the European climate, and are also more easily
+dimensionality of the niche, these two variables are likely representative of
+the most important axes of European climate, and are also more easily
 interpretable than reduced variables obtained, for example, by principal
 component analysis.
 
@@ -513,7 +513,7 @@ issue).
 
 We compared three models for the co-occurrence probability. The first one
 directly represents the co-occurrence probability conditional on the local
-environment, $P(X_{iy},X_{jy}|E_y)$ (models are listed at Table 1 and 2).
+environment, $P(X_{iy},X_{jy}|E_y)$ (models are listed in Tables 1 and 2).
 Hence, this model makes no assumption about the mechanisms driving co-
 occurrence for any given environment, and instead uses the information
 directly available in the data. It thereby indirectly accounts for the effect
@@ -544,9 +544,8 @@ The second model fits the interaction probability independently of the local
 environmental variables, $P(L_{ijy}|X_{iy},X_{jy})$. It corresponds to the
 number of times the two species were observed to interact when co-occurring,
 divided by the number of times that they co-occurred. The third model is an
-extreme case performed only to test the hypothesis that if two species are
-found to interact at least once, then they should interact whenever they co-
-occur, $P(L_{ijy}|X_{iy},X_{jy})=1$. While not necessarily realistic, this
+extreme case evaluated only to test the hypothesis that if two species are
+found to interact at least once, then they should interact whenever they co-occur, $P(L_{ijy}|X_{iy},X_{jy})=1$. While not necessarily realistic, this
 model tests an assumption commonly invoked in the representation of local
 networks from the knowledge of a deterministic metaweb. It represents
 potential interactions, rather than realized ones. There are consequently five
@@ -559,36 +558,32 @@ predicted probabilities. The joint probability $P(L_{ijy},X_{iy},X_{jy})$ was
 then computed from Eq. 2, and the likelihood of each observation $D_{ijy}$ was computed
 as $\mathcal{L}(\theta_{ijy}|D_{ijy})=P(L_{ij},X_{iy},X_{jy})$ if an
 interaction was observed, and as $\mathcal{L}(\theta_{ijy}|D_{ijy}) =
-1-P(L_{ijy}, X_{iy}, X_{jy})$ if no interaction was observed. The log-
-likelihood was summed over the entire dataset to compare the different models
+1-P(L_{ijy}, X_{iy}, X_{jy})$ if no interaction was observed. The log-likelihood was summed over the entire dataset to compare the different models
 by AIC. We therefore evaluate the likelihood of all local networks, given the
 model. Not surprisingly, there was a very large number of species pairs for
 which this model could not be computed, as they simply never co-occurred. For
 these pairs, we have no information of the interaction probability, and they
 were consequently removed from the analysis. The log-likelihood reported
-across the entire dataset was summed over all pairs of species observed to co-
-occur at least once. Interactions between the first (\textit{Salix}) and
+across the entire dataset was therefore summed over all pairs of species observed to co-occur at least once. Interactions between the first (\textit{Salix}) and
 second (gallers) trophic layers and those between the second and third
 (parasitoids) were considered separately. Finally, we used the full model (in
 which both co-occurrence and the interaction are conditional on the
 environment) to interpolate species distributions and interaction
 probabilities across the entire European continent. We reconstructed the
 expected network for each location in a 1 X 1 km grid and computed the
-probabilistic connectance following \citep{Poisot2015c}.
+probabilistic connectance following \citet{Poisot2015c}.
  
 All of the data are openly available in the database \emph{mangal}
-\citep{Poisot2015b} and all R scripts for running the analysis, are provided
+\citep{Poisot2015b} and all R scripts for running the analyses, are provided
 in the github repository 
 %\hyperref[https://github.com/DominiqueGravel/ms_probaweb]{https://github.com/DominiqueGravel/ms_probaweb}.
 \url{https://github.com/DominiqueGravel/ms_probaweb}.
 
 \subsection*{Results}
 
-Despite the extensive sampling, many pairs of species were observed to co-
-occur only a few times. This made it difficult to evaluate interaction
-probabilities with any reasonable confidence interval. Thus, we start with an
-example of a single pair of species selected because of its high number of co-
-occurrences ($N_{ij}=38$): the leaf folder \textit{Phyllocolpa prussica} and
+Despite the extensive sampling, many pairs of species were observed to co-occur only a few times. This made it difficult to evaluate interaction
+probabilities with any reasonable confidence. Thus, we start with an
+example of a single pair of species selected because of its high number of co-occurrences ($N_{ij}=38$): the leaf folder \textit{Phyllocolpa prussica} and
 the parasidoid \textit{Chrysocharis elongata}. These two fairly abundant
 species were observed $N_i=49$ and $N_j=121$ times, respectively, across the
 370 sites, and they were found to interact with a marginal probability
@@ -599,8 +594,7 @@ a model assuming the same probability of interaction anywhere in space (Model 1
 vs Model 2). Moreover, when the two species co-occur, the occurrence of the
 interaction was insensitive to the environment (Model 2 vs Model 3).
 Alternatively, climatic variables significantly impacted co-occurrence (Model
-3 vs Model 4). The neutral model performed worse than the non-random co-
-occurrence model (Model 3 vs Model 6). The full model revealed that the
+3 vs Model 4). The neutral model performed worse than the non-random co-occurrence model (Model 3 vs Model 6). The full model revealed that the
 greatest interaction probability occurred at intermediate temperature and
 precipitation, simply because this is where the two species most frequently
 co-occur (Fig. 3). The probabilities of co-occurrence and interaction can be
@@ -609,10 +603,10 @@ occurred in Central Europe (Fig. 4).
 
 We evaluated each model for all pairs of species in order to better understand
 the large-scale drivers of network turnover. The results were highly
-consistent among trophic layers (\textit{Salix}–gallers and
-gallers–parasitoids; Table 2), despite very significant variability in the fit
+consistent among trophic levels (\textit{Salix}–gallers and
+gallers–parasitoids; Table 2), despite large variability in the fit
 of the models to the different pairs of species. This variability was
-particularly important for the models of interactions, given co-occurrence.
+particularly important for the models of interactions given co-occurrence.
 Across all pairs of species, the conditional representation of interactions
 performed better than the marginal one (Model 1 vs Model 2); that is,
 interactions did not occur systematically whenever the two species were found
@@ -650,7 +644,7 @@ AIC, the best model was the one of non-random co-occurrence (Model 3 vs Model
 Once we had selected the best model based on AIC (Model 3, Table 2), we used
 it to reconstruct the expected species richness, along with the most likely
 network for each location. Using this approach, we mapped the expected
-distribution of network properties across Europe (Fig. 6). For simplicity, we
+distribution of network properties across Europe (Fig. 5). For simplicity, we
 chose to consider connectance as our descriptor of network configuration, as
 this metric can be easily computed from probabilistic networks
 \citep{Poisot2015c} and is also a good proxy for many other network properties
@@ -658,7 +652,7 @@ this metric can be easily computed from probabilistic networks
 parasitoid diversity in Northern Europe. The expected number of interactions
 roughly followed the distribution of species richness, but accumulated at a
 rate different from species numbers. Connectance likewise peaked in Northern
-Europe (Fig. 6).
+Europe (Fig. 5).
 
 %========================================================%
 \section*{Interpretation}
@@ -705,15 +699,14 @@ diverse in the south.
 Exactly what processes are responsible for the distribution of species
 richness at different trophic levels is yet to be established (but see e.g.
 \citealt{Roininen2005, Nyman2010, Leppanen2014}), but as a net outcome of
-different latitudinal trends across trophic levels, the distribution of co-
-occurrence and therefore of potential interactions differed between the first
+different latitudinal trends across trophic levels, the distribution of co-occurrence and therefore of potential interactions differed between the first
 and second layers of feeding links. The correlation between expected
-\textit{Salix} and gallers richness was 0.73, while it was 0.58 between
+\textit{Salix} and galler richness was 0.73, while it was 0.58 between
 gallers and their parasitoids. Therefore, the ratio of herbivores to
 \textit{Salix} species is essentially constant across Europe, whereas each
 herbivore species is potentially attacked by a richer enemy community higher
 latitudes. Consequently, overall connectance peaks in Northern Europe (Fig.
-6).
+5).
 
 In terms of species interacting with each other, our analysis suggests that
 the environment leaves a detectable imprint on species co-occurrence, but only
@@ -721,22 +714,21 @@ a slight mark on the occurrence of realized links among species in a specific
 place: the probability of finding a given combination of species at a higher
 and a lower trophic level at the same site was clearly affected by the
 environment, whereas the probability of observing an interaction between the
-two was, given co-occurrence, not detectably so. The interactions were  highly
+two was, given co-occurrence, not significantly so. The interactions were  highly
 uncertain, as only few pairs of species were systematically interacting when
 co-occurring but most not. This applies to the example species
-\textit{Phyllocolpa prussica} and \textit{Chrysocharis elongata} (Figs 2 and
-3), but also to all species pairs more generally. For the example species
+\textit{Phyllocolpa prussica} and \textit{Chrysocharis elongata} (Figs. 3 and
+4), but also to all species pairs more generally. For the example species
 pair, the full model revealed that the joint probability event (interaction
 and co-occurrence) peaks at intermediate temperature and precipitation, simply
 because this is where the two species co-occur most often. This does not imply
 that species will always interact when they meet – although this is a basic
 assumption in most documented metawebs to date (e.g. \citealt{Havens1992,
-Wood2015}). Rather, an interaction is better represented as aa stochastic
+Wood2015}). Rather, an interaction is better represented as a stochastic
 process whose probability is also influenced by the probability with which
 species co-occur. What we cannot reliably know is how this stochasticity
 splits into different sources of uncertainty – i.e., the extent to which a
-species at the higher trophic level runs into a species at the lower level co-
-occurring at the site, the extent to which this interaction is detected by an
+species at the higher trophic level runs into a species at the lower level co-occurring at the site, the extent to which this interaction is detected by an
 observer collecting a finite sample, or simply the uncertainty arising from
 incomplete description of a highly dimensional niche. Future work will be
 required to document the relative importance of these sources of uncertainty
@@ -764,8 +756,7 @@ however, is the extent to which such variation is driven by a turnover of
 species composition along gradients, or a turnover of the interactions. Here
 we found that interactions vary substantially but non-predictably along the
 annual temperature and the precipitation gradient. The lack of detectable
-signal may be due to our choice of covariates. Indeed, a previous study on a
-similar system identified habitat characteristics as the primary drivers of
+signal may be due to our choice of covariates. Indeed, a previous study focusing on a subset of the system studied here identified habitat characteristics as the primary drivers of
 interactions \citep{Nyman2015}. New investigations with other systems will
 thus be required to challenge this result. Under all circumstances,
 documenting the relationship between the environment and the occurrence of
@@ -791,17 +782,17 @@ critically depend on a strong \emph{a priori} expectation of the conditional
 probability of observing a species given the distribution of the other
 species. This assumption seems reasonable for some situations, such as a
 parasitoid species that requires a host to develop. On the other hand,
-\citealt{Cazelles2016b} found that the strength of this association is often
-rather weak if not neutral (for instance, with the example pair analysed at
+\citet{Cazelles2016b} found that the strength of this association is often
+rather weak if not neutral (for instance, with the example pair presented in
 Table 1). The lack of an association could simply arise when the parasitoid is
-generalist enough that it is not obligated to track the distribution of any
+generalist enough that it is not constrained to track the distribution of any
 single/given host \citep{Cazelles2015}.
 
 At present, there is only indirect support for the hypothesis that interacting
-species are conditionally distributed but this possibility should be the
+species are conditionally distributed, but this possibility should be the
 topic of theoretical investigation with dynamical metacommunity models \citep{Cazelles2015} and empirical hypothesis testing. The impact of ecological
 interactions on the distribution of co-occurrence has been the topic of many
-publications since \citealt{Diamond1975} seminal study on competition and
+publications since \citet{Diamond1975} seminal study on competition and
 "checkerboard" distribution, but pairwise approaches have only recently
 received attention \citep{Veech2013}. Whether two interacting species are more
 closely associated in space remains unclear, since most approaches based on
@@ -824,8 +815,7 @@ since the species have never been observed together, it remains possible that
 they would interact if they did. A fundamentally different category of
 absences of interactions are then those reported after multiple observations
 of species co-occurence. Thus, to gain confidence that the probability of an
-interaction is low, extensive sampling (that is, several records of co-
-occurence) is needed. Generally, our confidence that the interaction is indeed
+interaction is low, extensive sampling (that is, several records of co-occurence) is needed. Generally, our confidence that the interaction is indeed
 impossible will increase with the number of observations of the species pair.
 Seeing that this is essentially a Bernoulli process (the probability that the
 species will interact given their presence), the breadth of the confidence
@@ -874,7 +864,7 @@ present.
 
 \textbf{5. Effects of ecological interactions on co-occurrence}. We have
 intentionally omitted the feedback of ecological interactions on co-occurrence
-in this framework. As abundance can impact the occurrence of interactions, and
+in this framework. As abundance can impact the occurrence of interactions, and,
 conversely since interactions impact abundance \citep{Canard2014}, we could
 reasonably expect that interactions will also influence co-occurrence. Theory
 in this regard does exist for simple three-species modules
@@ -957,12 +947,12 @@ elongata}}
 
 \textbf{Non-random sampling of the metaweb}. Network assembly can be viewed
 as a sampling process of the regional pool of potential interactions. Species
-(indicated by coloured nodes) are sampled first, and among the species found in
+(indicated by colored nodes) are sampled first, and among the species found in
 the local network, only some interactions (indicated by blue links) occur.
 We characterize these sampling processes with the quantitative framework
 proposed in this paper. As a concrete illustration of metaweb sampling, we
-here show a local interaction network among \textit{Salix} (left/green), gallers
-(center/red), and parasitoids (red/blue). The metaweb was constructed by
+here show a local interaction network among \textit{Salix} (bottom/green), gallers
+(center/blue), and parasitoids (top/red). The metaweb was constructed by
 aggregating interactions observed across 370 local networks.
 
 %------------------------
@@ -979,7 +969,7 @@ the location of a species in the food web, as determined by its niche position
 ($n$) and its niche optimum ($c$). The vertical axis represents a niche
 gradient, for example a trait such as body size. The location of each species
 along this gradient represents their niche position. The focal species will
-feed only on prey species occupying niche locations within a given interval
+feed only on host/prey species occupying niche locations within a given interval
 around the optimum, represented by the horizontal lines. The integrated
 Grinnellian and Eltonian niche corresponds to the square in the middle where
 an interaction is possible owing to a match of traits and spatial
