@@ -10,3 +10,5 @@
 *.DS_Store
 old_stuff/
 analysis/scripts/queries/get_salix.r
+*.fls
+*.fdb_latexmk

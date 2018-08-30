@@ -55,43 +55,43 @@ XS = numeric(nrow(pairs_SH))
 XH = numeric(nrow(pairs_SH))
 LSH = numeric(nrow(pairs_SH))
 
-if(parallel == TRUE){
+# if(parallel == TRUE){
 	
-	# Init parrallele
-	#0. Packages loading
-	library(doParallel)
+# 	# Init parrallele
+# 	#0. Packages loading
+# 	library(doParallel)
 
-	#1. Init the cluster of SOCKETS
-	# Get the number of cores by node
-	nCores <- detectCores()
+# 	#1. Init the cluster of SOCKETS
+# 	# Get the number of cores by node
+# 	nCores <- detectCores()
 
-	# Open the cluster
-	cl <- makeCluster(nCores)
-	# We replicated the addresses nCores times.
-	registerDoParallel(cl)
+# 	# Open the cluster
+# 	cl <- makeCluster(nCores)
+# 	# We replicated the addresses nCores times.
+# 	registerDoParallel(cl)
 
-	# Loop around all observations of interactions
-	id_xs <- foreach(x=1:nrow(SH),.combine=c) %dopar% {
-		# Get the sites where the salix is present
-		 return(which(pairs_SH$sites_ID == SH[x,1] & pairs_SH$ID_S == SH[x,5]))
-	}
+# 	# Loop around all observations of interactions
+# 	id_xs <- foreach(x=1:nrow(SH),.combine=c) %dopar% {
+# 		# Get the sites where the salix is present
+# 		 return(which(pairs_SH$sites_ID == SH[x,1] & pairs_SH$ID_S == SH[x,5]))
+# 	}
 	
-	id_xh <- foreach(x=1:nrow(SH),.combine=c) %dopar% {
-		# Get the sites where the salix is present
-		 return(which(pairs_SH$sites_ID == SH[x,1] & pairs_SH$ID_H == SH[x,6]))
-	}
+# 	id_xh <- foreach(x=1:nrow(SH),.combine=c) %dopar% {
+# 		# Get the sites where the salix is present
+# 		 return(which(pairs_SH$sites_ID == SH[x,1] & pairs_SH$ID_H == SH[x,6]))
+# 	}
 	
-	id_lsh <- foreach(x=1:nrow(SH),.combine=c) %dopar% {
-		# Get the sites where the salix is present
-		 return(which(pairs_SH$sites_ID == SH[x,1] & pairs_SH$ID_S == SH[x,5] & pairs_SH$ID_H == SH[x,6]))
-	}
+# 	id_lsh <- foreach(x=1:nrow(SH),.combine=c) %dopar% {
+# 		# Get the sites where the salix is present
+# 		 return(which(pairs_SH$sites_ID == SH[x,1] & pairs_SH$ID_S == SH[x,5] & pairs_SH$ID_H == SH[x,6]))
+# 	}
 	
-	# convert matches to 1
-	XS[id_xs] = 1
-	XH[id_xh] = 1
-	LSH[id_lsh] = 1
+# 	# convert matches to 1
+# 	XS[id_xs] = 1
+# 	XH[id_xh] = 1
+# 	LSH[id_lsh] = 1
 	
-} else{
+# } else{
 	
 	# Loop around all observations of interactions
 	for(x in 1:nrow(SH)) {
@@ -106,11 +106,13 @@ if(parallel == TRUE){
 		LSH[which(pairs_SH$sites_ID == SH[x,1] & pairs_SH$ID_S == SH[x,5] & pairs_SH$ID_H == SH[x,6])] = 1
 
 	}
-}
+#}
 
 
-data = cbind(pairs_SH,XS,XH,LSH)
-save(data, file = "./data/SH.Rdata")
+data_SH = cbind(pairs_SH,XS,XH,LSH)
+save(data_SH, file = "./data/SH.Rdata")
+
+##############################################
 
 # Look at co-occurrence for pairs of galls and parasitoids
 pairs0_HP= data.frame(
@@ -128,31 +130,31 @@ XP = numeric(nrow(pairs_HP))
 LHP = numeric(nrow(pairs_HP))
 
 # Loop around all observations of interactions
-if(parallel==TRUE){
+# if(parallel==TRUE){
 	
-	id_xh2 <- foreach(x=1:nrow(HP),.combine=c) %dopar% {
-		# Get the sites where the salix is present
-		 return(which(pairs_HP$sites_ID == HP[x,1] & pairs_HP$ID_H == HP[x,5]))
-	}
+# 	id_xh2 <- foreach(x=1:nrow(HP),.combine=c) %dopar% {
+# 		# Get the sites where the salix is present
+# 		 return(which(pairs_HP$sites_ID == HP[x,1] & pairs_HP$ID_H == HP[x,5]))
+# 	}
 	
-	id_xp <- foreach(x=1:nrow(HP),.combine=c) %dopar% {
-			# Get the sites where the gall is present
-		 return(which(pairs_HP$sites_ID == HP[x,1] & pairs_HP$ID_P == HP[x,6]))
-	}
+# 	id_xp <- foreach(x=1:nrow(HP),.combine=c) %dopar% {
+# 			# Get the sites where the gall is present
+# 		 return(which(pairs_HP$sites_ID == HP[x,1] & pairs_HP$ID_P == HP[x,6]))
+# 	}
 	
-	id_lhp <- foreach(x=1:nrow(HP),.combine=c) %dopar% {
-		# Get the sites where the gall and the salix interact
-		 return(which(pairs_HP$sites_ID == HP[x,1] & pairs_HP$ID_H == HP[x,5] & pairs_HP$ID_P == HP[x,6]))
-	}
+# 	id_lhp <- foreach(x=1:nrow(HP),.combine=c) %dopar% {
+# 		# Get the sites where the gall and the salix interact
+# 		 return(which(pairs_HP$sites_ID == HP[x,1] & pairs_HP$ID_H == HP[x,5] & pairs_HP$ID_P == HP[x,6]))
+# 	}
 	
-	# convert matches to 1
-	XH2[id_xh2] = 1
-	XP[id_xp] = 1
-	LHP[id_lhp] = 1
+# 	# convert matches to 1
+# 	XH2[id_xh2] = 1
+# 	XP[id_xp] = 1
+# 	LHP[id_lhp] = 1
 	
-	stopCluster(cl)
+# 	stopCluster(cl)
 	
-} else{
+# } else{
 	
 	for(x in 1:nrow(HP)) {
 
@@ -166,7 +168,7 @@ if(parallel==TRUE){
 		LHP[which(pairs_HP$sites_ID == HP[x,1] & pairs_HP$ID_H == HP[x,5] & pairs_HP$ID_P == HP[x,6])] = 1
 
 	}
-}
+#}
 
 
 data_HP = data.frame(pairs_HP = pairs_HP, XH2 = XH2, XP = XP, LHP = LHP)
@@ -177,6 +179,7 @@ XH2 = data_HP$XH2
 XP = data_HP$XP
 LHP = data_HP$LHP
 
+###################################################
 # Combine the sets
 names(pairs_SH) = c("sites_ID", "from", "to", "type")
 names(pairs_HP) = c("sites_ID", "from", "to", "type")
@@ -193,10 +196,15 @@ library(raster)
 bclim = brick("./data/bioclim.grd")
 salix_climate = extract(bclim, salix_int[,c('lon', 'lat')])
 salix_climate = data.frame(salix_int, salix_climate)
+
+
 save(salix_climate, file="./data/salix_climate.Rdata")
 
 # Subset the data to have one line per site
 sub_salix_climate = salix_climate[match(sites_ID,sites),c(1,7:25)]
+
+# Drop NAs
+sub_salix_climate = sub_salix_climate[is.na(sub_salix_climate$bio1)==FALSE,]
 
 # Compute the PCA
 PCA = princomp(na.omit(sub_salix_climate[,2:20]),cor = TRUE)
@@ -207,7 +215,7 @@ sub_salix_climate = cbind(sub_salix_climate,PCA$scores)
 
 # Match the climate data to the full table
 match_pairs_climate = match(as.character(pairs[,1]), 
-	as.character(sub_salix_climate[,1]))
+as.character(sub_salix_climate[,1]))
 
 expand_climate = sub_salix_climate[match_pairs_climate,]
 
@@ -215,3 +223,4 @@ expand_climate = sub_salix_climate[match_pairs_climate,]
 data = data.frame(pairs = pairs, Xi=Xi, Xj=Xj, Xij=Xij, Lij=Lij, climate = expand_climate)
 data = subset(data,is.na(data$climate.bio1)==FALSE)
 save(data,file = "./data/expand_data.Rdata")
+

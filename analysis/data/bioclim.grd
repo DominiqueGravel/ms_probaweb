@@ -1,0 +1,25 @@
+[general]
+creator=R package 'raster'
+created=2018-06-26 15:50:45
+[georeference]
+nrows=381
+ncols=300
+xmin=5.16666666666667
+ymin=39
+xmax=30.1666666666667
+ymax=70.75
+projection=+proj=longlat +datum=WGS84
+[data]
+datatype=FLT4S
+byteorder=little
+nbands=19
+bandorder=BIL
+minvalue=-59:37:19:3815:42:-236:142:-101:-143:9:-175:292:34:2:7:94:14:16:58
+maxvalue=182:125:41:10347:347:85:399:209:263:263:117:2852:357:166:83:1002:525:602:845
+nodatavalue=-3.4e+38
+[legend]
+legendtype=
+values=
+color=
+[description]
+layername=bio1:bio2:bio3:bio4:bio5:bio6:bio7:bio8:bio9:bio10:bio11:bio12:bio13:bio14:bio15:bio16:bio17:bio18:bio19

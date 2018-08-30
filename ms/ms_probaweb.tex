@@ -42,7 +42,7 @@ Buckhurst Road, Ascot, Berkshire SL5 7PY, United Kingdom\\
 Box 352100, Seattle, WA 98195, USA\\
 \textbf{12}: Department of Ecology, Swedish University of Agricultural Sciences, Box 7044, 750 07 Uppsala, Sweden\\
 
-%\textbf{Words in the abstract: 226} \\ 
+%\textbf{Words in the abstract: 226} \\
 %\textbf{Words in the main text: 7043} \\
 %\textbf{Words in the legends: 502} \\
 
@@ -195,7 +195,7 @@ lists of species among sites or measurements, they remain fundamentally
 explicitly considers variation of associations (i.e., of pairs or higher-order
 motifs – \citealt{Stouffer2007}). Some previous studies have considered how
 species distribution could be influenced by the joint effects of the abiotic
-and biotic environment \citep{Stephens2009, GonzalezSalazar2013, Cazelles2015,
+and biotic environment \citep{Stephens2009, GonzalezSalasar2013, Cazelles2015,
 Ovaskainen2017}, here we inverse the problem and describe how the distribution
 of biotic interactions is influenced by species distribution and the
 environment.
@@ -349,7 +349,7 @@ event, conditional on the set of environmental conditions $E_y$:
 
 %-----------------
 \begin{equation}
-	\text{P}(X_{iy},X_{jy},L_{ijy}|E_y)
+	\text{P}(X_{iy},X_{jy},L_{ijy}\lvert E_y)
 \end{equation}
 %-----------------
 
@@ -360,7 +360,7 @@ probabilities:
 
 %-----------------
 \begin{equation}
-	P(X_{iy},X_{jy},L_{ijy}|E_y)=P(X_{iy},X_{jy}|E_y)P(L_{ijy}|X_{iy},X_{jy},E_y)
+	P(X_{iy},X_{jy},L_{ijy}\lvert E_y)=P(X_{iy},X_{jy}\lvert E_y)P(L_{ijy}\lvert X_{iy},X_{jy},E_y)
 \end{equation}
 %-----------------
 
@@ -374,7 +374,7 @@ specific references to traits and considered that the interactions are
 provided in the data. But one could develop the model further to integrate
 such traits, inspired by the framework developed by Gravel et al. 2016. They
 proposed to represent the occurence of an interaction between species as a
-joint probability event $P(L_{ij}, \mathbf{T}_i, \mathbf{T}_j|E)$, where
+joint probability event $P(L_{ij}, \mathbf{T}_i, \mathbf{T}_j\lvert E)$, where
 $\mathbf{T}_i$ and $\mathbf{T}_j$ are trait vectors for species $i$ and $j$
 respectively. In order to develop a trait-based representation of the spatial
 variation of interactions, one may thereafter consider how these traits are
@@ -392,17 +392,17 @@ There are several variants to the co-occurrence probability, representing
 different hypotheses concerning spatial variation in network structure (see
 the explicit formulations in Table 1). The simplest model relates the
 probability of co-occurrence directly to the environment,
-$P(X_{iy},X_{jy}|E_y)$. In this situation, there are no underlying assumptions
+$P(X_{iy},X_{jy}\lvert E_y)$. In this situation, there are no underlying assumptions
 about the ecological processes responsible for co-occurrence. Spatial associations between species could arise
 because interactions constrain distribution, where in such case the co-occurrence would be conditional on $L$, or, alternatively, because of
 environmental requirements shared between $i$ and $j$ \citep{Pollock2014,
 Cazelles2016}. In the former case, species are not independent of each other
 and the conditional occurrence must be accounted for explicitly,
-$P(X_{iy},X_{jy} |E_y)=P(X_{iy}|E_y,X_{jy})P(X_{jy}|E_y)$. In the latter case,
+$P(X_{iy},X_{jy} \lvert E_y)=P(X_{iy}\lvert E_y,X_{jy})P(X_{jy}\lvert E_y)$. In the latter case,
 species are independent, and only the marginal occurrence must be accounted
-for, $P( X_{ijy}|E_y)=P(X_{iy} |E_y)P(X_{jy} |E_y)$.
+for, $P( X_{ijy}\lvert E_y)=P(X_{iy} \lvert E_y)P(X_{jy} \lvert E_y)$.
 
-The co-occurrence probability itself could depend on ecological interactions. 
+The co-occurrence probability itself could depend on ecological interactions.
 This should be viewed as the realized component of the niche (i.e. the
 distribution when accounting for species interactions). Direct pairwise
 interactions such as competition, facilitation, and predation have long been
@@ -418,7 +418,7 @@ could repel each other in space \citep{Holt1993}). The impact of direct
 interactions and first-order indirect interactions on co-occurrence tends to
 vanish with increasing species richness in the community \citep{Cazelles2016}.
 Further, co-occurrence is also influenced by the covariance of interacting
-species to an environmental gradient \citep{Cazelles2015}. 
+species to an environmental gradient \citep{Cazelles2015}.
 
 The interpretation that interactions may impact co-occurrence, and that the
 realization of an interaction requires co-occurrence are not mutually
@@ -437,14 +437,14 @@ thus far considered ecological interactions to be deterministic, rather than
 probabilistic (e.g. \citealt{Havens1992, Wood2015}). Species are assumed to
 interact whenever they are found together in a location, independent of their
 local abundance and the local environment. In other words,
-$P(L_{ijy}|X_{iy}=1,X_{jy}=1) = 1$. This approach might be a reasonable
+$P(L_{ijy}\lvert X_{iy}=1,X_{jy}=1) = 1$. This approach might be a reasonable
 approximation if the spatial or temporal scale of sampling and inference is so
 large that the probability of observing at least one interaction converges to
 unity. In this scenario, network variation arises solely from species
 distributions.
 
 Second, ecological interactions could also vary with the environment, so that
-$P(L_{ijy}|E_y)$. Although it is rare to see a conditional representation of
+$P(L_{ijy}\lvert E_y)$. Although it is rare to see a conditional representation of
 pairwise ecological interactions, experimental studies have frequently
 revealed interactions to be sensitive to the environment. For instance,
 \citet{Mckinnon2010} showed that predation risks of shorebirds vary at the
@@ -486,7 +486,7 @@ galler \citep{Nyman2000}. The enemy community of the gallers includes nearly
 (Coleoptera, Lepidoptera, Diptera, and Hymenoptera) feed primarily on gall
 tissue, but typically kill the galler larva in the process, while parasitoid
 larvae (representing many families in Hymenoptera) kill the galler larvae by
-direct feeding \citep{Kopelke2003}. 
+direct feeding \citep{Kopelke2003}.
 
 Local realizations of the willow-galler-parasitoid network were reconstructed
 from community samples collected between 1982 and 2010. During this period,
@@ -530,13 +530,13 @@ issue).
 
 We compared three models for the co-occurrence probability. The first one
 directly represents the co-occurrence probability conditional on the local
-environment, $P(X_{iy},X_{jy}|E_y)$ (models are listed in Tables 1 and 2).
+environment, $P(X_{iy},X_{jy}\lvert E_y)$ (models are listed in Tables 1 and 2).
 Hence, this model makes no assumption about the mechanisms driving co-
 occurrence for any given environment, and instead uses the information
 directly available in the data. It thereby indirectly accounts for the effect
 of interactions on co-occurrence, if there are any. The second model considers
 independent occurrence of species. In this case, we independently fit
-$P(X_{iy} |E_y)$ and $P(X_{jy} |E_y)$, and we then take their product to
+$P(X_{iy} \lvert E_y)$ and $P(X_{jy} \lvert E_y)$, and we then take their product to
 derive the probability of co-occurrence. This model should be viewed as a null
 hypothesis with respect to the first model, since a comparison between the
 respective models will reveal if there is significant spatial association of
@@ -555,14 +555,14 @@ species, 10 parameters for the second, and only one for the third model.
 
 Following the same logic, we compared three models of the interaction
 probability. The first model conditions the interaction probability on the
-local environmental variables, $P(L_{ijy}|X_{iy},X_{jy},E_y)$. Consequently,
+local environmental variables, $P(L_{ijy}\lvert X_{iy},X_{jy},E_y)$. Consequently,
 the model was fit to the subset of the data where the two species co-occur.
 The second model fits the interaction probability independently of the local
-environmental variables, $P(L_{ijy}|X_{iy},X_{jy})$. It corresponds to the
+environmental variables, $P(L_{ijy}\lvert X_{iy},X_{jy})$. It corresponds to the
 number of times the two species were observed to interact when co-occurring,
 divided by the number of times that they co-occurred. The third model is an
 extreme case evaluated only to test the hypothesis that if two species are
-found to interact at least once, then they should interact whenever they co-occur, $P(L_{ijy}|X_{iy},X_{jy})=1$. While not necessarily realistic, this
+found to interact at least once, then they should interact whenever they co-occur, $P(L_{ijy}\lvert X_{iy},X_{jy})=1$. While not necessarily realistic, this
 model tests an assumption commonly invoked in the representation of local
 networks from the knowledge of a deterministic metaweb. It represents
 potential interactions, rather than realized ones. There are consequently five
@@ -573,8 +573,8 @@ is fixed by the hypothesis).
 We fitted the different models to each pair of species and recorded the
 predicted probabilities. The joint probability $P(L_{ijy},X_{iy},X_{jy})$ was
 then computed from Eq. 2, and the likelihood of each observation $D_{ijy}$ given the model $\theta$ was computed
-as $\mathcal{L}(D_{ijy}|\theta)=P(L_{ij},X_{iy},X_{jy})$ if an
-interaction was observed, and as $\mathcal{L}(D_{ijy}|\theta) =
+as $\mathcal{L}(D_{ijy}\lvert \theta)=P(L_{ij},X_{iy},X_{jy})$ if an
+interaction was observed, and as $\mathcal{L}(D_{ijy}\lvert \theta) =
 1-P(L_{ijy}, X_{iy}, X_{jy})$ if no interaction was observed. The log-likelihood was summed over the entire dataset to compare the different models
 by AIC. We therefore evaluate the likelihood of all local networks, given the
 model. Not surprisingly, there was a very large number of species pairs for
@@ -589,10 +589,10 @@ environment) to interpolate species distributions and interaction
 probabilities across the entire European continent. We reconstructed the
 expected network for each location in a 1 X 1 km grid and computed the
 probabilistic connectance following \citet{Poisot2015c}.
- 
+
 All of the data are openly available in the database \emph{mangal}
 \citep{Poisot2015b} and all R scripts for running the analyses, are provided
-in the github repository 
+in the github repository
 %\hyperref[https://github.com/DominiqueGravel/ms_probaweb]{https://github.com/DominiqueGravel/ms_probaweb}.
 \url{https://github.com/DominiqueGravel/ms_probaweb}.
 
@@ -792,7 +792,7 @@ Importantly, one could easily derive the different $\beta$ of
 \citealt{Poisot2012} using the fitted probabilities. For instance, for a pair
 of species $i$ and $j$ and sites $x$ and $y$, the expectation for the fraction
 $a$ for the interactions would be
-$P(L_{ijx}|X_{ix},X_{ijx})P(L_{ijx}|X_{ix},X_{ijx})$. The same could be
+$P(L_{ijx}\lvert X_{ix},X_{ijx})P(L_{ijx}\lvert X_{ix},X_{ijx})$. The same could be
 computed for fractions $b$, and therefore the expected beta-diversity for an
 entire network could be recomputed this way. The novel feature of the approach
 presented here is then that the different contributions to network turnover
@@ -809,9 +809,9 @@ environmental effects on species-specific distribution have been accounted
 for, interactions come with significant effects on co-occurrence? We could
 rephrase this problem by asking whether the fundamental niche differs from the
 realized niche, and how this applies to our framework. For example, we have
-considered above simply the co-occurrence probability, $P(X_{iy},X_{jy}|E_y)$,
-which could be expanded as $P(X_{iy}|X_{jy},E_y) P(X_{jy}| E_y )$. After some
-re-arrangement of Eq. 2, the marginal occurrence probability, $P(X_{jy}|E_y
+considered above simply the co-occurrence probability, $P(X_{iy},X_{jy}\lvert E_y)$,
+which could be expanded as $P(X_{iy}\lvert X_{jy},E_y) P(X_{jy}\lvert  E_y )$. After some
+re-arrangement of Eq. 2, the marginal occurrence probability, $P(X_{jy}\lvert E_y
 )$, could be considered as a species distribution model taking into account
 the interaction between these species (in the same spirit as done by Gonzalez-
 Salazar et al. 2013). This derivation would however critically depend on a
@@ -830,9 +830,9 @@ order to derive a complete and more mechanistic representation of the niche.
 In this context, both the Eltonian and Grinnellian dimensions of the niche
 could be represented. As mentioned earlier, \citealt{Gravel2016} proposed to
 represent the occurrence of interactions based on some trait-matching rules
-(given by a function of the type $P(L_{ij})|\mathbf{T}_i, \mathbf{T}_j, E)$)
+(given by a function of the type $P(L_{ij})\lvert \mathbf{T}_i, \mathbf{T}_j, E)$)
 and the co-distribution of traits (corresponding to $P(\mathbf{T}_i,
-\mathbf{T}_j|E)$). The key  insight from the formalism proposed by
+\mathbf{T}_j\lvert E)$). The key  insight from the formalism proposed by
 \citealt{Gravel2016} is that the co-distribution of traits will impact
 variation in network structure. As a result, it was found that network
 properties often co-vary with functional structure and functional diversity
@@ -939,7 +939,7 @@ occurrence to infer ecological interactions \citep{Morales-Castilla2015,
 Morueta-Holme2016}.
 
 %========================================================%
-\section*{Acknowledgements} 
+\section*{Acknowledgements}
 
 This is a contribution to the working groups \emph {Continental-scale
 variation of ecological networks} supported by the Canadian Institute for
@@ -965,6 +965,7 @@ Discovery grant program and Canada Research Chair program.
 
 \begin{tabular}{llllllll}
 \hline
+
 Location & $Sp_i$ & $Sp_j$ & $X_i$ & $X_j$ & $X_{ij}$ & $L_{ij}$ & Av. temp \\ \hline
 Kühkopf 		& Phyllocolpa prussica  & Chrysocharis elongata & 1 & 1 & 1 & 1 &  8.25 \\
 Kühkopf 		& Phyllocolpa leucapsis & Chrysocharis elongata & 0 & 1 & 0 & 0 &  8.25 \\
@@ -976,6 +977,7 @@ Wüstensachsen	& Phyllocolpa prussica  & Chrysocharis elongata & 1 & 1 & 1 & 0 &
 Wüstensachsen	& Phyllocolpa leucapsis & Chrysocharis elongata & 1 & 1 & 1 & 1 &  5.58 \\
 Steinamoen      & Phyllocolpa prussica  & Chrysocharis elongata & 0 & 1 & 0 & 0 &  3.17 \\
 Steinamoen      & Phyllocolpa leucapsis & Chrysocharis elongata & 0 & 1 & 0 & 0 &  3.17 \\ 
+
 \hline
 \end{tabular}
 \end{table}
@@ -993,12 +995,12 @@ elongata}}. Note that $E$ is a short notation including both temperature and pre
 \begin{tabular}{llllll}
 \hline
 	\# & Metaweb model 						& Co-occurrence model 			& LL 	& npars & AIC \\ \hline
-	1 & $P(L_{ijy})$ 						& $P(X_{iy},X_{jy}|E_y)$ 		& -71.1 & 6 	& 154.2 \\
-	2 & $P(L_{ijy} | X_{iy}, X_{jy})$ 		& $P(X_{iy},X_{jy}|E_y)$ 		& -65.7 & 6 	& 143.4 \\
-	3 & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy},X_{jy}|E_y)$ 		& -65.6 & 10 	& 151.3 \\ \hline
-	4 & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy},X_{jy})$ 			& -84.5 & 6 	& 183 \\
-	5 & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy})P(X_{jy})$ 			& -80.7 & 7 	& 173.4 \\
-	6 & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy}|E_y)P(X_{jy}|E_y)$ 	& -68.8 & 15 	& 167.6 \\
+	1 & $P(L_{ijy})$ 						& $P(X_{iy},X_{jy}\lvert E_y)$ 		& -71.1 & 6 	& 154.2 \\
+	2 & $P(L_{ijy} \lvert  X_{iy}, X_{jy})$ 		& $P(X_{iy},X_{jy}\lvert E_y)$ 		& -65.7 & 6 	& 143.4 \\
+	3 & $P(L_{ijy} \lvert  X_{iy}, X_{jy}, E_y)$ & $P(X_{iy},X_{jy}\lvert E_y)$ 		& -65.6 & 10 	& 151.3 \\ \hline
+	4 & $P(L_{ijy} \lvert  X_{iy}, X_{jy}, E_y)$ & $P(X_{iy},X_{jy})$ 			& -84.5 & 6 	& 183 \\
+	5 & $P(L_{ijy} \lvert  X_{iy}, X_{jy}, E_y)$ & $P(X_{iy})P(X_{jy})$ 			& -80.7 & 7 	& 173.4 \\
+	6 & $P(L_{ijy} \lvert  X_{iy}, X_{jy}, E_y)$ & $P(X_{iy}\lvert E_y)P(X_{jy}\lvert E_y)$ 	& -68.8 & 15 	& 167.6 \\
 \hline
 \end{tabular}
 \end{table}
@@ -1014,18 +1016,18 @@ elongata}}. Note that $E$ is a short notation including both temperature and pre
 \begin{tabular}{lllllll}
 \hline
 	Interaction & \# & Metaweb model & Co-occurrence model & LL & npars & AIC \\ \hline
-	\textit{Salix}-Galler & 1 & $P(L_{ijy})$ & $P(X_{iy},X_{jy}|E_y)$ & -6022.1 & 7548 & 27140.3 \\
-	 & 2 & $P(L_{ijy}|X_{iy},X_{jy})$ & $P(X_{iy},X_{jy}|E_y)$ & -5547.9 & 7548 & 26191.8 \\
-	 & 3 & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy},X_{jy}|E_y)$ & -5364.0 & 12580 & 35888.0 \\
-	 & 4 & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy},X_{jy})$ & -5998.4 & 8806 & 30287.2 \\
-	 & 5 & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy})P(X_{jy})$ & -6636.1 & 7548 & 27092.7 \\
-	 & 6 & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy}|E_y)P(X_{jy}|E_y)$ & -6002.9 & 18870 & 49745.7 \\ \hline
-	Galler-Parasitoid & 1 & $P(L_{ijy})$ & $P(X_{iy},X_{jy}|E_y)$ & -22068.1 & 19206 & 82548.2 \\
-	 & 2 & $P(L_{ijy} | X_{iy}, X_{jy})$ & $P(X_{iy},X_{jy}|E_y)$ & -19504.8 & 19206 & 77421.6 \\
-	 & 3 & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy},X_{jy}|E_y)$ & -20217.0 & 32010 & 104454.1 \\
-	 & 4 & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy},X_{jy})$ & -19591.3 & 22407 & 77594.5 \\
-	 & 5 & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy})P(X_{jy})$ & -22491.5 & 19206 & 89796.9 \\
-	 & 6 & $P(L_{ijy} | X_{iy}, X_{jy}, E_y)$ & $P(X_{iy}|E_y)P(X_{jy}|E_y)$ & -18936.9 & 48015 & 133903.7 \\
+	\textit{Salix}-Galler & 1 & $P(L_{ijy})$ & $P(X_{iy},X_{jy}\lvert E_y)$ & -6022.1 & 7548 & 27140.3 \\
+	 & 2 & $P(L_{ijy}\lvert X_{iy},X_{jy})$ & $P(X_{iy},X_{jy}\lvert E_y)$ & -5547.9 & 7548 & 26191.8 \\
+	 & 3 & $P(L_{ijy} \lvert  X_{iy}, X_{jy}, E_y)$ & $P(X_{iy},X_{jy}\lvert E_y)$ & -5364.0 & 12580 & 35888.0 \\
+	 & 4 & $P(L_{ijy} \lvert  X_{iy}, X_{jy}, E_y)$ & $P(X_{iy},X_{jy})$ & -5998.4 & 8806 & 30287.2 \\
+	 & 5 & $P(L_{ijy} \lvert  X_{iy}, X_{jy}, E_y)$ & $P(X_{iy})P(X_{jy})$ & -6636.1 & 7548 & 27092.7 \\
+	 & 6 & $P(L_{ijy} \lvert  X_{iy}, X_{jy}, E_y)$ & $P(X_{iy}\lvert E_y)P(X_{jy}\lvert E_y)$ & -6002.9 & 18870 & 49745.7 \\ \hline
+	Galler-Parasitoid & 1 & $P(L_{ijy})$ & $P(X_{iy},X_{jy}\lvert E_y)$ & -22068.1 & 19206 & 82548.2 \\
+	 & 2 & $P(L_{ijy} \lvert  X_{iy}, X_{jy})$ & $P(X_{iy},X_{jy}\lvert E_y)$ & -19504.8 & 19206 & 77421.6 \\
+	 & 3 & $P(L_{ijy} \lvert  X_{iy}, X_{jy}, E_y)$ & $P(X_{iy},X_{jy}\lvert E_y)$ & -20217.0 & 32010 & 104454.1 \\
+	 & 4 & $P(L_{ijy} \lvert  X_{iy}, X_{jy}, E_y)$ & $P(X_{iy},X_{jy})$ & -19591.3 & 22407 & 77594.5 \\
+	 & 5 & $P(L_{ijy} \lvert  X_{iy}, X_{jy}, E_y)$ & $P(X_{iy})P(X_{jy})$ & -22491.5 & 19206 & 89796.9 \\
+	 & 6 & $P(L_{ijy} \lvert  X_{iy}, X_{jy}, E_y)$ & $P(X_{iy}\lvert E_y)P(X_{jy}\lvert E_y)$ & -18936.9 & 48015 & 133903.7 \\
 \hline
 \end{tabular}
 \end{table}
@@ -1046,7 +1048,7 @@ We characterize these sampling processes with the quantitative framework
 proposed in this paper. As a concrete illustration of metaweb sampling, we
 here show a local interaction network among \textit{Salix} (bottom/green), gallers
 (center/blue), and parasitoids (top/red). The metaweb was constructed by
-aggregating interactions observed across 370 local networks. Nodes were distributed 
+aggregating interactions observed across 370 local networks. Nodes were distributed
 to minimize crossing of interactions.
 
 %------------------------
@@ -1122,7 +1124,7 @@ Color gradient ranges from low values (dark blue) to high values (yellow).
 \subsection*{Figure 1}
 
 \begin{figure}[ht!]
-\centering\includegraphics[width=1\textwidth]{figures/mw_sampling}
+\centering\includegraphics[width=1\textwidth]{figures/mw_sampling.png}
 \end{figure}
 
 \newpage
@@ -1131,7 +1133,7 @@ Color gradient ranges from low values (dark blue) to high values (yellow).
 \subsection*{Figure 2}
 
 \begin{figure}[ht!]
-\centering\includegraphics[width=0.6\textwidth]{figures/integrated_niche}
+\centering\includegraphics[width=0.6\textwidth]{figures/integrated_niche.png}
 \end{figure}
 
 \newpage
@@ -1140,7 +1142,7 @@ Color gradient ranges from low values (dark blue) to high values (yellow).
 \subsection*{Figure 3}
 
 \begin{figure}[ht!]
-\centering\includegraphics[width=0.8\textwidth]{figures/example_pair}
+\centering\includegraphics[width=0.8\textwidth]{figures/example_pair.png}
 \end{figure}
 
 \newpage
@@ -1149,7 +1151,7 @@ Color gradient ranges from low values (dark blue) to high values (yellow).
 \subsection*{Figure 4}
 
 \begin{figure}[ht!]
-\centering\includegraphics[width=0.8\textwidth]{figures/map_pair}
+\centering\includegraphics[width=0.8\textwidth]{figures/map_pair.png}
 \end{figure}
 
 \newpage
@@ -1167,7 +1169,7 @@ Color gradient ranges from low values (dark blue) to high values (yellow).
 \subsection*{Figure 5}
 
 \begin{figure}[ht!]
-\centering\includegraphics[width=0.8\textwidth]{figures/map_connectance}
+\centering\includegraphics[width=0.8\textwidth]{figures/map_connectance.png}
 \end{figure}
 
 \newpage

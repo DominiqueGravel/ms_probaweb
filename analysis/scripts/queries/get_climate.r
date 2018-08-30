@@ -6,14 +6,13 @@
 ##################################################################
 
 rm(list = ls())
-setwd("/Users/DGravel/Documents/Manuscripts/Inprep/ms_probaweb/analysis")
 
 # Load packages
 library(dismo)
 library(raster)
 
 # Load data
-load("analysis/data/salix_int.Rdata")
+load("analysis/data/salix_int_direct.Rdata")
 
 # Data proprocessing
 salix_int$lat = as.numeric(salix_int$lat)
